@@ -604,24 +604,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi id sheet google sheet</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins_sheet_id <span class="ot">&lt;-</span> <span class="st">"1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>,<span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"spesies"</span>, <span class="st">"pulau"</span>, <span class="st">"bill_length"</span>, <span class="st">"bill_depth"</span>, <span class="st">"panjang sirip"</span>, <span class="st">"berat"</span>, <span class="st">"kelamin"</span>, <span class="st">"tahun"</span> ), <span class="at">skip=</span> <span class="dv">1</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),  <span class="at">col_types =</span> <span class="st">"cccccccc"</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 52 × 8
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;         &lt;list&gt;        &lt;list&gt;            &lt;list&gt;     
- 1 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 2 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 3 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 4 Adelie  Torgersen &lt;chr [1]&gt;      &lt;chr [1]&gt;     &lt;chr [1]&gt;         &lt;chr [1]&gt;  
- 5 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 6 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 7 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 8 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 9 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
-10 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
-# ℹ 42 more rows
-# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+   spesies pulau     bill_length bill_depth `panjang sirip` berat kelamin tahun
+   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
+ 1 Adelie  Torgersen 39.1        18.7       181             3750  male    2007 
+ 2 Adelie  Torgersen 39.5        17.4       186             3800  female  2007 
+ 3 Adelie  Torgersen 40.3        18         195             3250  female  2007 
+ 4 Adelie  Torgersen NA          NA         NA              NA    NA      2007 
+ 5 Adelie  Torgersen 36.7        19.3       193             3450  female  2007 
+ 6 Adelie  Torgersen 39.3        20.6       190             3650  male    2007 
+ 7 Adelie  Torgersen 38.9        17.8       181             3625  female  2007 
+ 8 Adelie  Torgersen 39.2        19.6       195             4675  male    2007 
+ 9 Adelie  Torgersen 34.1        18.1       193             3475  NA      2007 
+10 Adelie  Torgersen 42          20.2       190             4250  NA      2007 
+# ℹ 42 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -661,9 +661,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  4     4 -1    Kenia OS - Ojo X Ojo (Video Oficial)                18 #3 Mexico…
  5     5 +5    RIIZE 라이즈 'Talk Saxy' MV                         14 #2 Japan,…
  6     6 -1    Mal Hombre                                          16 #18 Mexic…
- 7     7 -1    Morat - Demasiado Lejos (Visualizer)                15 #21 Argen…
- 8     8 =     Becky G - POR EL CONTRARIO (Lyric Video)            11 #17 Argen…
- 9     9 -2    Wisin, Chencho Corleone - LOCO X PERREARTE (Off…    13 #16 Argen…
+ 7     7 =     Wisin, Chencho Corleone - LOCO X PERREARTE (Off…    14 #16 Argen…
+ 8     8 -2    Morat - Demasiado Lejos (Visualizer)                15 #21 Argen…
+ 9     9 -1    Becky G - POR EL CONTRARIO (Lyric Video)            11 #17 Argen…
 10    10 -1    REGGAETON CHAMPAGNE - Bellakath ft Dani Flow (V…    13 #21 Mexic…
 # ℹ 80 more rows</code></pre>
 </div>
