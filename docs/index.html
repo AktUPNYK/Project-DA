@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Topik 1: Data Import</title>
+<title>Materi (R) Data Analitik - Topik 3 Modelling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Modul Data Analitik (R)</span>
+    <span class="navbar-title">Materi (R) Data Analitik</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/AktUPNYK/Project-DA" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Topik Pembahasan</a></li><li class="breadcrumb-item"><a href="./index.html">Topik 1: Data Import</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Topik Pembahasan</a></li><li class="breadcrumb-item"><a href="./index.html">Topik 3 Modelling</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Topik 1: Data Import</span></a>
+ <span class="menu-text">Topik 3 Modelling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -173,8 +173,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">topik3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./topik3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 3 Modelling</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
  <span class="menu-text">topik4.qmd</span>
   </li>
@@ -221,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Topik 1: Data Import</h1>
+<h1 class="title">Topik 3 Modelling</h1>
 </div>
 
 
@@ -297,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Date, yang juga dapat mencakup waktu seperti “11/1/21” atau “11/1/21 3:00 PM”.</p></li>
 <li><p>String teks, seperti “sepuluh”.</p></li>
 </ul>
-<p>terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf <strong>(five)</strong> sehingga kita ubah agar menjadi numeric <strong>(5)</strong></p>
+<p>terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf <strong>(five)</strong> sehingga kita ubah menjadi numeric <strong>(5)</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/students.xlsx"</span>,</span>
@@ -412,19 +415,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Dalam bab ini, kita akan mempelajari package <code>DBI</code> untuk menyambungkan ke database dan kemudian mengambil data dengan query SQL. SQL (Structured Query Language), adalah bahasa pemrograman untuk database dan merupakan bahasa terpenting bagi semua jenis data analitik.</p>
 <p>Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package <code>DBI</code> dan <code>RMySQL</code>, kemudian menghubungkan koneksi database tweater.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Paket DBI dan  RMySQL</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Koneksi database</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"tweater"</span>, </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">"courses.csrrinzqubik.us-east-1.rds.amazonaws.com"</span>, </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port =</span> <span class="dv">3306</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">"student"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">"datacamp"</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Koneksi database</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"tweater"</span>, </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">"courses.csrrinzqubik.us-east-1.rds.amazonaws.com"</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port =</span> <span class="dv">3306</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">"student"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">"datacamp"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "comments" "tweats"   "users"   </code></pre>
 </div>
@@ -576,14 +578,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="import-google-sheets" class="level2">
 <h2 class="anchored" data-anchor-id="import-google-sheets">4. Import Google Sheets</h2>
-<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan kemudian gunakan fungsi <code>read_sheet</code>. Misal kita akan mengimport data dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w" class="uri">https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</code></p>
+<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan <code>tidyverse</code> kemudian gunakan fungsi read_sheet. Misal kita akan mengimport data dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w" class="uri">https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load paket googlesheet</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membaca sheet berdasarkan sheet id</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   `Student ID` `Full Name`      favourite.food     mealPlan            AGE      
@@ -604,24 +604,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi id sheet google sheet</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins_sheet_id <span class="ot">&lt;-</span> <span class="st">"1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>,<span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"spesies"</span>, <span class="st">"pulau"</span>, <span class="st">"bill_length"</span>, <span class="st">"bill_depth"</span>, <span class="st">"panjang sirip"</span>, <span class="st">"berat"</span>, <span class="st">"kelamin"</span>, <span class="st">"tahun"</span> ), <span class="at">skip=</span> <span class="dv">1</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),  <span class="at">col_types =</span> <span class="st">"cccccccc"</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 52 × 8
-   spesies pulau     bill_length bill_depth `panjang sirip` berat kelamin tahun
-   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
- 1 Adelie  Torgersen 39.1        18.7       181             3750  male    2007 
- 2 Adelie  Torgersen 39.5        17.4       186             3800  female  2007 
- 3 Adelie  Torgersen 40.3        18         195             3250  female  2007 
- 4 Adelie  Torgersen NA          NA         NA              NA    NA      2007 
- 5 Adelie  Torgersen 36.7        19.3       193             3450  female  2007 
- 6 Adelie  Torgersen 39.3        20.6       190             3650  male    2007 
- 7 Adelie  Torgersen 38.9        17.8       181             3625  female  2007 
- 8 Adelie  Torgersen 39.2        19.6       195             4675  male    2007 
- 9 Adelie  Torgersen 34.1        18.1       193             3475  NA      2007 
-10 Adelie  Torgersen 42          20.2       190             4250  NA      2007 
-# ℹ 42 more rows</code></pre>
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;         &lt;list&gt;        &lt;list&gt;            &lt;list&gt;     
+ 1 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 2 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 3 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 4 Adelie  Torgersen &lt;chr [1]&gt;      &lt;chr [1]&gt;     &lt;chr [1]&gt;         &lt;chr [1]&gt;  
+ 5 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 6 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 7 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 8 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 9 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+10 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+# ℹ 42 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -634,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Menggunakan regular expression</p></li>
 <li><p>Parsing HTML</p></li>
 </ul>
-<p>Kali ini kita akan menggunakan fungsi <code>read_html()</code> untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :</p>
+<p>Kali ini kita akan menggunakan fungsi read_html() untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Package</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -652,20 +652,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Tabel</span></span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 90 × 5
+<pre><code># A tibble: 52 × 5
       `` ``    Video                                              `#` Highlights
    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                            &lt;int&gt; &lt;chr&gt;     
- 1     1 =     Taylor Swift - Style (Taylor's Version) (Lyric …    27 #9 Argent…
- 2     2 =     Taylor Swift - Blank Space (Taylor's Version) (…    19 #10 Argen…
- 3     3 NEW   Yeri MUA, Noriega - Con To’ (Official Music Vid…    15 #2 Mexico…
- 4     4 -1    Kenia OS - Ojo X Ojo (Video Oficial)                18 #3 Mexico…
- 5     5 +5    RIIZE 라이즈 'Talk Saxy' MV                         14 #2 Japan,…
- 6     6 -1    Mal Hombre                                          16 #18 Mexic…
- 7     7 =     Wisin, Chencho Corleone - LOCO X PERREARTE (Off…    14 #16 Argen…
- 8     8 -2    Morat - Demasiado Lejos (Visualizer)                15 #21 Argen…
- 9     9 -1    Becky G - POR EL CONTRARIO (Lyric Video)            11 #17 Argen…
-10    10 -1    REGGAETON CHAMPAGNE - Bellakath ft Dani Flow (V…    13 #21 Mexic…
-# ℹ 80 more rows</code></pre>
+ 1     1 NEW   The Beatles - Now And Then - The Last Beatles S…    15 #5 Mexico…
+ 2     2 +1    Arcángel, Peso Pluma - LA CHAMBA (Video Oficial)    19 #11 Mexic…
+ 3     3 -1    Sabrina Carpenter - Feather (Official Video)        25 #14 Argen…
+ 4     4 NEW   정국 (Jung Kook) 'Standing Next to You' Officia…    17 #4 Mexico…
+ 5     5 -4    정국 (Jung Kook) 'GOLDEN' Preview                   28 #30 Argen…
+ 6     6 NEW   BAD BUNNY - BATICANO (Official Video) | nadie s…    16 #32 Argen…
+ 7     7 NEW   Tokischa - CANDY (Official Video)                    9 #23 Argen…
+ 8     8 NEW   Mariah Carey - IT'S TIME!!                           9 #7 United…
+ 9     9 NEW   Epik High (에픽하이) ‘Screen Time’ ft. Hoshi of…     7 #12 Indon…
+10    10 NEW   DILLOM, MECHAYRXMEO - MAMI ISSUES (Videoclip)        7 #5 Argent…
+# ℹ 42 more rows</code></pre>
 </div>
 </div>
 
@@ -912,7 +912,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023) | UPN Veteran Yogyakarta</div>
+    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023), UPN Veteran Yogyakarta</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
