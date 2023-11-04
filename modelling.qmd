@@ -1,0 +1,53 @@
+---
+title: "Topik 6 | Modelling"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Pendahuluan
+
+Dalam bab ini, Anda akan mempelajari alat untuk bekerja dengan vektor logis. Vektor logis adalah jenis vektor yang paling sederhana karena setiap elemen hanya dapat menjadi salah satu dari tiga nilai yang mungkin: TRUE , FALSE , dan NA . Relatif jarang menemukan vektor logis dalam data mentah Anda, tetapi Anda akan membuat dan memanipulasinya.
+
+![](/images/manstra.jpg)
+
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+Namun, saat kita mulai membahas lebih banyak alat, tidak akan selalu ada contoh nyata yang sempurna. Jadi kita akan mulai membuat beberapa data dummy dengan c() :
+
+
+```{r}
+x <- c(1, 2, 3, 5, 7, 11, 13)
+x * 2
+
+```
+
+```{r}
+df <- tibble(x)
+df |> 
+  mutate(y = x * 2)
+
+```
+
+##  Perbandingan
+Cara yang sangat umum untuk membuat vektor logis adalah melalui perbandingan numerik dengan < , , , >= != , , <= > dan == . Sejauh ini, kami sebagian besar telah membuat variabel logis sementara di dalam filter() - mereka dihitung, digunakan, dan kemudian dibuang. Misalnya, filter berikut menemukan semua keberangkatan siang hari yang tiba kira-kira tepat waktu:
+
+```{r}
+flights |> 
+  filter(dep_time > 600 & dep_time < 2000 & abs(arr_delay) < 20)
+```
+
+```{r}
+flights |> 
+  mutate(
+    daytime = dep_time > 600 & dep_time < 2000,
+    approx_ontime = abs(arr_delay) < 20,
+    .keep = "used"
+  )
+```
+

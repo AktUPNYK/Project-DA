@@ -1,5 +1,5 @@
 ---
-title: "Topik 1 Data Import"
+title: "Topik 1 | Data Import"
 ---
 
 ```{r setup, include=FALSE}
@@ -22,8 +22,7 @@ library(writexl)
 
 ### 1.2 Membaca spreadsheet Excel
 
-Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` .
-kita akan mengimport data Excel students yang telah diunduh tadi dengan menggunakan fungsi :
+Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder data maka dengan menggunakan fungsi :
 
 ```{r}
 #> membaca file student.xlsx dari lokasi folder data
@@ -38,13 +37,13 @@ Nama kolom tidak teratur,lalu kita ubah dengan fungsi `col_names`
 #> mengubah nama kolom
 read_excel(
   "data/students.xlsx",
-  col_names = c("student_id", "full_name", "favourite_food", "meal_plan", "age"),
+  col_names = c("id_siswa", "nama_lengkap", "makanan_favorit", "rencana_makan", "umur"),
   skip = 1
 )
 
 ```
 
-#### 1.2.1 Tipe Data 
+#### 1.2.1 Tipe Data
 
 Dalam file Excel, semua nilai memiliki tipe yang berbeda tidak semuanya adalah string. Data yang mendasari dalam spreadsheet Excel lebih kompleks, seperti :
 
@@ -56,12 +55,12 @@ Dalam file Excel, semua nilai memiliki tipe yang berbeda tidak semuanya adalah s
 
 -   String teks, seperti "sepuluh".
 
-terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf **(five)** sehingga kita ubah menjadi numeric **(5)**
+terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf **(five)** sehingga kita ubah agar menjadi numeric **(5)**
 
 ```{r}
 students <- read_excel(
   "data/students.xlsx",
-  col_names = c("student_id", "full_name", "favourite_food", "meal_plan", "age"),
+  col_names = c("id_siswa", "nama_lengkap", "makanan_favorit", "rencana_makan", "umur"),
   skip = 1,
   na = c("", "N/A"),
   col_types = c("numeric", "text", "text", "text", "text")
@@ -70,8 +69,8 @@ students <- read_excel(
 
 students <- students |>
   mutate(
-    age = if_else(age == "five", "5", age),
-    age = parse_number(age)
+    umur = if_else(umur == "five", "5", umur),
+    umur = parse_number(umur)
   )
 #> Fungsi mutate mengubah data dengan argumen if 
 
@@ -133,6 +132,8 @@ Dalam bab ini, kita akan mempelajari package `DBI` untuk menyambungkan ke databa
 Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package `DBI` dan `RMySQL`, kemudian menghubungkan koneksi database tweater.
 
 ```{r}
+
+#> Load Paket DBI dan  RMySQL
 library(DBI)
 library(RMySQL)
 
@@ -216,12 +217,14 @@ students
 
 ## 4. Import Google Sheets
 
-Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan *sheet_id*. Pertama kita me-load package `googlesheets4` dan `tidyverse` kemudian gunakan fungsi read_sheet. Misal kita akan mengimport data dari google sheet : <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w> maka kita akan mengambil id sheet sebagai **key call** nya yaitu `1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w`
+Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan *sheet_id*. Pertama kita me-load package `googlesheets4` dan kemudian gunakan fungsi `read_sheet`. Misal kita akan mengimport data dari google sheet : <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w> maka kita akan mengambil id sheet sebagai **key call** nya yaitu `1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w`
 
 ```{r}
+#> Load paket googlesheet
 library(googlesheets4)
 googlesheets4::gs4_deauth()
 
+#> Membaca sheet berdasarkan sheet id
 read_sheet("1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w")
 
 ```
@@ -237,8 +240,9 @@ terdapat beberapa sheet dan kita akan menampilkan data di sheet Togersen Island 
 #> Identifikasi id sheet google sheet
 penguins_sheet_id <- "1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"
 
-#> Tampilkan data sheet Torgersen Island
-read_sheet(penguins_sheet_id, sheet = "Torgersen Island")
+#> Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong
+read_sheet(penguins_sheet_id, sheet = "Torgersen Island",col_names = c("spesies", "pulau", "bill_length", "bill_depth", "panjang sirip", "berat", "kelamin", "tahun" ), skip= 1,na = c("", "N/A"),  col_types = "cccccccc"
+  )
 
 ```
 
@@ -252,7 +256,7 @@ Web scraping adalah metode pengambilan data dari sebuah website secara otomatis.
 
 -   Parsing HTML
 
-Kali ini kita akan menggunakan fungsi read_html() untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :
+Kali ini kita akan menggunakan fungsi `read_html()` untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :
 
 ```{r}
 #> Load Package
@@ -260,7 +264,7 @@ library(tidyverse)
 library(rvest)
 
 #> Url data tabel
-url <- "https://kworb.net/youtube/trending.html"
+url <- "https://kworb.net/youtube/insights/id_daily.html"
 html <- read_html(url)
 
 #> Ekstrak element tabel
