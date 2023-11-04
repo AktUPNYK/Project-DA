@@ -243,8 +243,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan">Pendahuluan</a></li>
-  <li><a href="#perbandingan" id="toc-perbandingan" class="nav-link" data-scroll-target="#perbandingan">Perbandingan</a></li>
+  <li><a href="#modelling" id="toc-modelling" class="nav-link active" data-scroll-target="#modelling">1. Modelling</a>
+  <ul class="collapse">
+  <li><a href="#apa-itu-modelling" id="toc-apa-itu-modelling" class="nav-link" data-scroll-target="#apa-itu-modelling">1.1 Apa itu Modelling</a></li>
+  <li><a href="#modelling-dalam-r" id="toc-modelling-dalam-r" class="nav-link" data-scroll-target="#modelling-dalam-r">1.2 Modelling Dalam R</a></li>
+  </ul></li>
+  <li><a href="#manchine-learning" id="toc-manchine-learning" class="nav-link" data-scroll-target="#manchine-learning">2. Manchine Learning</a>
+  <ul class="collapse">
+  <li><a href="#unsupervised-vs-supervised" id="toc-unsupervised-vs-supervised" class="nav-link" data-scroll-target="#unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</a></li>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">2.2 Supervised Learning</a></li>
+  <li><a href="#contoh-code-regression-linear" id="toc-contoh-code-regression-linear" class="nav-link" data-scroll-target="#contoh-code-regression-linear"><strong>Contoh code Regression Linear :</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -268,92 +277,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="pendahuluan" class="level2">
-<h2 class="anchored" data-anchor-id="pendahuluan">Pendahuluan</h2>
-<p>Dalam bab ini, Anda akan mempelajari alat untuk bekerja dengan vektor logis. Vektor logis adalah jenis vektor yang paling sederhana karena setiap elemen hanya dapat menjadi salah satu dari tiga nilai yang mungkin: TRUE , FALSE , dan NA . Relatif jarang menemukan vektor logis dalam data mentah Anda, tetapi Anda akan membuat dan memanipulasinya.</p>
-<p><img src=".\images/manstra.jpg" class="img-fluid"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="modelling" class="level2">
+<h2 class="anchored" data-anchor-id="modelling">1. Modelling</h2>
+<section id="apa-itu-modelling" class="level3">
+<h3 class="anchored" data-anchor-id="apa-itu-modelling">1.1 Apa itu Modelling</h3>
+<p>Modeling (atau pemodelan dalam Bahasa Indonesia) merujuk pada proses pembuatan representasi abstrak dari suatu sistem fisik, konsep, atau fenomena dengan tujuan untuk memahami, menganalisis, meramalkan, atau mensimulasikan perilaku sistem tersebut. Pemodelan dapat diterapkan dalam berbagai disiplin ilmu dan konteks, termasuk dalam ilmu pengetahuan, teknik, bisnis, seni, dan banyak lainnya</p>
+</section>
+<section id="modelling-dalam-r" class="level3">
+<h3 class="anchored" data-anchor-id="modelling-dalam-r">1.2 Modelling Dalam R</h3>
+<p>Modeling dalam R merujuk pada penggunaan bahasa pemrograman dan lingkungan pemodelan statistik R untuk membuat dan mengimplementasikan berbagai jenis model atau representasi matematis dari data, sistem, atau fenomena. R adalah bahasa pemrograma n dan lingkungan komputasi statistik yang sangat kuat dan populer, digunakan secara luas dalam analisis statistik, penelitian ilmiah, dan pemodelan statistik.</p>
+</section>
+</section>
+<section id="manchine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="manchine-learning">2. Manchine Learning</h2>
+<p>Machine learning dalam R merujuk pada penggunaan bahasa pemrograman R untuk mengembangkan dan menerapkan model machine learning. R adalah salah satu lingkungan pemrograman dan bahasa statistik yang populer, dan memiliki banyak paket dan pustaka yang kuat untuk mendukung pengembangan model machine learning.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Screenshot (154).png" class="img-fluid figure-img" width="391"></p>
+</figure>
 </div>
-<p>Namun, saat kita mulai membahas lebih banyak alat, tidak akan selalu ada contoh nyata yang sempurna. Jadi kita akan mulai membuat beberapa data dummy dengan c() :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  2  4  6 10 14 22 26</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">*</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-      x     y
-  &lt;dbl&gt; &lt;dbl&gt;
-1     1     2
-2     2     4
-3     3     6
-4     5    10
-5     7    14
-6    11    22
-7    13    26</code></pre>
-</div>
+<section id="unsupervised-vs-supervised" class="level3">
+<h3 class="anchored" data-anchor-id="unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</h3>
+<p>Pada supervised learning objektifnya adalah mempelajari hubungan antara fitur input dan output yang sesuai. →prediksi, klasifikasi</p>
+<p>Sedangkan unsupervised learning bertujuan untuk mengeksplorasi dan memahami kemiripan karakteristik pada data. → eksplorasi, memahami data, mencari pola tersembunyi</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Screenshot (155).png"><img src="images/Screenshot (155).png" class="img-fluid figure-img" width="255"></a></p>
+</figure>
 </div>
 </section>
-<section id="perbandingan" class="level2">
-<h2 class="anchored" data-anchor-id="perbandingan">Perbandingan</h2>
-<p>Cara yang sangat umum untuk membuat vektor logis adalah melalui perbandingan numerik dengan &lt; , , , &gt;= != , , &lt;= &gt; dan == . Sejauh ini, kami sebagian besar telah membuat variabel logis sementara di dalam filter() - mereka dihitung, digunakan, dan kemudian dibuang. Misalnya, filter berikut menemukan semua keberangkatan siang hari yang tiba kira-kira tepat waktu:</p>
+<section id="supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning">2.2 Supervised Learning</h3>
+<p>Pada modul ini difokuskan untuk pembelajaran Supervised learning. Supervised Learning bertujuan untuk membuat model yang dapat mempelajari hubungan antara input (fitur) dan output (label) yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/ssreg1-02.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/ssreg2-02.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<section id="regression" class="level4">
+<h4 class="anchored" data-anchor-id="regression">2.2.1 Regression</h4>
+<p>Regresi (regression) adalah suatu teknik statistik yang digunakan untuk memahami hubungan antara satu atau lebih variabel independen (dikenal sebagai prediktor) dan variabel dependen (dikenal sebagai respons). Tujuan utama dari analisis regresi adalah untuk memodelkan dan memahami sejauh mana perubahan dalam variabel independen memengaruhi variabel dependen.</p>
+<p>Regresi digunakan dalam berbagai bidang seperti ilmu sosial, ekonomi, ilmu alam, kedokteran, dan bisnis untuk menjelaskan atau memprediksi hubungan antara variabel-variabel yang diamati.</p>
+</section>
+</section>
+<section id="contoh-code-regression-linear" class="level3">
+<h3 class="anchored" data-anchor-id="contoh-code-regression-linear"><strong>Contoh code Regression Linear :</strong></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_time <span class="sc">&gt;</span> <span class="dv">600</span> <span class="sc">&amp;</span> dep_time <span class="sc">&lt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(arr_delay) <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 172,286 × 19
-    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
- 1  2013     1     1      601            600         1      844            850
- 2  2013     1     1      602            610        -8      812            820
- 3  2013     1     1      602            605        -3      821            805
- 4  2013     1     1      606            610        -4      858            910
- 5  2013     1     1      606            610        -4      837            845
- 6  2013     1     1      607            607         0      858            915
- 7  2013     1     1      611            600        11      945            931
- 8  2013     1     1      613            610         3      925            921
- 9  2013     1     1      615            615         0      833            842
-10  2013     1     1      622            630        -8     1017           1014
-# ℹ 172,276 more rows
-# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Membaca data dari file CSV</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/insurance_training.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[<span class="sc">!</span><span class="fu">is.na</span>(data<span class="sc">$</span>id), ]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(data) <span class="ot">&lt;-</span> data<span class="sc">$</span>id</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Menyiapkan variabel prediktor (X) dan target (y)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> data[, <span class="sc">!</span><span class="fu">colnames</span>(data) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"charges"</span>)]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, X)  <span class="co"># Menambahkan kolom konstanta (intercept)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>charges</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Melakukan regresi linear</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> ., <span class="at">data =</span> <span class="fu">data.frame</span>(y, X))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mendapatkan ringkasan model</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Mencetak ringkasan model</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Hasil :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Screenshot (160).png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daytime =</span> dep_time <span class="sc">&gt;</span> <span class="dv">600</span> <span class="sc">&amp;</span> dep_time <span class="sc">&lt;</span> <span class="dv">2000</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">approx_ontime =</span> <span class="fu">abs</span>(arr_delay) <span class="sc">&lt;</span> <span class="dv">20</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.keep =</span> <span class="st">"used"</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 336,776 × 4
-   dep_time arr_delay daytime approx_ontime
-      &lt;int&gt;     &lt;dbl&gt; &lt;lgl&gt;   &lt;lgl&gt;        
- 1      517        11 FALSE   TRUE         
- 2      533        20 FALSE   FALSE        
- 3      542        33 FALSE   FALSE        
- 4      544       -18 FALSE   TRUE         
- 5      554       -25 FALSE   FALSE        
- 6      554        12 FALSE   TRUE         
- 7      555        19 FALSE   TRUE         
- 8      557       -14 FALSE   TRUE         
- 9      557        -8 FALSE   TRUE         
-10      558         8 FALSE   TRUE         
-# ℹ 336,766 more rows</code></pre>
-</div>
-</div>
+<p>Penjelasan :</p>
+<ul>
+<li><p>Residual Standard Error: 6006 on 1293 Degrees of Freedom: Ini adalah ukuran seberapa besar kesalahan rata-rata model regresi dalam memprediksi data. Nilai 6006 mengindikasikan seberapa besar deviasi antara nilai yang diprediksi oleh model dan nilai sebenarnya. Degrees of Freedom (Derajat Kebebasan) adalah ukuran dari seberapa banyak data yang digunakan dalam analisis ini.</p></li>
+<li><p>Multiple R-squared: 0.7518: Ini adalah koefisien determinasi (R-squared) yang menunjukkan sejauh mana variabilitas dalam variabel respons dapat dijelaskan oleh model. Nilai 0.7518 berarti sekitar 75.18% dari variasi dalam variabel respons dapat dijelaskan oleh model.</p></li>
+<li><p>Adjusted R-squared: 0.7506: Ini adalah versi penyesuaian dari R-squared yang memperhitungkan jumlah prediktor dalam model. Nilai 0.7506 adalah penyesuaian yang lebih konservatif dari R-squared.</p></li>
+<li><p>F-statistic: 652.6 on 6 and 1293 DF: F-statistic digunakan untuk menguji signifikansi keseluruhan dari model regresi. Nilai 652.6 adalah statistik uji F, dan angka 6 dan 1293 adalah derajat kebebasan yang digunakan dalam uji ini. Nilai F-statistic yang tinggi menunjukkan bahwa model secara signifikan menjelaskan variabilitas dalam data.</p></li>
+<li><p>p-value: &lt; 2.2e-16: Ini adalah p-value yang mengindikasikan seberapa signifikan model regresi secara keseluruhan. P-value yang sangat rendah (&lt; 0.05 atau 0.01) menunjukkan bahwa model regresi secara signifikan menjelaskan variabilitas dalam data.</p></li>
+</ul>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
