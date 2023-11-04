@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Materi (R) Data Analitik - Topik 1 Data Import</title>
+<title>Modul Data Analitik (R) - Topik 1 | Data Import</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./datapreparation.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -106,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Materi (R) Data Analitik</span>
+    <span class="navbar-title">Modul Data Analitik (R)</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/AktUPNYK/Project-DA" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -131,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Topik Pembahasan</a></li><li class="breadcrumb-item"><a href="./index.html">Topik 1 Data Import</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Topik Pembahasan</a></li><li class="breadcrumb-item"><a href="./index.html">Topik 1 | Data Import</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,35 +155,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Topik Pembahasan</span></a>
+ <span class="menu-text">Pengantar</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
+ <span class="menu-text">pengantar.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Topik Pembahasan</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Topik 1 Data Import</span></a>
+ <span class="menu-text">Topik 1 | Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./topik2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 2: Data Tidy</span></a>
+  <a href="./datapreparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 2 | Data Preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./topik3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 3 Modelling</span></a>
+  <a href="./datatidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 3 | Data Tidy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">topik4.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./datatransform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 4 | Data Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visualisasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 5 | Visualisasi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 6 | Modelling</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
  <span class="menu-text">topik5.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">topikcd1.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Topik Lain</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">lain-lain.qmd</span>
   </li>
       </ul>
   </li>
@@ -224,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Topik 1 Data Import</h1>
+<h1 class="title">Topik 1 | Data Import</h1>
 </div>
 
 
@@ -253,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="membaca-spreadsheet-excel" class="level3">
 <h3 class="anchored" data-anchor-id="membaca-spreadsheet-excel">1.2 Membaca spreadsheet Excel</h3>
-<p>Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, <code>read_csv()</code> , <code>read_table()</code> dll. kali ini kita akan menggunakan <code>read_excel()</code> . kita akan mengimport data Excel students yang telah diunduh tadi dengan menggunakan fungsi :</p>
+<p>Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, <code>read_csv()</code> , <code>read_table()</code> dll. kali ini kita akan menggunakan <code>read_excel()</code> . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder data maka dengan menggunakan fungsi :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; membaca file student.xlsx dari lokasi folder data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/students.xlsx"</span>)</span>
@@ -276,19 +323,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mengubah nama kolom</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/students.xlsx"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"id_siswa"</span>, <span class="st">"nama_lengkap"</span>, <span class="st">"makanan_favorit"</span>, <span class="st">"rencana_makan"</span>, <span class="st">"umur"</span>),</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
-  student_id full_name        favourite_food     meal_plan           age  
-       &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1          1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2          2 Barclay Lynn     French fries       Lunch only          5    
-3          3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-4          4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6          6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+  id_siswa nama_lengkap     makanan_favorit    rencana_makan       umur 
+     &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
+1        1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
+2        2 Barclay Lynn     French fries       Lunch only          5    
+3        3 Jayendra Lyne    N/A                Breakfast and lunch 7    
+4        4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
+5        5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+6        6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
 </div>
 <section id="tipe-data" class="level4">
@@ -300,11 +347,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Date, yang juga dapat mencakup waktu seperti “11/1/21” atau “11/1/21 3:00 PM”.</p></li>
 <li><p>String teks, seperti “sepuluh”.</p></li>
 </ul>
-<p>terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf <strong>(five)</strong> sehingga kita ubah menjadi numeric <strong>(5)</strong></p>
+<p>terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf <strong>(five)</strong> sehingga kita ubah agar menjadi numeric <strong>(5)</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/students.xlsx"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"id_siswa"</span>, <span class="st">"nama_lengkap"</span>, <span class="st">"makanan_favorit"</span>, <span class="st">"rencana_makan"</span>, <span class="st">"umur"</span>),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"numeric"</span>, <span class="st">"text"</span>, <span class="st">"text"</span>, <span class="st">"text"</span>, <span class="st">"text"</span>)</span>
@@ -313,22 +360,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> students <span class="sc">|&gt;</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">if_else</span>(age <span class="sc">==</span> <span class="st">"five"</span>, <span class="st">"5"</span>, age),</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">parse_number</span>(age)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">umur =</span> <span class="fu">if_else</span>(umur <span class="sc">==</span> <span class="st">"five"</span>, <span class="st">"5"</span>, umur),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">umur =</span> <span class="fu">parse_number</span>(umur)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fungsi mutate mengubah data dengan argumen if </span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
-  student_id full_name        favourite_food     meal_plan             age
-       &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;dbl&gt;
-1          1 Sunil Huffmann   Strawberry yoghurt Lunch only              4
-2          2 Barclay Lynn     French fries       Lunch only              5
-3          3 Jayendra Lyne    &lt;NA&gt;               Breakfast and lunch     7
-4          4 Leon Rossini     Anchovies          Lunch only             NA
-5          5 Chidiegwu Dunkel Pizza              Breakfast and lunch     5
-6          6 Güvenç Attila    Ice cream          Lunch only              6</code></pre>
+  id_siswa nama_lengkap     makanan_favorit    rencana_makan        umur
+     &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;dbl&gt;
+1        1 Sunil Huffmann   Strawberry yoghurt Lunch only              4
+2        2 Barclay Lynn     French fries       Lunch only              5
+3        3 Jayendra Lyne    &lt;NA&gt;               Breakfast and lunch     7
+4        4 Leon Rossini     Anchovies          Lunch only             NA
+5        5 Chidiegwu Dunkel Pizza              Breakfast and lunch     5
+6        6 Güvenç Attila    Ice cream          Lunch only              6</code></pre>
 </div>
 </div>
 </section>
@@ -415,18 +462,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Dalam bab ini, kita akan mempelajari package <code>DBI</code> untuk menyambungkan ke database dan kemudian mengambil data dengan query SQL. SQL (Structured Query Language), adalah bahasa pemrograman untuk database dan merupakan bahasa terpenting bagi semua jenis data analitik.</p>
 <p>Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package <code>DBI</code> dan <code>RMySQL</code>, kemudian menghubungkan koneksi database tweater.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Koneksi database</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"tweater"</span>, </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">"courses.csrrinzqubik.us-east-1.rds.amazonaws.com"</span>, </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port =</span> <span class="dv">3306</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">"student"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">"datacamp"</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Paket DBI dan  RMySQL</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Koneksi database</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"tweater"</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">"courses.csrrinzqubik.us-east-1.rds.amazonaws.com"</span>, </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port =</span> <span class="dv">3306</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">"student"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">"datacamp"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "comments" "tweats"   "users"   </code></pre>
 </div>
@@ -578,12 +626,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="import-google-sheets" class="level2">
 <h2 class="anchored" data-anchor-id="import-google-sheets">4. Import Google Sheets</h2>
-<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan <code>tidyverse</code> kemudian gunakan fungsi read_sheet. Misal kita akan mengimport data dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w" class="uri">https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</code></p>
+<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan kemudian gunakan fungsi <code>read_sheet</code>. Misal kita akan mengimport data dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w" class="uri">https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load paket googlesheet</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membaca sheet berdasarkan sheet id</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   `Student ID` `Full Name`      favourite.food     mealPlan            AGE      
@@ -604,24 +654,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi id sheet google sheet</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins_sheet_id <span class="ot">&lt;-</span> <span class="st">"1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>,<span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"spesies"</span>, <span class="st">"pulau"</span>, <span class="st">"bill_length"</span>, <span class="st">"bill_depth"</span>, <span class="st">"panjang sirip"</span>, <span class="st">"berat"</span>, <span class="st">"kelamin"</span>, <span class="st">"tahun"</span> ), <span class="at">skip=</span> <span class="dv">1</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),  <span class="at">col_types =</span> <span class="st">"cccccccc"</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 52 × 8
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;         &lt;list&gt;        &lt;list&gt;            &lt;list&gt;     
- 1 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 2 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 3 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 4 Adelie  Torgersen &lt;chr [1]&gt;      &lt;chr [1]&gt;     &lt;chr [1]&gt;         &lt;chr [1]&gt;  
- 5 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 6 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 7 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 8 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
- 9 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
-10 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
-# ℹ 42 more rows
-# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+   spesies pulau     bill_length bill_depth `panjang sirip` berat kelamin tahun
+   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
+ 1 Adelie  Torgersen 39.1        18.7       181             3750  male    2007 
+ 2 Adelie  Torgersen 39.5        17.4       186             3800  female  2007 
+ 3 Adelie  Torgersen 40.3        18         195             3250  female  2007 
+ 4 Adelie  Torgersen NA          NA         NA              NA    NA      2007 
+ 5 Adelie  Torgersen 36.7        19.3       193             3450  female  2007 
+ 6 Adelie  Torgersen 39.3        20.6       190             3650  male    2007 
+ 7 Adelie  Torgersen 38.9        17.8       181             3625  female  2007 
+ 8 Adelie  Torgersen 39.2        19.6       195             4675  male    2007 
+ 9 Adelie  Torgersen 34.1        18.1       193             3475  NA      2007 
+10 Adelie  Torgersen 42          20.2       190             4250  NA      2007 
+# ℹ 42 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -634,14 +684,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Menggunakan regular expression</p></li>
 <li><p>Parsing HTML</p></li>
 </ul>
-<p>Kali ini kita akan menggunakan fungsi read_html() untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :</p>
+<p>Kali ini kita akan menggunakan fungsi <code>read_html()</code> untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Package</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Url data tabel</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://kworb.net/youtube/trending.html"</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://kworb.net/youtube/insights/id_daily.html"</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ekstrak element tabel</span></span>
@@ -652,20 +702,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Tabel</span></span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 52 × 5
-      `` ``    Video                                              `#` Highlights
-   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                            &lt;int&gt; &lt;chr&gt;     
- 1     1 NEW   The Beatles - Now And Then - The Last Beatles S…    15 #5 Mexico…
- 2     2 +1    Arcángel, Peso Pluma - LA CHAMBA (Video Oficial)    19 #11 Mexic…
- 3     3 -1    Sabrina Carpenter - Feather (Official Video)        25 #14 Argen…
- 4     4 NEW   정국 (Jung Kook) 'Standing Next to You' Officia…    17 #4 Mexico…
- 5     5 -4    정국 (Jung Kook) 'GOLDEN' Preview                   28 #30 Argen…
- 6     6 NEW   BAD BUNNY - BATICANO (Official Video) | nadie s…    16 #32 Argen…
- 7     7 NEW   Tokischa - CANDY (Official Video)                    9 #23 Argen…
- 8     8 NEW   Mariah Carey - IT'S TIME!!                           9 #7 United…
- 9     9 NEW   Epik High (에픽하이) ‘Screen Time’ ft. Hoshi of…     7 #12 Indon…
-10    10 NEW   DILLOM, MECHAYRXMEO - MAMI ISSUES (Videoclip)        7 #5 Argent…
-# ℹ 42 more rows</code></pre>
+<pre><code># A tibble: 20 × 5
+     Pos `P+`  Track                                          Streams `Streams+`
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                          &lt;chr&gt;   &lt;chr&gt;     
+ 1     1 =     "Nadhif Basalamah - penjaga hati"              2,083,… "-43,270" 
+ 2     2 =     "Denny Caknan - Wirang"                        1,320,… "-360,976"
+ 3     3 +1    "Anggi Marito - Tak Segampang Itu"             1,270,… "-45,851" 
+ 4     4 +1    "Fabio Asher - Tanpa Rasa Bersalah"            1,244,… "-14,033" 
+ 5     5 +2    "Ghea Indrawari - Jiwa Yang Bersedih"          1,209,… "+45,329" 
+ 6     6 =     "Denny Caknan - Taman Jurug (Live)"            1,184,… "-73,218" 
+ 7     7 +1    "Jaz - Bersamamu"                              1,063,… "-70,502" 
+ 8     8 +1    "NiziU - HEARTRIS"                             1,022,… "-93,271" 
+ 9     9 +1    "Omwawes - Dumes (feat. Guyon Waton)"          1,011,… "-8,266"  
+10    10 +1    "Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen… 995,141 "-17,167" 
+11    11 +3    "Vasuki Vaibhav - Huchumanasa Hudugi (From \"… 963,750 "+33,162" 
+12    12 +5    "RIIZE - Talk Saxy"                            943,419 "+174,955"
+13    13 -10   "TAEMIN - Guilty"                              881,514 "-463,958"
+14    14 -2    "NDX A.K.A. - Nemen (Hiphop Dangdut Version)"  877,794 "-87,399" 
+15    15 NEW   "HeeJin - Algorithm (Algorithm)"               873,188 ""        
+16    16 -3    "Idgitaf - Satu-Satu"                          870,274 "-76,060" 
+17    17 -2    "Harusaruhi - One man live"                    805,635 "-44,765" 
+18    18 -2    "Batas Senja - Nanti Kita Seperti Ini"         757,944 "-36,386" 
+19    19 -1    "Mahalini - Sial"                              715,691 "-19,689" 
+20    20 =     "TREASURE - B.O.M.B"                           699,208 "+12,740" </code></pre>
 </div>
 </div>
 
@@ -906,13 +965,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./datapreparation.html" class="pagination-link">
+        <span class="nav-page-text">Topik 2 | Data Preparation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023), UPN Veteran Yogyakarta</div>
+    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023) | UPN Veteran Yogyakarta</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
