@@ -1,0 +1,93 @@
+---
+title: "Topik 6 | Modelling"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## 1. Modelling
+
+### 1.1 Apa itu Modelling
+
+Modeling (atau pemodelan dalam Bahasa Indonesia) merujuk pada proses pembuatan representasi abstrak dari suatu sistem fisik, konsep, atau fenomena dengan tujuan untuk memahami, menganalisis, meramalkan, atau mensimulasikan perilaku sistem tersebut. Pemodelan dapat diterapkan dalam berbagai disiplin ilmu dan konteks, termasuk dalam ilmu pengetahuan, teknik, bisnis, seni, dan banyak lainnya
+
+### 1.2 Modelling Dalam R
+
+Modeling dalam R merujuk pada penggunaan bahasa pemrograman dan lingkungan pemodelan statistik R untuk membuat dan mengimplementasikan berbagai jenis model atau representasi matematis dari data, sistem, atau fenomena. R adalah bahasa pemrograma n dan lingkungan komputasi statistik yang sangat kuat dan populer, digunakan secara luas dalam analisis statistik, penelitian ilmiah, dan pemodelan statistik.
+
+## 2. Manchine Learning
+
+Machine learning dalam R merujuk pada penggunaan bahasa pemrograman R untuk mengembangkan dan menerapkan model machine learning. R adalah salah satu lingkungan pemrograman dan bahasa statistik yang populer, dan memiliki banyak paket dan pustaka yang kuat untuk mendukung pengembangan model machine learning.
+
+![](images/Screenshot%20(154).png){fig-align="center" width="391"}
+
+### 2.1 Unsupervised vs Supervised
+
+Pada supervised learning objektifnya adalah mempelajari hubungan antara fitur input dan output yang sesuai. →prediksi, klasifikasi
+
+Sedangkan unsupervised learning bertujuan untuk mengeksplorasi dan memahami kemiripan karakteristik pada data. → eksplorasi, memahami data, mencari pola tersembunyi
+
+[![](images/Screenshot%20(155).png){fig-align="center" width="255"}](images/Screenshot%20(155).png)
+
+### 2.2 Supervised Learning
+
+Pada modul ini difokuskan untuk pembelajaran Supervised learning. Supervised Learning bertujuan untuk membuat model yang dapat mempelajari hubungan antara input (fitur) dan output (label) yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.
+
+::: {layout-ncol="2"}
+![](images/ssreg1-02.png)
+
+![](images/ssreg2-02.png)
+:::
+
+#### 2.2.1 Regression
+
+Regresi (regression) adalah suatu teknik statistik yang digunakan untuk memahami hubungan antara satu atau lebih variabel independen (dikenal sebagai prediktor) dan variabel dependen (dikenal sebagai respons). Tujuan utama dari analisis regresi adalah untuk memodelkan dan memahami sejauh mana perubahan dalam variabel independen memengaruhi variabel dependen.
+
+Regresi digunakan dalam berbagai bidang seperti ilmu sosial, ekonomi, ilmu alam, kedokteran, dan bisnis untuk menjelaskan atau memprediksi hubungan antara variabel-variabel yang diamati.
+
+### **Contoh code Regression Linear :**
+
+```{r}
+#| eval: false
+library(stats)
+library(readr)
+
+# Membaca data dari file CSV
+data <- read.csv("data/insurance_training.csv")
+data <- data[!is.na(data$id), ]
+rownames(data) <- data$id
+data
+
+# Menyiapkan variabel prediktor (X) dan target (y)
+X <- data[, !colnames(data) %in% c("charges")]
+X <- data.frame(Intercept = 1, X)  # Menambahkan kolom konstanta (intercept)
+y <- data$charges
+
+# Melakukan regresi linear
+model <- lm(y ~ ., data = data.frame(y, X))
+ 
+# Mendapatkan ringkasan model
+model_summary <- summary(model)
+
+# Mencetak ringkasan model
+print(model_summary)
+
+
+```
+
+Hasil :
+
+![](images/Screenshot (160).png){fig-align="center"}
+
+Penjelasan :
+
+-   Residual Standard Error: 6006 on 1293 Degrees of Freedom: Ini adalah ukuran seberapa besar kesalahan rata-rata model regresi dalam memprediksi data. Nilai 6006 mengindikasikan seberapa besar deviasi antara nilai yang diprediksi oleh model dan nilai sebenarnya. Degrees of Freedom (Derajat Kebebasan) adalah ukuran dari seberapa banyak data yang digunakan dalam analisis ini.
+
+-   Multiple R-squared: 0.7518: Ini adalah koefisien determinasi (R-squared) yang menunjukkan sejauh mana variabilitas dalam variabel respons dapat dijelaskan oleh model. Nilai 0.7518 berarti sekitar 75.18% dari variasi dalam variabel respons dapat dijelaskan oleh model.
+
+-   Adjusted R-squared: 0.7506: Ini adalah versi penyesuaian dari R-squared yang memperhitungkan jumlah prediktor dalam model. Nilai 0.7506 adalah penyesuaian yang lebih konservatif dari R-squared.
+
+-   F-statistic: 652.6 on 6 and 1293 DF: F-statistic digunakan untuk menguji signifikansi keseluruhan dari model regresi. Nilai 652.6 adalah statistik uji F, dan angka 6 dan 1293 adalah derajat kebebasan yang digunakan dalam uji ini. Nilai F-statistic yang tinggi menunjukkan bahwa model secara signifikan menjelaskan variabilitas dalam data.
+
+-   p-value: \< 2.2e-16: Ini adalah p-value yang mengindikasikan seberapa signifikan model regresi secara keseluruhan. P-value yang sangat rendah (\< 0.05 atau 0.01) menunjukkan bahwa model regresi secara signifikan menjelaskan variabilitas dalam data.
