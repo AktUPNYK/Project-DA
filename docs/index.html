@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut atau klik ikon Github dan unduh file data yang diperlukan</p>
+<p>Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut : <a href="https://github.com/AktUPNYK/Project-DA"><code>AktUPNYK/Project-DA (github.com)</code></a> atau klik ikon Github dan unduh file Data yang diperlukan, perhatikan lokasi save file script R dan folder data agar mudah membaca data yang akan di import. Misal kita buat folder <code>Belajar R</code> di <strong>Local disk D</strong> kemudian save script R nanti pada folder <code>Belajar R</code> dan di Folder <code>Belajar R</code> tadi kita buat folder baru dengan nama <code>data</code> untuk menyimpan file datasets yang akan kita import atau kita olah secara lokal.</p>
 <section id="import-data-spreadsheet-excel" class="level2">
 <h2 class="anchored" data-anchor-id="import-data-spreadsheet-excel">1. Import Data Spreadsheet Excel</h2>
 <section id="library-spreadsheet-excel" class="level3">
@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="membaca-spreadsheet-excel" class="level3">
 <h3 class="anchored" data-anchor-id="membaca-spreadsheet-excel">1.2 Membaca spreadsheet Excel</h3>
-<p>Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, <code>read_csv()</code> , <code>read_table()</code> dll. kali ini kita akan menggunakan <code>read_excel()</code> . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder data maka dengan menggunakan fungsi :</p>
+<p>Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, <code>read_csv()</code> , <code>read_table()</code> dll. kali ini kita akan menggunakan <code>read_excel()</code> . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder <code>data</code> maka dengan menggunakan fungsi :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; membaca file student.xlsx dari lokasi folder data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/students.xlsx"</span>)</span>
@@ -383,76 +383,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="membaca-worksheet-excel" class="level3">
 <h3 class="anchored" data-anchor-id="membaca-worksheet-excel">1.3 Membaca worksheet Excel</h3>
 <p>Kita bisa memilih akan menampilkan sheet yang diperlukan dari worksheet Excel</p>
-<p>Pada data Excel penguins terdapat worksheet dan kita akan menampilkan sheet <code>Torgerseen Island</code></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<p>Pada data Excel <strong>Rekomendasi tempat Makan Enak</strong> terdapat worksheet dan kita hanya akan menampilkan sheet <code>Resto Steak Jakarta</code></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://r4ds.hadley.nz/screenshots/import-spreadsheets-penguins-islands.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="images/ss dataimpor.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
-</div>
-</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi nama sheet</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>penguins_torgersen <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/penguins.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>, <span class="at">na =</span> <span class="st">"NA"</span>)</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi nama sheet excel "Resto Steak jakarta"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tempat_makan_steak_jakarta <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/rekomendasi_tempat_makan_enak.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Resto Steak Jakarta"</span>, <span class="at">na =</span> <span class="st">"NA"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>penguins_torgersen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Resto Steak Jakarta</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>tempat_makan_steak_jakarta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 52 × 8
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
- 1 Adelie  Torgersen           39.1          18.7               181        3750
- 2 Adelie  Torgersen           39.5          17.4               186        3800
- 3 Adelie  Torgersen           40.3          18                 195        3250
- 4 Adelie  Torgersen           NA            NA                  NA          NA
- 5 Adelie  Torgersen           36.7          19.3               193        3450
- 6 Adelie  Torgersen           39.3          20.6               190        3650
- 7 Adelie  Torgersen           38.9          17.8               181        3625
- 8 Adelie  Torgersen           39.2          19.6               195        4675
- 9 Adelie  Torgersen           34.1          18.1               193        3475
-10 Adelie  Torgersen           42            20.2               190        4250
-# ℹ 42 more rows
-# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 187 × 28
+      no restaurant_name   city  district place unique_menu  price google_rating
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;        
+ 1     1 Tucano's Churras… Cent… Sudirman Sena… Classic Be… 268000 45111.0      
+ 2     2 Kitchenette       Sout… Senayan  Sena… Kitchenett… 205000 45050.0      
+ 3     3 Tony Roma's       Cent… Thamrin  UOB … Baby Back … 170000 45050.0      
+ 4     4 Gandy Steak House Cent… Menteng  Owne… Grilled Au… 191000 45050.0      
+ 5     5 Joni Steak        Cent… Gajah M… Owne… Wagyu Top …  72000 45050.0      
+ 6     6 MUCCA Steak       Cent… Sudirman City… Tomahawk B… 940000 45050.0      
+ 7     7 El Machote        Cent… Menteng  Owne… Chivito Pl… 150000 0.0          
+ 8     8 Waroeng Steak &amp; … Cent… Cempaka… Owne… Sirloin Do…  34545 45020.0      
+ 9     9 Holycow! Menteng  Cent… Menteng  Gedu… Wagyu Rib … 199000 44989.0      
+10    10 Holycow! Pecenon… Cent… Pecenon… Owne… Australian… 133000 45050.0      
+# ℹ 177 more rows
+# ℹ 20 more variables: google_count &lt;chr&gt;, platform_rating &lt;chr&gt;,
+#   platform_count &lt;dbl&gt;, specialized &lt;chr&gt;, beef &lt;chr&gt;, chicken &lt;chr&gt;,
+#   seafood &lt;chr&gt;, appetizer &lt;chr&gt;, other_dish &lt;chr&gt;, dessert &lt;chr&gt;,
+#   drinks &lt;chr&gt;, other_poultry &lt;chr&gt;, takeaway &lt;chr&gt;, delivery &lt;chr&gt;,
+#   outdoor &lt;chr&gt;, smoking_area &lt;chr&gt;, alcohol_served &lt;chr&gt;, wifi &lt;chr&gt;,
+#   reservation &lt;chr&gt;, other &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
 <section id="write-ke-excel" class="level3">
 <h3 class="anchored" data-anchor-id="write-ke-excel">1.4 Write ke Excel</h3>
-<p>Kita dapat menginput data dan mengubahnya ke Excel menggunakan fungsi <code>write_xlsx()</code></p>
+<p>Kita dapat menginput data dan mengubahnya ke Excel menggunakan fungsi <code>write_xlsx()</code> , misal kita akan membuat tabel <strong>Penjualan Roti</strong> dengan command <code>tribble</code> , ingat bahwa tribble merupakan command untuk membuat tabel data sederhana pada package tidyverse di R. dan selanjutnya kita input value masing-masing variable nya.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Buat data dan input </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>bake_sale <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item     =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"brownie"</span>, <span class="st">"cupcake"</span>, <span class="st">"cookie"</span>)),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quantity =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Buat data penjualan roti dan input pada variable produk &amp; jumlah</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>penjualan_roti <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">produk     =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Donat"</span>, <span class="st">"Roti Bakar"</span>, <span class="st">"Nastar"</span>, <span class="st">"Pisang Coklat"</span>)),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">jumlah =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">999</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan tabel</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>bake_sale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>penjualan_roti</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  item    quantity
-  &lt;fct&gt;      &lt;dbl&gt;
-1 brownie       10
-2 cupcake        5
-3 cookie         8</code></pre>
+<pre><code># A tibble: 4 × 2
+  produk        jumlah
+  &lt;fct&gt;          &lt;dbl&gt;
+1 Donat             10
+2 Roti Bakar         5
+3 Nastar             8
+4 Pisang Coklat    999</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Selanjutnya kita create ke file Excel dan simpan di path lokasi folder</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(bake_sale, <span class="at">path =</span> <span class="st">"data/bake-sale.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(penjualan_roti, <span class="at">path =</span> <span class="st">"data/penjualan_roti.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data Excel yang telah dibuat</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/bake-sale.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/penjualan_roti.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  item    quantity
-  &lt;chr&gt;      &lt;dbl&gt;
-1 brownie       10
-2 cupcake        5
-3 cookie         8</code></pre>
+<pre><code># A tibble: 4 × 2
+  produk        jumlah
+  &lt;chr&gt;          &lt;dbl&gt;
+1 Donat             10
+2 Roti Bakar         5
+3 Nastar             8
+4 Pisang Coklat    999</code></pre>
 </div>
 </div>
 </section>
@@ -601,77 +604,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="import-data-online" class="level2">
 <h2 class="anchored" data-anchor-id="import-data-online">3. Import Data Online</h2>
-<p>Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi <code>read_csv()</code> atau <code>read_excel()</code> sesuai format data</p>
+<p>Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi <code>read_csv()</code> atau <code>read_excel()</code> sesuai format data, Kita coba meng-import data raw csv dari <strong>Data Pangan</strong> pada repository github <a href="https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv"><code>Komposisi Pangan</code></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load package</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi url data</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi url data dengan nama data_pangan</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>data_pangan <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv"</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>data_pangan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2            2 Barclay Lynn     French fries       Lunch only          5    
-3            3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+<pre><code># A tibble: 1,147 × 20
+   Kode_Bahan Sumber      Nama_Bahan       Kelompok_Pangan Jenis_Pangan `Air(g)`
+   &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;           &lt;dbl&gt;
+ 1 AR001      KZGMI-2001  Beras giling, m… Serealia        Tunggal/Sin…     12  
+ 2 AR002      KZGPI- 1990 Beras giling va… Serealia        Tunggal/Sin…     11.4
+ 3 AR003      KZGPI- 1990 Beras giling va… Serealia        Tunggal/Sin…     12  
+ 4 AR004      KZGMI-2001  Beras hitam, me… Serealia        Tunggal/Sin…     12.9
+ 5 AR005      KZGMI-2001  Beras jagung ku… Serealia        Tunggal/Sin…     10.8
+ 6 AR006      KZGMI-2001  Beras jagung pu… Serealia        Tunggal/Sin…     22.5
+ 7 AR007      KZGPI- 1990 Beras ketan hit… Serealia        Tunggal/Sin…     13.7
+ 8 AR008      KZGPI- 1990 Beras ketan put… Serealia        Tunggal/Sin…     12.9
+ 9 AR009      KZGMI-2001  Beras ladang, m… Serealia        Tunggal/Sin…      9.8
+10 AR010      DABM-1964   Beras menir, me… Serealia        Tunggal/Sin…     12  
+# ℹ 1,137 more rows
+# ℹ 14 more variables: `Energi(Kal)` &lt;dbl&gt;, `Protein(g)` &lt;dbl&gt;,
+#   `Lemak(g)` &lt;dbl&gt;, `KH(g)` &lt;dbl&gt;, `Serat(g)` &lt;dbl&gt;, `Kalsium(g)` &lt;dbl&gt;,
+#   `Fosfor(g)` &lt;dbl&gt;, `Besi(g)` &lt;dbl&gt;, `Natrium(g)` &lt;dbl&gt;, `Kalium(g)` &lt;dbl&gt;,
+#   `Tembaga(g)` &lt;dbl&gt;, `Thiamin(g)` &lt;dbl&gt;, `Riboflavin(g)` &lt;dbl&gt;,
+#   `VITC(g)` &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
 <section id="import-google-sheets" class="level2">
 <h2 class="anchored" data-anchor-id="import-google-sheets">4. Import Google Sheets</h2>
-<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan kemudian gunakan fungsi <code>read_sheet</code>. Misal kita akan mengimport data dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w" class="uri">https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w</code></p>
+<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan kemudian gunakan fungsi <code>read_sheet</code>. Misal kita akan mengimport data <strong>Penjualan Buah</strong> dari google sheet : <a href="https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI"><code>https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI</code></a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load paket googlesheet</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membaca sheet berdasarkan sheet id</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE      
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;list&gt;   
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          &lt;dbl [1]&gt;
-2            2 Barclay Lynn     French fries       Lunch only          &lt;dbl [1]&gt;
-3            3 Jayendra Lyne    N/A                Breakfast and lunch &lt;dbl [1]&gt;
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NULL&gt;   
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch &lt;chr [1]&gt;
-6            6 Güvenç Attila    Ice cream          Lunch only          &lt;dbl [1]&gt;</code></pre>
+<pre><code># A tibble: 100 × 7
+   shop_id item_id item  item_name         sold `price (Rp)` city         
+     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;        
+ 1    1590    3578 Apel  Apel merah        1921        22549 Kab. Bogor   
+ 2    1968    4327 Apel  Apel rome beauty  2077        36256 Kota Bandung 
+ 3    1911    2153 Apel  Apel fuji         1971        43525 Kota Malang  
+ 4    1579    1223 Apel  Apel manalagi     1961        38031 Jakarta Pusat
+ 5    1574    4675 Apel  Apel wanglin      3239        23299 Kab. Bogor   
+ 6    3512    3279 Apel  Apel merah        4474        35882 Kota Bandung 
+ 7    1904    2643 Apel  Apel rome beauty  2288        25221 Kota Malang  
+ 8    1943    4171 Apel  Apel fuji         1505        10693 Jakarta Pusat
+ 9    3131    3728 Apel  Apel manalagi     1860        27556 Kab. Bogor   
+10    4530    4649 Apel  Apel wanglin      1195        41518 Kota Bandung 
+# ℹ 90 more rows</code></pre>
 </div>
 </div>
 <section id="menampilkan-sheet-khusus-google-sheet" class="level3">
 <h3 class="anchored" data-anchor-id="menampilkan-sheet-khusus-google-sheet">4.1 Menampilkan sheet khusus google sheet</h3>
-<p>Misal dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY/edit#gid=0" class="uri">https://docs.google.com/spreadsheets/d/1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY/edit#gid=0</a></p>
-<p>terdapat beberapa sheet dan kita akan menampilkan data di sheet Togersen Island maka :</p>
+<p>Misal dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"><code>https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI</code></a></p>
+<p>terdapat 2 sheet dan kita hanya akan menampilkan data pada sheet <code>Resto Steak Jakarta</code> maka :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi id sheet google sheet</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins_sheet_id <span class="ot">&lt;-</span> <span class="st">"1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tempat_makan_sheet_id <span class="ot">&lt;-</span> <span class="st">"1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>,<span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"spesies"</span>, <span class="st">"pulau"</span>, <span class="st">"bill_length"</span>, <span class="st">"bill_depth"</span>, <span class="st">"panjang sirip"</span>, <span class="st">"berat"</span>, <span class="st">"kelamin"</span>, <span class="st">"tahun"</span> ), <span class="at">skip=</span> <span class="dv">1</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),  <span class="at">col_types =</span> <span class="st">"cccccccc"</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet </span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(tempat_makan_sheet_id, <span class="at">sheet =</span> <span class="st">"Resto Steak Jakarta"</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>)</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 52 × 8
-   spesies pulau     bill_length bill_depth `panjang sirip` berat kelamin tahun
-   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
- 1 Adelie  Torgersen 39.1        18.7       181             3750  male    2007 
- 2 Adelie  Torgersen 39.5        17.4       186             3800  female  2007 
- 3 Adelie  Torgersen 40.3        18         195             3250  female  2007 
- 4 Adelie  Torgersen NA          NA         NA              NA    NA      2007 
- 5 Adelie  Torgersen 36.7        19.3       193             3450  female  2007 
- 6 Adelie  Torgersen 39.3        20.6       190             3650  male    2007 
- 7 Adelie  Torgersen 38.9        17.8       181             3625  female  2007 
- 8 Adelie  Torgersen 39.2        19.6       195             4675  male    2007 
- 9 Adelie  Torgersen 34.1        18.1       193             3475  NA      2007 
-10 Adelie  Torgersen 42          20.2       190             4250  NA      2007 
-# ℹ 42 more rows</code></pre>
+<pre><code># A tibble: 187 × 28
+      no restaurant_name   city  district place unique_menu  price google_rating
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;list&gt;       
+ 1     1 Tucano's Churras… Cent… Sudirman Sena… Classic Be… 268000 &lt;dttm [1]&gt;   
+ 2     2 Kitchenette       Sout… Senayan  Sena… Kitchenett… 205000 &lt;dttm [1]&gt;   
+ 3     3 Tony Roma's       Cent… Thamrin  UOB … Baby Back … 170000 &lt;dttm [1]&gt;   
+ 4     4 Gandy Steak House Cent… Menteng  Owne… Grilled Au… 191000 &lt;dttm [1]&gt;   
+ 5     5 Joni Steak        Cent… Gajah M… Owne… Wagyu Top …  72000 &lt;dttm [1]&gt;   
+ 6     6 MUCCA Steak       Cent… Sudirman City… Tomahawk B… 940000 &lt;dttm [1]&gt;   
+ 7     7 El Machote        Cent… Menteng  Owne… Chivito Pl… 150000 &lt;chr [1]&gt;    
+ 8     8 Waroeng Steak &amp; … Cent… Cempaka… Owne… Sirloin Do…  34545 &lt;dttm [1]&gt;   
+ 9     9 Holycow! Menteng  Cent… Menteng  Gedu… Wagyu Rib … 199000 &lt;dttm [1]&gt;   
+10    10 Holycow! Pecenon… Cent… Pecenon… Owne… Australian… 133000 &lt;dttm [1]&gt;   
+# ℹ 177 more rows
+# ℹ 20 more variables: google_count &lt;list&gt;, platform_rating &lt;list&gt;,
+#   platform_count &lt;dbl&gt;, specialized &lt;chr&gt;, beef &lt;chr&gt;, chicken &lt;chr&gt;,
+#   seafood &lt;chr&gt;, appetizer &lt;chr&gt;, other_dish &lt;chr&gt;, dessert &lt;chr&gt;,
+#   drinks &lt;chr&gt;, other_poultry &lt;chr&gt;, takeaway &lt;chr&gt;, delivery &lt;chr&gt;,
+#   outdoor &lt;chr&gt;, smoking_area &lt;chr&gt;, alcohol_served &lt;chr&gt;, wifi &lt;chr&gt;,
+#   reservation &lt;chr&gt;, other &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -703,28 +727,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 5
-     Pos `P+`  Track                                          Streams `Streams+`
-   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                          &lt;chr&gt;   &lt;chr&gt;     
- 1     1 =     "Nadhif Basalamah - penjaga hati"              2,083,… "-43,270" 
- 2     2 =     "Denny Caknan - Wirang"                        1,320,… "-360,976"
- 3     3 +1    "Anggi Marito - Tak Segampang Itu"             1,270,… "-45,851" 
- 4     4 +1    "Fabio Asher - Tanpa Rasa Bersalah"            1,244,… "-14,033" 
- 5     5 +2    "Ghea Indrawari - Jiwa Yang Bersedih"          1,209,… "+45,329" 
- 6     6 =     "Denny Caknan - Taman Jurug (Live)"            1,184,… "-73,218" 
- 7     7 +1    "Jaz - Bersamamu"                              1,063,… "-70,502" 
- 8     8 +1    "NiziU - HEARTRIS"                             1,022,… "-93,271" 
- 9     9 +1    "Omwawes - Dumes (feat. Guyon Waton)"          1,011,… "-8,266"  
-10    10 +1    "Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen… 995,141 "-17,167" 
-11    11 +3    "Vasuki Vaibhav - Huchumanasa Hudugi (From \"… 963,750 "+33,162" 
-12    12 +5    "RIIZE - Talk Saxy"                            943,419 "+174,955"
-13    13 -10   "TAEMIN - Guilty"                              881,514 "-463,958"
-14    14 -2    "NDX A.K.A. - Nemen (Hiphop Dangdut Version)"  877,794 "-87,399" 
-15    15 NEW   "HeeJin - Algorithm (Algorithm)"               873,188 ""        
-16    16 -3    "Idgitaf - Satu-Satu"                          870,274 "-76,060" 
-17    17 -2    "Harusaruhi - One man live"                    805,635 "-44,765" 
-18    18 -2    "Batas Senja - Nanti Kita Seperti Ini"         757,944 "-36,386" 
-19    19 -1    "Mahalini - Sial"                              715,691 "-19,689" 
-20    20 =     "TREASURE - B.O.M.B"                           699,208 "+12,740" </code></pre>
+     Pos `P+`  Track                                         Streams  `Streams+`
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                         &lt;chr&gt;    &lt;chr&gt;     
+ 1     1 =     Nadhif Basalamah - penjaga hati               2,069,9… "-39,638" 
+ 2     2 +14   HeeJin - Algorithm (Algorithm)                1,650,6… "+777,499"
+ 3     3 -1    Anggi Marito - Tak Segampang Itu              1,303,6… "-33,505" 
+ 4     4 +1    Ghea Indrawari - Jiwa Yang Bersedih           1,240,7… "+3,384"  
+ 5     5 -2    Denny Caknan - Wirang                         1,164,3… "-156,577"
+ 6     6 =     Denny Caknan - Taman Jurug (Live)             1,146,2… "-37,958" 
+ 7     7 -3    Fabio Asher - Tanpa Rasa Bersalah             1,128,8… "-117,581"
+ 8     8 +4    RIIZE - Talk Saxy                             1,046,6… "+103,257"
+ 9     9 =     Omwawes - Dumes (feat. Guyon Waton)           1,041,0… "+29,308" 
+10    10 -3    Jaz - Bersamamu                               1,027,9… "-39,691" 
+11    11 -3    NiziU - HEARTRIS                              986,675  "-35,561" 
+12    12 -2    Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen) 958,376  "-37,100" 
+13    13 +4    Harusaruhi - One man live                     911,973  "+106,338"
+14    14 +1    NDX A.K.A. - Nemen (Hiphop Dangdut Version)   885,287  "+7,493"  
+15    15 -2    Idgitaf - Satu-Satu                           863,124  "-60,135" 
+16    16 NEW   Jung Kook - Standing Next to You              839,438  ""        
+17    17 NEW   Fadhilah Intan - Dawai                        807,210  ""        
+18    18 NEW   The Beatles - Now And Then                    745,358  ""        
+19    19 NEW   Guyon Waton - Pelanggaran                     716,818  ""        
+20    20 -2    Batas Senja - Nanti Kita Seperti Ini          690,866  "-67,261" </code></pre>
 </div>
 </div>
 
