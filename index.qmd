@@ -6,7 +6,7 @@ title: "Topik 1 | Data Import"
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut atau klik ikon Github dan unduh file data yang diperlukan
+Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut : [`AktUPNYK/Project-DA (github.com)`](https://github.com/AktUPNYK/Project-DA) atau klik ikon Github dan unduh file Data yang diperlukan, perhatikan lokasi save file script R dan folder data agar mudah membaca data yang akan di import. Misal kita buat folder `Belajar R` di **Local disk D** kemudian save script R nanti pada folder `Belajar R` dan di Folder `Belajar R` tadi kita buat folder baru dengan nama `data` untuk menyimpan file datasets yang akan kita import atau kita olah secara lokal.
 
 ## 1. Import Data Spreadsheet Excel
 
@@ -22,7 +22,7 @@ library(writexl)
 
 ### 1.2 Membaca spreadsheet Excel
 
-Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder data maka dengan menggunakan fungsi :
+Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder `data` maka dengan menggunakan fungsi :
 
 ```{r}
 #> membaca file student.xlsx dari lokasi folder data
@@ -82,46 +82,42 @@ students
 
 Kita bisa memilih akan menampilkan sheet yang diperlukan dari worksheet Excel
 
-Pada data Excel penguins terdapat worksheet dan kita akan menampilkan sheet `Torgerseen Island`
+Pada data Excel **Rekomendasi tempat Makan Enak** terdapat worksheet dan kita hanya akan menampilkan sheet `Resto Steak Jakarta`
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center"}
-
-knitr::include_graphics("https://r4ds.hadley.nz/screenshots/import-spreadsheets-penguins-islands.png")
-
-```
+![](images/ss%20dataimpor.png){fig-align="center" width="70%"}
 
 ```{r}
-#> Identifikasi nama sheet
-penguins_torgersen <- read_excel("data/penguins.xlsx", sheet = "Torgersen Island", na = "NA")
+#> Identifikasi nama sheet excel "Resto Steak jakarta"
+tempat_makan_steak_jakarta <- read_excel("data/rekomendasi_tempat_makan_enak.xlsx", sheet = "Resto Steak Jakarta", na = "NA")
 
-#> Tampilkan data sheet
-penguins_torgersen
+#> Tampilkan data sheet Resto Steak Jakarta
+tempat_makan_steak_jakarta
 
 ```
 
 ### 1.4 Write ke Excel
 
-Kita dapat menginput data dan mengubahnya ke Excel menggunakan fungsi `write_xlsx()`
+Kita dapat menginput data dan mengubahnya ke Excel menggunakan fungsi `write_xlsx()` , misal kita akan membuat tabel **Penjualan Roti** dengan command `tribble` , ingat bahwa tribble merupakan command untuk membuat tabel data sederhana pada package tidyverse di R. dan selanjutnya kita input value masing-masing variable nya.
 
 ```{r}
-#> Buat data dan input 
-bake_sale <- tibble(
-  item     = factor(c("brownie", "cupcake", "cookie")),
-  quantity = c(10, 5, 8)
+#> Buat data penjualan roti dan input pada variable produk & jumlah
+penjualan_roti <- tibble(
+  produk     = factor(c("Donat", "Roti Bakar", "Nastar", "Pisang Coklat")),
+  jumlah = c(10, 5, 8, 999)
 )
 
 #> Tampilkan tabel
-bake_sale
+penjualan_roti
 ```
 
 ```{r}
 #> Selanjutnya kita create ke file Excel dan simpan di path lokasi folder
-write_xlsx(bake_sale, path = "data/bake-sale.xlsx")
+write_xlsx(penjualan_roti, path = "data/penjualan_roti.xlsx")
 ```
 
 ```{r}
 #> Tampilkan data Excel yang telah dibuat
-read_excel("data/bake-sale.xlsx")
+read_excel("data/penjualan_roti.xlsx")
 
 ```
 
@@ -202,22 +198,22 @@ dbGetQuery(con, "SELECT name, post
 
 ## 3. Import Data Online
 
-Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi `read_csv()` atau `read_excel()` sesuai format data
+Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi `read_csv()` atau `read_excel()` sesuai format data, Kita coba meng-import data raw csv dari **Data Pangan** pada repository github [`Komposisi Pangan`](https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv)
 
 ```{r}
 #> Load package
 library(tidyverse)
 
-#> Identifikasi url data
-students <- read_csv("https://pos.it/r4ds-students-csv")
+#> Identifikasi url data dengan nama data_pangan
+data_pangan <- read_csv("https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv")
 
 #> Tampilkan data
-students
+data_pangan
 ```
 
 ## 4. Import Google Sheets
 
-Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan *sheet_id*. Pertama kita me-load package `googlesheets4` dan kemudian gunakan fungsi `read_sheet`. Misal kita akan mengimport data dari google sheet : <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w> maka kita akan mengambil id sheet sebagai **key call** nya yaitu `1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w`
+Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan *sheet_id*. Pertama kita me-load package `googlesheets4` dan kemudian gunakan fungsi `read_sheet`. Misal kita akan mengimport data **Penjualan Buah** dari google sheet : [`https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI`](https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI) maka kita akan mengambil id sheet sebagai **key call** nya yaitu `18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI`
 
 ```{r}
 #> Load paket googlesheet
@@ -225,23 +221,23 @@ library(googlesheets4)
 googlesheets4::gs4_deauth()
 
 #> Membaca sheet berdasarkan sheet id
-read_sheet("1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w")
+read_sheet("18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI")
 
 ```
 
 ### 4.1 Menampilkan sheet khusus google sheet
 
-Misal dari google sheet : <https://docs.google.com/spreadsheets/d/1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY/edit#gid=0>
+Misal dari google sheet : [`https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI`](https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI)
 
-terdapat beberapa sheet dan kita akan menampilkan data di sheet Togersen Island maka :
+terdapat 2 sheet dan kita hanya akan menampilkan data pada sheet `Resto Steak Jakarta` maka :
 
 ```{r}
 
 #> Identifikasi id sheet google sheet
-penguins_sheet_id <- "1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"
+tempat_makan_sheet_id <- "1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"
 
-#> Tampilkan data sheet Torgersen Island, col_names untuk sesuaikan nama kolom, 'na' untuk menghilangkan data kosong
-read_sheet(penguins_sheet_id, sheet = "Torgersen Island",col_names = c("spesies", "pulau", "bill_length", "bill_depth", "panjang sirip", "berat", "kelamin", "tahun" ), skip= 1,na = c("", "N/A"),  col_types = "cccccccc"
+#> Tampilkan data sheet 
+read_sheet(tempat_makan_sheet_id, sheet = "Resto Steak Jakarta",na = c("", "N/A")
   )
 
 ```
