@@ -43,7 +43,7 @@ Untuk mengeksplorasi dplyr, kita akan menggunakan `nycflights13::flights` . Kump
 flights
 ```
 
-`flights` adalah jenis `tibble`, frame khusus yang digunakan oleh `tidyverse`. Perbedaan paling penting antara `tibbles` dan `data.frame` adalah cara tibbles menampilkan data; keduanya dirancang untuk menghimpun data besar, sehingga hanya menampilkan beberapa baris pertama dan hanya kolom yang muat di satu layar. Ada beberapa opsi untuk melihat semuanya, `seperti glimpse()` untuk menampilkan semua kolom.
+`flights` adalah jenis `tibble`, frame khusus yang digunakan oleh `tidyverse`. Perbedaan paling penting antara `tibbles` dan `data.frame` adalah cara tibbles menampilkan data; keduanya dirancang untuk menghimpun data besar, sehingga hanya menampilkan beberapa baris pertama dan hanya kolom yang muat di satu layar. Ada beberapa opsi untuk melihat semuanya, seperti `glimpse()` untuk menampilkan semua kolom.
 
 ```{r}
 glimpse(flights)
@@ -231,4 +231,4 @@ flights |>
   )
 ```
 
-maka akan terlihat berapa rata-rata keterlambatan penerbangan pada tiap bulan dari januari (1) sampai desember (2)
+maka akan terlihat berapa rata-rata keterlambatan penerbangan pada tiap bulan dari Januari (1) sampai Desember (12)
