@@ -22,22 +22,22 @@ library(writexl)
 
 ### 1.2 Membaca spreadsheet Excel
 
-Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel students yang telah diunduh tadi misal lokasi file di folder `data` maka dengan menggunakan fungsi :
+Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel `data_mahasiswa_akt` yang telah diunduh tadi misal lokasi file di folder `data` maka dengan menggunakan fungsi :
 
 ```{r}
 #> membaca file student.xlsx dari lokasi folder data
-students <- read_excel("data/students.xlsx")
+mahasiswa <- read_excel("data/data_mahasiswa_akt.xlsx")
 
-students
+mahasiswa
 ```
 
-Nama kolom tidak teratur,lalu kita ubah dengan fungsi `col_names`
+Nama kolom tidak teratur,ingat bahwa untuk pemrosesan data yang efektif nama variable sangatlah penting sehingga hindari penamaan dengan `spasi ( )` ganti dengan `_` , kemudian kita bisa ubah dengan fungsi `col_names`
 
 ```{r}
 #> mengubah nama kolom
 read_excel(
-  "data/students.xlsx",
-  col_names = c("id_siswa", "nama_lengkap", "makanan_favorit", "rencana_makan", "umur"),
+  "data/data_mahasiswa_akt.xlsx",
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
   skip = 1
 )
 
@@ -55,28 +55,95 @@ Dalam file Excel, semua nilai memiliki tipe yang berbeda tidak semuanya adalah s
 
 -   String teks, seperti "sepuluh".
 
-terlihat pada kolom age dengan tipe data yang seharusnya numeric terdapat data string/huruf **(five)** sehingga kita ubah agar menjadi numeric **(5)**
+terlihat pada kolom `age` dengan tipe data yang seharusnya numeric terdapat data string/huruf **(duapuluh)** sehingga kita ubah agar menjadi numeric **(20)**
 
 ```{r}
-students <- read_excel(
-  "data/students.xlsx",
-  col_names = c("id_siswa", "nama_lengkap", "makanan_favorit", "rencana_makan", "umur"),
+mahasiswa <- read_excel(
+  "data/data_mahasiswa_akt.xlsx",
+  
+#> Ubah nama kolom 
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
+  
   skip = 1,
+  
+  #> Kita sesuaikan nilai N/A menjadi nilai logik (NA)
   na = c("", "N/A"),
-  col_types = c("numeric", "text", "text", "text", "text")
-)
-#> Fungsi col_types mengubah type data
+  
+  #> Fungsi col_types mengubah type data
+  col_types = c("numeric", "text", "text", "text", "text"))
+  
+ 
 
-students <- students |>
+#> Gunakan fungsi mutate untuk mengubah nilai dari "dua puluh" jadi "5", ingat bahwa tipe data umur masih char
+mahasiswa <- mahasiswa |>
   mutate(
-    umur = if_else(umur == "five", "5", umur),
+    umur = if_else(umur == "duapuluh", "20", umur),
+    
+    #> Karena masih terbaca character untuk tipe data umur, kita kembalikan nilai ke numeric
     umur = parse_number(umur)
   )
-#> Fungsi mutate mengubah data dengan argumen if 
 
-students
+mahasiswa
 
 ```
+
+Selanjutnya kita akan coba mengubah value data `NIM Mahasiswa`, `Nama Mahasiswa`, `Asal`, dan `Umur` pada baris pertama dengan kombinasi struktur command diatas :
+
+```{r}
+mahasiswa <- read_excel(
+  "data/data_mahasiswa_akt.xlsx",
+  
+#> Ubah nama kolom 
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
+  
+  skip = 1,
+  
+  #> Kita sesuaikan nilai N/A menjadi nilai logik (NA)
+  na = c("", "N/A"),
+  
+  #> Fungsi col_types mengubah type data
+  col_types = c("numeric", "text", "text", "text", "text"))
+  
+ 
+
+#> Gunakan fungsi mutate untuk mengubah nilai dari "dua puluh" jadi "5", ingat bahwa tipe data umur masih char
+mahasiswa <- mahasiswa |>
+  mutate(
+    umur = if_else(umur == "duapuluh", "20", umur),
+    
+    #> Karena masih terbaca character untuk tipe data umur, kita kembalikan nilai ke numeric
+    umur = parse_number(umur)
+  )
+
+#> Ubah nilai nim 14222001 perhatikan bahwa tipe data nya adalah numeric maka value tanpa petik "", karena petik hanya untuk char dan string
+mahasiswa <- mahasiswa |>
+  mutate(
+    nim_mahasiswa = if_else(nim_mahasiswa == 14222001, 1234567, nim_mahasiswa))
+
+
+#> Ubah value nama_mahasiswa
+mahasiswa <- mahasiswa |>
+  mutate(
+    nama_mahasiswa = if_else(nama_mahasiswa == "nama_mahasiswa", "Anindyo Aji S", nama_mahasiswa))
+    
+
+#> Ubah value isi_asal
+mahasiswa <- mahasiswa |>
+  mutate(
+    asal = if_else(asal == "isi_asal", "Klaten", asal))
+
+
+#> ubah value umur 0
+mahasiswa <- mahasiswa |>
+  mutate(
+    umur = if_else(umur == 0, 21, umur))
+
+
+#> Tampilkan hasil 
+mahasiswa
+```
+
+Nah itu tadi merupakan bagian paling sederhana dari proses pengubahan value data yang menjadi dasar untuk rangkaian data preparation pada step selanjutnya.
 
 ### 1.3 Membaca worksheet Excel
 
