@@ -8,7 +8,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut : [`AktUPNYK/Project-DA (github.com)`](https://github.com/AktUPNYK/Project-DA) atau klik ikon Github dan unduh file Data yang diperlukan, perhatikan lokasi save file script R dan folder data agar mudah membaca data yang akan di import. Misal kita buat folder `Belajar R` di **Local disk D** kemudian save script R nanti pada folder `Belajar R` dan di Folder `Belajar R` tadi kita buat folder baru dengan nama `data` untuk menyimpan file datasets yang akan kita import atau kita olah secara lokal.
 
-## 1. Import Data Spreadsheet Excel
+## 1. Import Data Spreadsheet Excel 
 
 ### 1.1 Library Spreadsheet Excel
 
