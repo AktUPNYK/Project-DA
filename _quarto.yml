@@ -3,14 +3,15 @@ project:
   output-dir: docs
   
 website:
-  page-footer: "@Data Analitik (2023), UPN Veteran Yogyakarta" 
+  page-navigation: true
+  page-footer: "@Data Analitik (2023) | UPN Veteran Yogyakarta" 
   back-to-top-navigation: true
-  title: "Materi (R) Data Analitik"
+  title: "Modul Data Analitik (R)"
   navbar:
     right: 
       - icon: github
-        href: https://github.com/
-    background: success
+        href: https://github.com/AktUPNYK/Project-DA
+    background: dark
     search: true
   
     
@@ -18,13 +19,23 @@ website:
     style: "docked"
     search: true
     contents:
+      - section: "Pengantar"
+        contents:
+          - pengantar.qmd
+          
       - section: "Topik Pembahasan"
         contents:
           - index.qmd
-          - topik2.qmd
-          - topik3.qmd
-          - topik4.qmd
-          - topik5.qmd
+          - datapreparation.qmd
+          - datatidy.qmd
+          - datatransform.qmd
+          - visualisasi.qmd
+          - modelling.qmd
+          - communicate.qmd
+          
+      - section: "Topik Lain"
+        contents:
+          - lain-lain.qmd
       
 
 format:
@@ -34,6 +45,7 @@ format:
     toc: true
 
 editor: visual
+
 
 
 
