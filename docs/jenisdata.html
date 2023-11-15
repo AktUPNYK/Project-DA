@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Apa itu Modelling ?</title>
+<title>Modul Data Analitik (R) - Topik 6 | Jenis Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./regresi.html" rel="next">
-<link href="./datatidy.html" rel="prev">
+<link href="./visualisasi.html" rel="next">
+<link href="./datapreparation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./modelling.html">Modelling</a></li><li class="breadcrumb-item"><a href="./modelling.html">Apa itu Modelling ?</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datapreparation.html">Data Preparation</a></li><li class="breadcrumb-item"><a href="./jenisdata.html">Topik 6 | Jenis Data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./jenisdata.html" class="sidebar-item-text sidebar-link">
+  <a href="./jenisdata.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Topik 6 | Jenis Data</span></a>
   </div>
 </li>
@@ -229,8 +229,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modelling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Apa itu Modelling ?</span></a>
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apa itu Modelling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -280,15 +280,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#modelling" id="toc-modelling" class="nav-link active" data-scroll-target="#modelling">1. Modelling</a>
-  <ul class="collapse">
-  <li><a href="#modelling-dalam-r" id="toc-modelling-dalam-r" class="nav-link" data-scroll-target="#modelling-dalam-r">1.2 Modelling Dalam R</a></li>
-  </ul></li>
-  <li><a href="#manchine-learning" id="toc-manchine-learning" class="nav-link" data-scroll-target="#manchine-learning">2. Manchine Learning</a>
-  <ul class="collapse">
-  <li><a href="#unsupervised-vs-supervised" id="toc-unsupervised-vs-supervised" class="nav-link" data-scroll-target="#unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</a></li>
-  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">2.2 Supervised Learning</a></li>
-  </ul></li>
+  <li><a href="#jen" id="toc-jen" class="nav-link active" data-scroll-target="#jen">1. Jen</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Apa itu Modelling ?</h1>
+<h1 class="title">Topik 6 | Jenis Data</h1>
 </div>
 
 
@@ -312,48 +304,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="modelling" class="level2">
-<h2 class="anchored" data-anchor-id="modelling">1. Modelling</h2>
-<p><strong>Modeling</strong> (atau pemodelan dalam Bahasa Indonesia) merujuk pada proses pembuatan representasi abstrak dari suatu sistem fisik, konsep, atau fenomena dengan tujuan untuk memahami, menganalisis, meramalkan, atau mensimulasikan perilaku sistem tersebut. Pemodelan dapat diterapkan dalam berbagai disiplin ilmu dan konteks, termasuk dalam ilmu pengetahuan, teknik, bisnis, seni, dan banyak lainnya</p>
-<section id="modelling-dalam-r" class="level3">
-<h3 class="anchored" data-anchor-id="modelling-dalam-r">1.2 Modelling Dalam R</h3>
-<p>Modeling dalam <code>R</code> merujuk pada penggunaan bahasa pemrograman dan lingkungan pemodelan statistik R untuk membuat dan mengimplementasikan berbagai jenis model atau representasi matematis dari data, sistem, atau fenomena. R adalah bahasa pemrograman dan lingkungan komputasi statistik yang sangat kuat dan populer, digunakan secara luas dalam analisis statistik, penelitian ilmiah, dan pemodelan statistik.</p>
-</section>
-</section>
-<section id="manchine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="manchine-learning">2. Manchine Learning</h2>
-<p><code>Machine learning dalam R</code> merujuk pada penggunaan bahasa pemrograman R untuk mengembangkan dan menerapkan model machine learning. R adalah salah satu lingkungan pemrograman dan bahasa statistik yang populer, dan memiliki banyak paket dan pustaka yang kuat untuk mendukung pengembangan model machine learning.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Screenshot (154).png" class="img-fluid figure-img" width="391"></p>
-</figure>
-</div>
-<section id="unsupervised-vs-supervised" class="level3">
-<h3 class="anchored" data-anchor-id="unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</h3>
-<p>Pada <strong><em><code>supervised learning</code></em></strong> objektifnya adalah mempelajari hubungan antara fitur input dan output yang sesuai. <strong>→ prediksi, klasifikasi</strong></p>
-<p>Sedangkan <strong><em><code>unsupervised learning</code></em></strong> bertujuan untuk mengeksplorasi dan memahami kemiripan karakteristik pada data. <strong>→ eksplorasi, memahami data, mencari pola tersembunyi</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/Screenshot (155).png"><img src="images/Screenshot (155).png" class="img-fluid figure-img" width="255"></a></p>
-</figure>
-</div>
-</section>
-<section id="supervised-learning" class="level3">
-<h3 class="anchored" data-anchor-id="supervised-learning">2.2 Supervised Learning</h3>
-<p>Pada modul ini difokuskan untuk pembelajaran Supervised learning. <strong><em>Supervised Learning</em></strong> bertujuan untuk membuat model yang dapat mempelajari hubungan antara input <code>(fitur)</code> dan output <code>(label)</code> yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg1-02.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg2-02.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
+<section id="jen" class="level2">
+<h2 class="anchored" data-anchor-id="jen">1. Jen</h2>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -592,13 +546,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./datatidy.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 9 | Data Tidy</span>
+      <a href="./datapreparation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apa itu Data Preparation ?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./regresi.html" class="pagination-link">
-        <span class="nav-page-text">Topik 10 | Regresi</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./visualisasi.html" class="pagination-link">
+        <span class="nav-page-text">Topik 7 | Visualisasi</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

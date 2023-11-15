@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Apa itu Modelling ?</title>
+<title>Modul Data Analitik (R) - Topik 5 | Data Online</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./regresi.html" rel="next">
-<link href="./datatidy.html" rel="prev">
+<link href="./datapreparation.html" rel="next">
+<link href="./basisdata.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./modelling.html">Modelling</a></li><li class="breadcrumb-item"><a href="./modelling.html">Apa itu Modelling ?</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spreadsheet.html">Sumber Data</a></li><li class="breadcrumb-item"><a href="./dataonline.html">Topik 5 | Data Online</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -171,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataonline.html" class="sidebar-item-text sidebar-link">
+  <a href="./dataonline.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Topik 5 | Data Online</span></a>
   </div>
 </li>
@@ -229,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modelling.html" class="sidebar-item-text sidebar-link active">
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Apa itu Modelling ?</span></a>
   </div>
 </li>
@@ -280,15 +314,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#modelling" id="toc-modelling" class="nav-link active" data-scroll-target="#modelling">1. Modelling</a>
+  <li><a href="#import-data-online" id="toc-import-data-online" class="nav-link active" data-scroll-target="#import-data-online">1. Import Data Online</a></li>
+  <li><a href="#import-google-sheets" id="toc-import-google-sheets" class="nav-link" data-scroll-target="#import-google-sheets">2. Import Google Sheets</a>
   <ul class="collapse">
-  <li><a href="#modelling-dalam-r" id="toc-modelling-dalam-r" class="nav-link" data-scroll-target="#modelling-dalam-r">1.2 Modelling Dalam R</a></li>
+  <li><a href="#menampilkan-sheet-khusus-google-sheet" id="toc-menampilkan-sheet-khusus-google-sheet" class="nav-link" data-scroll-target="#menampilkan-sheet-khusus-google-sheet">2.1 Menampilkan sheet khusus google sheet</a></li>
   </ul></li>
-  <li><a href="#manchine-learning" id="toc-manchine-learning" class="nav-link" data-scroll-target="#manchine-learning">2. Manchine Learning</a>
-  <ul class="collapse">
-  <li><a href="#unsupervised-vs-supervised" id="toc-unsupervised-vs-supervised" class="nav-link" data-scroll-target="#unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</a></li>
-  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">2.2 Supervised Learning</a></li>
-  </ul></li>
+  <li><a href="#web-scrapping" id="toc-web-scrapping" class="nav-link" data-scroll-target="#web-scrapping">3. Web Scrapping</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Apa itu Modelling ?</h1>
+<h1 class="title">Topik 5 | Data Online</h1>
 </div>
 
 
@@ -312,48 +343,157 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="modelling" class="level2">
-<h2 class="anchored" data-anchor-id="modelling">1. Modelling</h2>
-<p><strong>Modeling</strong> (atau pemodelan dalam Bahasa Indonesia) merujuk pada proses pembuatan representasi abstrak dari suatu sistem fisik, konsep, atau fenomena dengan tujuan untuk memahami, menganalisis, meramalkan, atau mensimulasikan perilaku sistem tersebut. Pemodelan dapat diterapkan dalam berbagai disiplin ilmu dan konteks, termasuk dalam ilmu pengetahuan, teknik, bisnis, seni, dan banyak lainnya</p>
-<section id="modelling-dalam-r" class="level3">
-<h3 class="anchored" data-anchor-id="modelling-dalam-r">1.2 Modelling Dalam R</h3>
-<p>Modeling dalam <code>R</code> merujuk pada penggunaan bahasa pemrograman dan lingkungan pemodelan statistik R untuk membuat dan mengimplementasikan berbagai jenis model atau representasi matematis dari data, sistem, atau fenomena. R adalah bahasa pemrograman dan lingkungan komputasi statistik yang sangat kuat dan populer, digunakan secara luas dalam analisis statistik, penelitian ilmiah, dan pemodelan statistik.</p>
+<section id="import-data-online" class="level2">
+<h2 class="anchored" data-anchor-id="import-data-online">1. Import Data Online</h2>
+<p>Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi <code>read_csv()</code> atau <code>read_excel()</code> sesuai format data, Kita coba meng-import data raw csv dari <strong>Data Pangan</strong> pada repository github <a href="https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv"><code>Komposisi Pangan</code></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi url data dengan nama data_pangan</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data_pangan <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data_pangan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,147 × 20
+   Kode_Bahan Sumber      Nama_Bahan       Kelompok_Pangan Jenis_Pangan `Air(g)`
+   &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;           &lt;dbl&gt;
+ 1 AR001      KZGMI-2001  Beras giling, m… Serealia        Tunggal/Sin…     12  
+ 2 AR002      KZGPI- 1990 Beras giling va… Serealia        Tunggal/Sin…     11.4
+ 3 AR003      KZGPI- 1990 Beras giling va… Serealia        Tunggal/Sin…     12  
+ 4 AR004      KZGMI-2001  Beras hitam, me… Serealia        Tunggal/Sin…     12.9
+ 5 AR005      KZGMI-2001  Beras jagung ku… Serealia        Tunggal/Sin…     10.8
+ 6 AR006      KZGMI-2001  Beras jagung pu… Serealia        Tunggal/Sin…     22.5
+ 7 AR007      KZGPI- 1990 Beras ketan hit… Serealia        Tunggal/Sin…     13.7
+ 8 AR008      KZGPI- 1990 Beras ketan put… Serealia        Tunggal/Sin…     12.9
+ 9 AR009      KZGMI-2001  Beras ladang, m… Serealia        Tunggal/Sin…      9.8
+10 AR010      DABM-1964   Beras menir, me… Serealia        Tunggal/Sin…     12  
+# ℹ 1,137 more rows
+# ℹ 14 more variables: `Energi(Kal)` &lt;dbl&gt;, `Protein(g)` &lt;dbl&gt;,
+#   `Lemak(g)` &lt;dbl&gt;, `KH(g)` &lt;dbl&gt;, `Serat(g)` &lt;dbl&gt;, `Kalsium(g)` &lt;dbl&gt;,
+#   `Fosfor(g)` &lt;dbl&gt;, `Besi(g)` &lt;dbl&gt;, `Natrium(g)` &lt;dbl&gt;, `Kalium(g)` &lt;dbl&gt;,
+#   `Tembaga(g)` &lt;dbl&gt;, `Thiamin(g)` &lt;dbl&gt;, `Riboflavin(g)` &lt;dbl&gt;,
+#   `VITC(g)` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="import-google-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="import-google-sheets">2. Import Google Sheets</h2>
+<p>Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan <em>sheet_id</em>. Pertama kita me-load package <code>googlesheets4</code> dan kemudian gunakan fungsi <code>read_sheet</code>. Misal kita akan mengimport data <strong>Penjualan Buah</strong> dari google sheet : <a href="https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI"><code>https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI</code></a> maka kita akan mengambil id sheet sebagai <strong>key call</strong> nya yaitu <code>18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load paket googlesheet</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>googlesheets4<span class="sc">::</span><span class="fu">gs4_deauth</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membaca sheet berdasarkan sheet id</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(<span class="st">"18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 7
+   shop_id item_id item  item_name         sold `price (Rp)` city         
+     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;        
+ 1    1590    3578 Apel  Apel merah        1921        22549 Kab. Bogor   
+ 2    1968    4327 Apel  Apel rome beauty  2077        36256 Kota Bandung 
+ 3    1911    2153 Apel  Apel fuji         1971        43525 Kota Malang  
+ 4    1579    1223 Apel  Apel manalagi     1961        38031 Jakarta Pusat
+ 5    1574    4675 Apel  Apel wanglin      3239        23299 Kab. Bogor   
+ 6    3512    3279 Apel  Apel merah        4474        35882 Kota Bandung 
+ 7    1904    2643 Apel  Apel rome beauty  2288        25221 Kota Malang  
+ 8    1943    4171 Apel  Apel fuji         1505        10693 Jakarta Pusat
+ 9    3131    3728 Apel  Apel manalagi     1860        27556 Kab. Bogor   
+10    4530    4649 Apel  Apel wanglin      1195        41518 Kota Bandung 
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<section id="menampilkan-sheet-khusus-google-sheet" class="level3">
+<h3 class="anchored" data-anchor-id="menampilkan-sheet-khusus-google-sheet">2.1 Menampilkan sheet khusus google sheet</h3>
+<p>Misal dari google sheet : <a href="https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"><code>https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI</code></a></p>
+<p>terdapat 2 sheet dan kita hanya akan menampilkan data pada sheet <code>Resto Steak Jakarta</code> maka :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Identifikasi id sheet google sheet</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tempat_makan_sheet_id <span class="ot">&lt;-</span> <span class="st">"1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data sheet </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(tempat_makan_sheet_id, <span class="at">sheet =</span> <span class="st">"Resto Steak Jakarta"</span>,<span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 187 × 28
+      no restaurant_name   city  district place unique_menu  price google_rating
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;list&gt;       
+ 1     1 Tucano's Churras… Cent… Sudirman Sena… Classic Be… 268000 &lt;dttm [1]&gt;   
+ 2     2 Kitchenette       Sout… Senayan  Sena… Kitchenett… 205000 &lt;dttm [1]&gt;   
+ 3     3 Tony Roma's       Cent… Thamrin  UOB … Baby Back … 170000 &lt;dttm [1]&gt;   
+ 4     4 Gandy Steak House Cent… Menteng  Owne… Grilled Au… 191000 &lt;dttm [1]&gt;   
+ 5     5 Joni Steak        Cent… Gajah M… Owne… Wagyu Top …  72000 &lt;dttm [1]&gt;   
+ 6     6 MUCCA Steak       Cent… Sudirman City… Tomahawk B… 940000 &lt;dttm [1]&gt;   
+ 7     7 El Machote        Cent… Menteng  Owne… Chivito Pl… 150000 &lt;chr [1]&gt;    
+ 8     8 Waroeng Steak &amp; … Cent… Cempaka… Owne… Sirloin Do…  34545 &lt;dttm [1]&gt;   
+ 9     9 Holycow! Menteng  Cent… Menteng  Gedu… Wagyu Rib … 199000 &lt;dttm [1]&gt;   
+10    10 Holycow! Pecenon… Cent… Pecenon… Owne… Australian… 133000 &lt;dttm [1]&gt;   
+# ℹ 177 more rows
+# ℹ 20 more variables: google_count &lt;list&gt;, platform_rating &lt;list&gt;,
+#   platform_count &lt;dbl&gt;, specialized &lt;chr&gt;, beef &lt;chr&gt;, chicken &lt;chr&gt;,
+#   seafood &lt;chr&gt;, appetizer &lt;chr&gt;, other_dish &lt;chr&gt;, dessert &lt;chr&gt;,
+#   drinks &lt;chr&gt;, other_poultry &lt;chr&gt;, takeaway &lt;chr&gt;, delivery &lt;chr&gt;,
+#   outdoor &lt;chr&gt;, smoking_area &lt;chr&gt;, alcohol_served &lt;chr&gt;, wifi &lt;chr&gt;,
+#   reservation &lt;chr&gt;, other &lt;chr&gt;</code></pre>
+</div>
+</div>
 </section>
 </section>
-<section id="manchine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="manchine-learning">2. Manchine Learning</h2>
-<p><code>Machine learning dalam R</code> merujuk pada penggunaan bahasa pemrograman R untuk mengembangkan dan menerapkan model machine learning. R adalah salah satu lingkungan pemrograman dan bahasa statistik yang populer, dan memiliki banyak paket dan pustaka yang kuat untuk mendukung pengembangan model machine learning.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Screenshot (154).png" class="img-fluid figure-img" width="391"></p>
-</figure>
-</div>
-<section id="unsupervised-vs-supervised" class="level3">
-<h3 class="anchored" data-anchor-id="unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</h3>
-<p>Pada <strong><em><code>supervised learning</code></em></strong> objektifnya adalah mempelajari hubungan antara fitur input dan output yang sesuai. <strong>→ prediksi, klasifikasi</strong></p>
-<p>Sedangkan <strong><em><code>unsupervised learning</code></em></strong> bertujuan untuk mengeksplorasi dan memahami kemiripan karakteristik pada data. <strong>→ eksplorasi, memahami data, mencari pola tersembunyi</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/Screenshot (155).png"><img src="images/Screenshot (155).png" class="img-fluid figure-img" width="255"></a></p>
-</figure>
-</div>
-</section>
-<section id="supervised-learning" class="level3">
-<h3 class="anchored" data-anchor-id="supervised-learning">2.2 Supervised Learning</h3>
-<p>Pada modul ini difokuskan untuk pembelajaran Supervised learning. <strong><em>Supervised Learning</em></strong> bertujuan untuk membuat model yang dapat mempelajari hubungan antara input <code>(fitur)</code> dan output <code>(label)</code> yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg1-02.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg2-02.png" class="img-fluid"></p>
-</div>
+<section id="web-scrapping" class="level2">
+<h2 class="anchored" data-anchor-id="web-scrapping">3. Web Scrapping</h2>
+<p>Web scraping adalah metode pengambilan data dari sebuah website secara otomatis. Teknik ini sangat berguna dalam bisnis online, baik itu untuk riset pasar, riset kompetitor, atau mencari leads 1. Ada beberapa teknik web scraping yang umum dilakukan, yaitu:</p>
+<ul>
+<li><p>Menyalin data secara manual</p></li>
+<li><p>Menggunakan regular expression</p></li>
+<li><p>Parsing HTML</p></li>
+</ul>
+<p>Kali ini kita akan menggunakan fungsi <code>read_html()</code> untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Package</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Url data tabel</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://kworb.net/youtube/insights/id_daily.html"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ekstrak element tabel</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> html <span class="sc">|&gt;</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">"table"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Tabel</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 5
+     Pos `P+`  Track                                          Streams `Streams+`
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                          &lt;chr&gt;   &lt;chr&gt;     
+ 1     1 +1    aespa - Drama                                  2,362,… "+462,157"
+ 2     2 -1    Stray Kids - 락 (樂) LALALALA                  2,155,… "-570,699"
+ 3     3 +1    Youngjae - Do It                               1,866,… "+273,939"
+ 4     4 -1    Nadhif Basalamah - penjaga hati                1,666,… "-17,279" 
+ 5     5 =     Ghea Indrawari - Jiwa Yang Bersedih            1,013,… "-152,228"
+ 6     6 +8    Kep1er - Grand Prix                            951,199 "+184,341"
+ 7     7 =     Jaz - Bersamamu                                898,366 "-21,536" 
+ 8     8 -2    Omwawes - Dumes (feat. Guyon Waton)            874,704 "-65,339" 
+ 9     9 NEW   Red Velvet - Red Velvet 레드벨벳 'Chill Kill'… 865,982 ""        
+10    10 -2    Anggi Marito - Tak Segampang Itu               852,287 "-37,818" 
+11    11 =     Denny Caknan - Wirang                          824,923 "-30,469" 
+12    12 NEW   WayV - On My Youth 遗憾效应                    787,665 ""        
+13    13 -4    Fabio Asher - Tanpa Rasa Bersalah              787,159 "-81,135" 
+14    14 NEW   Happy Asmara - Apik                            785,142 ""        
+15    15 -5    Denny Caknan - Taman Jurug (Live)              777,490 "-90,526" 
+16    16 -4    NDX A.K.A. - Nemen (Hiphop Dangdut Version)    753,604 "-59,795" 
+17    17 -4    Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen)  748,847 "-49,794" 
+18    18 -3    Zendaya - Rewrite The Stars                    745,875 "-11,638" 
+19    19 NEW   KISS OF LIFE - Bad News                        707,784 ""        
+20    20 -4    Idgitaf - Satu-Satu                            623,053 "-28,239" </code></pre>
 </div>
 </div>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -592,13 +732,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./datatidy.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 9 | Data Tidy</span>
+      <a href="./basisdata.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 4 | Basis Data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./regresi.html" class="pagination-link">
-        <span class="nav-page-text">Topik 10 | Regresi</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./datapreparation.html" class="pagination-link">
+        <span class="nav-page-text">Apa itu Data Preparation ?</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

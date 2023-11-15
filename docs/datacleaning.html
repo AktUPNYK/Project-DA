@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Modul Data Analitik (R) - Topik 8 | Data Cleaning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./datatidy.html" rel="next">
+<link href="./visualisasi.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Modul Data Analitik (R)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AktUPNYK/Project-DA" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datapreparation.html">Data Preparation</a></li><li class="breadcrumb-item"><a href="./datacleaning.html">Topik 8 | Data Cleaning</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cover</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Pengantar Data Analitik</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 1 | Data Analitik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alatdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 2 | Alat Data Analitik</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Sumber Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 3 | Spreadsheet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basisdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 4 | Basis Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataonline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 5 | Data Online</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Data Preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datapreparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apa itu Data Preparation ?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./jenisdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 6 | Jenis Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visualisasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 7 | Visualisasi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datacleaning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Topik 8 | Data Cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datatidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 9 | Data Tidy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apa itu Modelling ?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regresi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 10 | Regresi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klasifikasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 11 | Klasifikasi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Penyajian</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./penyajianquarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 12 | Quarto</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliografi</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link active" data-scroll-target="#data-cleaning">1. Data Cleaning</a></li>
+  <li><a href="#missing-value" id="toc-missing-value" class="nav-link" data-scroll-target="#missing-value">2. Missing Value</a>
+  <ul class="collapse">
+  <li><a href="#na-not-available" id="toc-na-not-available" class="nav-link" data-scroll-target="#na-not-available">2.1 NA (Not Available)</a></li>
+  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null">2.2 NULL</a></li>
+  <li><a href="#nan-not-a-number" id="toc-nan-not-a-number" class="nav-link" data-scroll-target="#nan-not-a-number">2.3 NaN (Not A Number)</a></li>
+  </ul></li>
+  <li><a href="#factor" id="toc-factor" class="nav-link" data-scroll-target="#factor">3. Factor</a></li>
+  <li><a href="#profiling-datasets" id="toc-profiling-datasets" class="nav-link" data-scroll-target="#profiling-datasets">4. Profiling Datasets</a>
+  <ul class="collapse">
+  <li><a href="#fungsi-str" id="toc-fungsi-str" class="nav-link" data-scroll-target="#fungsi-str">4.1 Fungsi str</a></li>
+  <li><a href="#fungsi-summary" id="toc-fungsi-summary" class="nav-link" data-scroll-target="#fungsi-summary">4.2 Fungsi Summary</a></li>
+  </ul></li>
+  <li><a href="#transformasi-struktur-data" id="toc-transformasi-struktur-data" class="nav-link" data-scroll-target="#transformasi-struktur-data">5. Transformasi Struktur Data</a>
+  <ul class="collapse">
+  <li><a href="#fungsi-names" id="toc-fungsi-names" class="nav-link" data-scroll-target="#fungsi-names">5.1 Fungsi names</a></li>
+  <li><a href="#operator-in" id="toc-operator-in" class="nav-link" data-scroll-target="#operator-in">5.2 Operator %in%</a></li>
+  <li><a href="#normalisasi-data-dari-kolom-ke-baris" id="toc-normalisasi-data-dari-kolom-ke-baris" class="nav-link" data-scroll-target="#normalisasi-data-dari-kolom-ke-baris">5.3 Normalisasi Data dari Kolom ke Baris</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Topik 8 | Data Cleaning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">1. Data Cleaning</h2>
+<p><strong>Data Cleaning</strong> biasanya melibatkan isi yang perlu diubah karena kadang data dimasukkan dari sistem yang berbeda. Bertolak belakang dengan anggapan bahwa dengan sistem, data akan bersih dan standar. Pada kenyataannya, bisnis berkembang lebih cepat dibandingkan dengan pembuatan sistem sehingga banyak design diubah di tengah jalan untuk mengakomodir hal ini, dan isi menjadi “berantakan”. Penyebab utama lainnya tentunya adalah sistem entri data yang manual.</p>
+<p>Contoh yang paling sering adalah informasi pelanggan (customer). Di satu sistem namanya boleh memasukkan gelar, dan di satu sistem tidak boleh… jadinya ada dua nama yang serupa tapi tak sama sebagai berikut:&nbsp;<code>"Agus Cahyono S.Kom."</code>&nbsp;dan&nbsp;<code>"Cahyono, Agus"</code>.</p>
+</section>
+<section id="missing-value" class="level2">
+<h2 class="anchored" data-anchor-id="missing-value">2. Missing Value</h2>
+<p>Dalam perjalanannya sebagai data analyst R, pasti akan menghadapi kolom dengan sebagian data tidak terisi atau kosong. Ini disebut dengan missing value atau nilai yang hilang.</p>
+<p>Menyadari hal ini adalah satu tahap penting karena kita akan sadar bahwa hal tersebut adalah lumrah terjadi.</p>
+<p>Tahap selanjutnya, kita perlu dua hal:</p>
+<ul>
+<li><p>Bagaimana missing value direpresentasikan, ini penting sehingga kita bisa identifikasi apakah nilai hilang karena dari awal memang ga ada, apakah karena operasi matematika, dan lain-lain.</p></li>
+<li><p>Dengan mengetahui representasi ini, kita dapat melakukan sesuatu terhadapnya. Atau singkat dapat dikelola (manage) dengan baik.</p></li>
+</ul>
+<p>Kedua hal tersebut sangat penting terutama bagi Anda yang berangkat dari SQL ataupun bahasa programming lain, dimana ada satu reprentasi missing value saja, yaitu NULL.</p>
+<section id="na-not-available" class="level3">
+<h3 class="anchored" data-anchor-id="na-not-available">2.1 NA (Not Available)</h3>
+<p>NA adalah representasi utama dari missing value di R, dan merupakan suatu nilai atomik. Artinya posisi NA sama dengan contoh nilai-nilai atomik bilangan seperti 1, 2 atau 100. Juga sama dengan contoh nilai karakter seperti “a”, “b”, atau “g”.</p>
+<p>Karena angka dan karakter seperti contoh di atas sering disebut sebagai konstanta, maka NA adalah konstanta untuk missing value.</p>
+<p>Sebagai contoh, jika kita ketikkan NA di console maka akan muncul hasil berikut :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ketik nilai NA</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tampilkan type dari NA dengan function typeof</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+<p>Angka [1] adalah posisi index dari konstanta (yang selalu bernilai 1) dan NA adalah nilainya sendiri. Dan NA ini secara default adalah representasi missing value untuk tipe data logical.</p>
+<p><strong>*Fungsi is.na</strong></p>
+<p>Misalkan untuk periksa suatu variabel x yang bernilai 3 – yang sebelumnya kita juga telah memasukkan angka yang sama</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Maka hasil eksekusi perintah di atas akan menghasilkan nilai TRUE. Nah, ini tidak berlaku untuk NA. Jadi jika nilai x kita isi dan cek dengan cara yang sama sebagai berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Buat variable x yang diisi dengan nilai NA</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Pengecekan variable x dengan nilai NA menggunakan operator ==</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>Nah, untuk mengatasi hal ini R menggunakan function bernama is.na dengan input berupa konstanta atau variabel. Mari kita ubah simbol == contoh di atas menggunakan function is.na seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pengecekan variable x dengan nilai NA menggunakan function is.na</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Jika dihubungkan dengan tipe data lain di R seperti vector – dimana isinya harus seragam tipe datanya – maka vector tersebut hanya boleh berisi nilai TRUE dan FALSE.</p>
+<p>Sebagai perbandingan, mari kita lihat contoh pembuatan satu vector dengan isi campuran dari integer dan logical berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">FALSE</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 0 3</code></pre>
+</div>
+</div>
+<p>Terlihat bahwa <code>FALSE</code> di atas dikonversi (beradaptasi) menjadi 0. Adaptasi ini juga disebut dengan <code>coerce</code> di dokumentasi R.</p>
+<p><strong>Lalu bagaimana dengan missing value NA?</strong></p>
+<p>NA juga memiliki konstanta yang digunakan untuk beradaptasi, yaitu:</p>
+<ul>
+<li><p><code>NA_integer_</code> untuk representasi tipe data “integer”</p></li>
+<li><p><code>NA_real_</code> untuk representasi tipe data “double”</p></li>
+<li><p><code>NA_complex_</code> untuk representasi tipe data “complex”</p></li>
+<li><p><code>NA_character_</code> untuk representasi tipe data “character”</p></li>
+</ul>
+<p>Dan semuanya memiliki nilai NA. Jika kita cek tipe data dari salah satu variasi missing value NA sebagai berikut :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA_integer_</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA_complex_</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA_character_</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="cn">NA_integer_</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="cn">NA_complex_</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="cn">NA_character_</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Maka hasilnya akan seperti ini :</p>
+<p><code>[1] "integer"</code></p>
+<p><code>[1] "double"</code></p>
+<p><code>[1] "complex"</code></p>
+<p><code>[1] "character"</code></p>
+<p><code>[1] TRUE</code></p>
+<p><code>[1] TRUE</code></p>
+<p><code>[1] TRUE</code></p>
+<p><code>[1] TRUE</code></p>
+</section>
+<section id="null" class="level3">
+<h3 class="anchored" data-anchor-id="null">2.2 NULL</h3>
+<p>NULL adalah nilai yang banyak digunakan di bahasa pemrograman lain ataupun SQL (Structured Query Language) untuk merepresentasikan objek yang tidak ada atau null object (missing object) atau nilai yang tidak ada (missing value).</p>
+<p>Di dalam R, missing value telah direpresentasikan dengan NA. Nah, untuk missing object inilah kita menggunakan NULL di R. Atau lebih detilnya, NULL adalah suatu object khusus di R yang digunakan untuk merepresentasikan nilai atau object yang tidak terdefinisikan.</p>
+<p><strong>*Perbedaan NA dan NULL</strong></p>
+<p>Berikut adalah contoh variabel vector yang mengandung 7 elemen termasuk NA dan NULL.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat vector dengan 7 elemen termasuk NA dan NULL</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>isi.vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>, <span class="dv">5</span>, <span class="cn">NULL</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Membuat vector dengan 7 elemen termasuk NA dan NULL isi.vector &lt;- c(1,2,3,NA, 5, NULL, 7)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghitung jumlah elemen dari isi.vector</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(isi.vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<p>Hasilnya adalah 6, padahal kita memasukkan 7 elemen. Dengan demikian terlihat bahwa NULL memang mewakili undefined object dan tidak dianggap oleh vector. Dengan demikian tidak menjadi bagian dari vector.</p>
+</section>
+<section id="nan-not-a-number" class="level3">
+<h3 class="anchored" data-anchor-id="nan-not-a-number">2.3 NaN (Not A Number)</h3>
+<p>NaN adalah representasi khusus untuk angka. Singkatan dari Not a Number, ini adalah representasi operasi matematika yang tidak bisa diwakili oleh angka apapun. Sering sekali bisa dianggap missing value tapi untuk hasil perhitungan.</p>
+<p>Contoh perhitungan yang menghasilkan NaN adalah ketika angka 0 dibagi dengan 0. Ini tidak bisa dirasionalkan, sehingga NaN adalah representasi yang paling tepat.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hitung kalkulasi 0 dibagi dengan 0</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="factor" class="level2">
+<h2 class="anchored" data-anchor-id="factor">3. Factor</h2>
+<p><strong>Factor</strong> adalah suatu variable di R yang menyimpan daftar nilai-nilai kategori atau nominal.</p>
+<p>Berikut adalah beberapa contoh daftar nilai kategori yang bisa disimpan dalam factor:</p>
+<ul>
+<li><p>Nama bulan: Januari, Februari, Maret.</p></li>
+<li><p>Jenis pakaian: Atasan, Jeans, Rok, Kaos.</p></li>
+<li><p>Satuan berat: kg, mg, ton, kwintal.</p></li>
+<li><p>dan lain-lain.</p></li>
+</ul>
+<p>Dengan demikian,&nbsp; factor menyimpan nilai-nilai yang terbatas (diskrit). Nama bulan terdiri dari 12 nilai yaitu dari Januari s/d Desember. Jika tidak terbatas atau kontinu, misalkan angka berat seperti 64.5 kg, 11.2 kg, 80.39 kg, dan seterusnya – maka ini tidak bisa digolongkan sebagai <em>factor</em>.</p>
+<p>Karena sifat data dengan nilai terbatas ini, factor sering disebut juga sebagai <em>categorical variable</em> atau variabel kategorik.</p>
+<p><strong>Kenapa Factor, dan Kapan Sebaiknya Digunakan?</strong></p>
+<p><strong>Factor</strong> adalah variabel yang sangat penting untuk digunakan pada kasus analisa statistik, menggambar grafik (<em>plotting</em>), pemodelan regresi ataupun <em>machine learning</em>.</p>
+<p>Sebagai contoh kasus, maka fungsi plotting pada library ggplot2 akan mampu mengambil variabel sebagai <em>legend</em> jika direpresentasikan sebagai factor.</p>
+<p><img src="images/ssfactor.png" class="img-fluid"></p>
+<p>Banyaknya function yang menggunakan factor dikarenakan dengan adanya factor ini maka nilai kategoris lebih mudah diolah dan dianalisa. Sehingga kita sebaiknya menggunakan factor ketika kita ingin :</p>
+<ul>
+<li><p>memastikan bahwa variable yang kita gunakan memiliki data terbatas (diskrit)</p></li>
+<li><p>dan menginformasikan kepastian ini kepada function atau model analisa yang kita gunakan</p></li>
+</ul>
+<p><strong>*NA, NaN, NULL pada saat pembentukan Factor</strong></p>
+<p>NA, NULL dan NaN adalah tiga nilai khusus untuk merepresentasikan missing values atau nilai yang hilang di R. Jika ketiganya dimasukkan ke dalam factor melalui deklarasi vector, maka prinsip berikut tetap berlaku:</p>
+<ul>
+<li><p>Na dan NaN akan menjadi bagian dari isi factor,</p></li>
+<li><p>NULL akan dihilangkan Hanya NaN yang akan dikenali sebagai levels</p></li>
+</ul>
+<p>Sebagai contoh, jika kita membuat factor dengan nilai berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Buatlah variable factor.lokasi dengan isi berupa vector c("Bandung", "Jakarta", NA, "Jakarta", NaN, "Medan", NULL, NULL, "Bandung")</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>factor.lokasi <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Bandung"</span>, <span class="st">"Jakarta"</span>, <span class="cn">NA</span>, <span class="st">"Jakarta"</span>, <span class="cn">NaN</span>, <span class="st">"Medan"</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="st">"Bandung"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Tampilkan factor.lokasi</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>factor.lokasi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Bandung Jakarta &lt;NA&gt;    Jakarta NaN     Medan   Bandung
+Levels: Bandung Jakarta Medan NaN</code></pre>
+</div>
+</div>
+<p>Terlihat nilai NULL dibuang di tampilan isi factor, kemudian pada levels nilai NA juga dibuang.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tampilkan panjang dari variable factor.lokasi</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(factor.lokasi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>Hanya nilai NULL yang tidak terhitung sebagai bagian dari factor.</p>
+<p>Urutan levels pada Factor</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nama.bulan <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Februari"</span>,<span class="st">"April"</span>,<span class="st">"Januari"</span>, <span class="st">"Maret"</span>,<span class="st">"Januari"</span>,<span class="st">"Maret"</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>nama.bulan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Februari April    Januari  Maret    Januari  Maret   
+Levels: April Februari Januari Maret</code></pre>
+</div>
+</div>
+<p>Data pada levels disesuaikan dengan abjad dan hanya menampilkan satu jenis data unik.</p>
+<p>Maka untuk mengurutkan sesuai keinginan kita dapat memakai :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nama.bulan <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Februari"</span>,<span class="st">"April"</span>,<span class="st">"Januari"</span>, <span class="st">"Maret"</span>,<span class="st">"Januari"</span>,<span class="st">"Maret"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>,<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Januari"</span>,<span class="st">"Februari"</span>,<span class="st">"Maret"</span>, <span class="st">"April"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Nama bulan sesuai kalender</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>nama.bulan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Februari April    Januari  Maret    Januari  Maret   
+Levels: Januari Februari Maret April</code></pre>
+</div>
+</div>
+</section>
+<section id="profiling-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="profiling-datasets">4. Profiling Datasets</h2>
+<p>Misal Dataset yang akan kita gunakan adalah data wilayah dan kepadatan kependudukan pemerintah provinsi DKI Jakarta tahun 2013.</p>
+<p>Sumber dataset ini dapat didownload dari data.go.id atau dengan url berikut:</p>
+<p><a href="https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv" class="uri">https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv</a></p>
+<p>Data kependudukan dipilih karena hampir seluruh organisasi, termasuk bisnis dan institusi pemerintah memerlukan ini untuk mengambil keputusan strategik. Sebagai contoh,</p>
+<ul>
+<li><p>dimana saya perlu membuka toko atau kantor cabang?</p></li>
+<li><p>Produk apa yang bakal laku di area tersebut?</p></li>
+</ul>
+<p>Kemudian struktur dari dataset ini perlu diolah lebih lanjut agar optimal. Atas dasar kedua alasan inilah, data kependudukan dipilih untuk <strong>data wrangling</strong> dengan R.</p>
+<p>Dan ini adalah tampilan jika data tersebut dibuka di aplikasi Excel :</p>
+<p><img src="images/ssexclprep.png" class="img-fluid"></p>
+<p>Terlihat bahwa ada 12 kolom (header dengan huruf H s/d S) yang kosong. Ini akan terbaca sebagai missing value.</p>
+<p>Data tersebut memiliki 25 variable kolom dengan penjelasan sebagai berikut:</p>
+<ul>
+<li><p><strong>TAHUN:</strong> Tahun</p></li>
+<li><p><strong>NAMA PROVINSI:</strong> Nama provinsi di DKI Jakarta, dan nilainya hanya ada satu</p></li>
+<li><p><strong>NAMA KABUPATEN/KOTA:</strong> Nama kabupaten/kota di DKI Jakarta</p></li>
+<li><p><strong>NAMA KECAMATAN:</strong> Nama kecamatan di DKI Jakarta</p></li>
+<li><p><strong>NAMA KELURAHAN:</strong> Nama kelurahan di DKI Jakarta</p></li>
+<li><p><strong>LUAS WILAYAH (KM2):</strong> Luas wilayah (km persegi)</p></li>
+<li><p><strong>KEPADATAN (JIWA/KM2):</strong> Kepadatan penduduk (jiwa/km2)</p></li>
+<li><p><strong>35-39 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 35-39 tahun</p></li>
+<li><p><strong>35-39 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 35-39 tahun</p></li>
+<li><p><strong>40-44 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 40-44 tahun</p></li>
+<li><p><strong>40-44 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 40-44 tahun</p></li>
+<li><p><strong>45-49 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 45-49 tahun</p></li>
+<li><p><strong>45-49 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 45-49 tahun</p></li>
+<li><p><strong>50-54 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 50-54 tahun</p></li>
+<li><p><strong>50-54 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 50-54 tahun</p></li>
+<li><p><strong>55-59 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 55-59 tahun</p></li>
+<li><p><strong>55-59 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 55-59 tahun</p></li>
+<li><p><strong>60-64 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 60-64 tahun</p></li>
+<li><p><strong>60-64 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 60-64 tahun</p></li>
+<li><p><strong>65-69 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 65-69 tahun</p></li>
+<li><p><strong>65-69 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 65-69 tahun</p></li>
+<li><p><strong>70-74 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur 70-74 tahun</p></li>
+<li><p><strong>70-74 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur 70-74 tahun</p></li>
+<li><p><strong>&gt;75 Laki-Laki</strong>: Jumlah penduduk laki-laki dengan rentang umur di atas 75&nbsp; tahun</p></li>
+<li><p><strong>&gt;75 Perempuan</strong>: Jumlah penduduk perempuan dengan rentang umur di atas 75 tahun&nbsp;&nbsp;</p></li>
+</ul>
+<p>Hampir seluruh kolom berisi nilai angka, kecuali empat kolom berikut: <strong>NAMA PROVINSI</strong>, <strong>NAMA KABUPATEN/KOTA</strong>, <strong>NAMA KECAMATAN</strong>, dan <strong>NAMA KELURAHAN</strong>.</p>
+<section id="fungsi-str" class="level3">
+<h3 class="anchored" data-anchor-id="fungsi-str">4.1 Fungsi str</h3>
+<p>Adalah fungsi untuk mengenal atau melakukan profile tiap dataset yang sudah dibaca ke dalam R – dan secara sederhana di R dapat kita lakukan dengan perintah str.</p>
+<p><code>str</code> akan menyajikan informasi tiap kolom dataset dalam format yang compact – satu baris informasi saja per row. Pendekatan singkat dan jelas ini membuat <code>str</code> menjadi function favorit dan efektif untuk mengenal data di tahap awal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan str data</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penduduk.dki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   267 obs. of  37 variables:
+ $ TAHUN               : int  2013 2013 2013 2013 2013 2013 2013 2013 2013 2013 ...
+ $ NAMA.PROVINSI       : chr  "PROVINSI DKI JAKARTA" "PROVINSI DKI JAKARTA" "PROVINSI DKI JAKARTA" "PROVINSI DKI JAKARTA" ...
+ $ NAMA.KABUPATEN.KOTA : chr  "KAB.ADM.KEP.SERIBU" "KAB.ADM.KEP.SERIBU" "KAB.ADM.KEP.SERIBU" "KAB.ADM.KEP.SERIBU" ...
+ $ NAMA.KECAMATAN      : chr  "KEP. SERIBU UTR" "KEP. SERIBU UTR" "KEP. SERIBU UTR" "KEP. SERIBU SLT" ...
+ $ NAMA.KELURAHAN      : chr  "P. PANGGANG" "P. KELAPA" "P. HARAPAN" "P. UNTUNG JAWA" ...
+ $ LUAS.WILAYAH..KM2.  : num  0.91 3.76 3.59 0.59 1.57 1.39 2.58 1.26 1.12 1.14 ...
+ $ KEPADATAN..JIWA.KM2.: int  6779 1705 628 3625 3084 1968 1350 14584 18987 14465 ...
+ $ X                   : logi  NA NA NA NA NA NA ...
+ $ X.1                 : logi  NA NA NA NA NA NA ...
+ $ X.2                 : logi  NA NA NA NA NA NA ...
+ $ X.3                 : logi  NA NA NA NA NA NA ...
+ $ X.4                 : logi  NA NA NA NA NA NA ...
+ $ X.5                 : logi  NA NA NA NA NA NA ...
+ $ X.6                 : logi  NA NA NA NA NA NA ...
+ $ X.7                 : logi  NA NA NA NA NA NA ...
+ $ X.8                 : logi  NA NA NA NA NA NA ...
+ $ X.9                 : logi  NA NA NA NA NA NA ...
+ $ X.10                : logi  NA NA NA NA NA NA ...
+ $ X.11                : logi  NA NA NA NA NA NA ...
+ $ X35.39.Laki.Laki    : int  231 84 255 199 98 113 166 850 954 752 ...
+ $ X35.39.Perempuan    : int  235 88 238 185 75 112 174 748 920 675 ...
+ $ X40.44.Laki.Laki    : int  233 99 232 178 73 108 130 749 914 691 ...
+ $ X40.44.Perempuan    : int  210 88 234 176 94 80 165 798 943 691 ...
+ $ X45.49.Laki.Laki    : int  171 72 212 162 67 66 176 779 871 659 ...
+ $ X45.49.Perempuan    : int  158 63 193 139 69 62 162 766 823 631 ...
+ $ X50.54.Laki.Laki    : int  137 34 150 100 60 61 129 715 736 611 ...
+ $ X50.54.Perempuan    : int  126 29 161 119 40 63 97 662 679 514 ...
+ $ X55.59.Laki.Laki    : int  98 30 139 97 37 37 108 614 680 539 ...
+ $ X55.59.Perempuan    : int  106 39 101 83 32 36 90 537 510 466 ...
+ $ X60.64.Laki.Laki    : int  72 29 73 58 22 32 88 555 544 428 ...
+ $ X60.64.Perempuan    : int  65 24 56 56 13 26 42 343 421 279 ...
+ $ X65.69.Laki.Laki    : int  36 12 18 40 18 21 68 413 398 328 ...
+ $ X65.69.Perempuan    : int  33 21 35 54 15 14 34 215 235 160 ...
+ $ X70.74.Laki.Laki    : int  33 13 24 26 10 17 37 259 241 215 ...
+ $ X70.74.Perempuan    : int  20 5 25 27 18 11 32 142 132 116 ...
+ $ X.75.Laki.Laki      : int  13 5 18 16 11 8 34 214 215 150 ...
+ $ X.75..Perempuan     : int  27 8 26 13 17 7 23 165 159 121 ...</code></pre>
+</div>
+</div>
+<p>Berikut adalah penjelasan dari hasil profiling tersebut:</p>
+<ul>
+<li><p><code>'data.frame'</code>: merupakan tipe data dari variable penduduk.dki.</p></li>
+<li><p><code>267 obs</code>: menunjukkan adanya 267 total baris data (row) dari dataset ini.</p></li>
+<li><p><code>37 variables</code>: menunjukkan adanya 37 kolom data pada dataset ini.</p></li>
+</ul>
+</section>
+<section id="fungsi-summary" class="level3">
+<h3 class="anchored" data-anchor-id="fungsi-summary">4.2 Fungsi Summary</h3>
+<p>Kita dapat juga menggunakan function summary untuk melihat kondisi dataset kita dalam bentuk ringkasan yang lebih detil.</p>
+<p>Sebagai contoh, untuk melihat summary dari variable penduduk.dki maka kita gunakan konstruksi berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penduduk.dki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     TAHUN      NAMA.PROVINSI      NAMA.KABUPATEN.KOTA NAMA.KECAMATAN    
+ Min.   :2013   Length:267         Length:267          Length:267        
+ 1st Qu.:2013   Class :character   Class :character    Class :character  
+ Median :2013   Mode  :character   Mode  :character    Mode  :character  
+ Mean   :2013                                                            
+ 3rd Qu.:2013                                                            
+ Max.   :2013                                                            
+ NAMA.KELURAHAN     LUAS.WILAYAH..KM2. KEPADATAN..JIWA.KM2.    X          
+ Length:267         Min.   : 0.270     Min.   :  628        Mode:logical  
+ Class :character   1st Qu.: 0.965     1st Qu.:11734        NA's:267      
+ Mode  :character   Median : 1.800     Median :17304                      
+                    Mean   : 2.487     Mean   :21974                      
+                    3rd Qu.: 3.315     3rd Qu.:29226                      
+                    Max.   :13.070     Max.   :94166                      
+   X.1            X.2            X.3            X.4            X.5         
+ Mode:logical   Mode:logical   Mode:logical   Mode:logical   Mode:logical  
+ NA's:267       NA's:267       NA's:267       NA's:267       NA's:267      
+                                                                           
+                                                                           
+                                                                           
+                                                                           
+   X.6            X.7            X.8            X.9            X.10        
+ Mode:logical   Mode:logical   Mode:logical   Mode:logical   Mode:logical  
+ NA's:267       NA's:267       NA's:267       NA's:267       NA's:267      
+                                                                           
+                                                                           
+                                                                           
+                                                                           
+   X.11         X35.39.Laki.Laki X35.39.Perempuan X40.44.Laki.Laki
+ Mode:logical   Min.   :   84    Min.   :  75     Min.   :  73    
+ NA's:267       1st Qu.: 1186    1st Qu.:1062     1st Qu.:1023    
+                Median : 1880    Median :1631     Median :1576    
+                Mean   : 2264    Mean   :1741     Mean   :1676    
+                3rd Qu.: 2768    3rd Qu.:2213     3rd Qu.:2112    
+                Max.   :13011    Max.   :7488     Max.   :7243    
+ X40.44.Perempuan X45.49.Laki.Laki X45.49.Perempuan X50.54.Laki.Laki
+ Min.   :   80    Min.   :  66.0   Min.   :  62     Min.   :   34   
+ 1st Qu.: 1084    1st Qu.: 957.5   1st Qu.: 886     1st Qu.:  790   
+ Median : 1714    Median :1404.0   Median :1315     Median : 1216   
+ Mean   : 2332    Mean   :1643.7   Mean   :1577     Mean   : 2259   
+ 3rd Qu.: 2782    3rd Qu.:1949.0   3rd Qu.:1867     3rd Qu.: 2624   
+ Max.   :14731    Max.   :8822.0   Max.   :8352     Max.   :17174   
+ X50.54.Perempuan X55.59.Laki.Laki X55.59.Perempuan X60.64.Laki.Laki
+ Min.   :  29.0   Min.   :  30.0   Min.   :   32    Min.   :  22.0  
+ 1st Qu.: 712.5   1st Qu.: 595.5   1st Qu.:  557    1st Qu.: 419.5  
+ Median :1107.0   Median : 909.0   Median :  889    Median : 650.0  
+ Mean   :1336.1   Mean   :1178.6   Mean   : 1867    Mean   : 981.7  
+ 3rd Qu.:1671.5   3rd Qu.:1405.5   3rd Qu.: 2342    3rd Qu.:1186.5  
+ Max.   :7480.0   Max.   :6846.0   Max.   :14326    Max.   :6333.0  
+ X60.64.Perempuan X65.69.Laki.Laki X65.69.Perempuan X70.74.Laki.Laki
+ Min.   :  13.0   Min.   :   12    Min.   :  14.0   Min.   :  10.0  
+ 1st Qu.: 366.0   1st Qu.:  253    1st Qu.: 215.5   1st Qu.: 170.0  
+ Median : 587.0   Median :  413    Median : 354.0   Median : 285.0  
+ Mean   : 876.7   Mean   : 1403    Mean   : 683.6   Mean   : 607.0  
+ 3rd Qu.:1052.5   3rd Qu.: 2098    3rd Qu.: 928.5   3rd Qu.: 836.5  
+ Max.   :5476.0   Max.   :11809    Max.   :4758.0   Max.   :4475.0  
+ X70.74.Perempuan X.75.Laki.Laki   X.75..Perempuan 
+ Min.   :   5     Min.   :   5.0   Min.   :   7.0  
+ 1st Qu.: 145     1st Qu.: 116.5   1st Qu.: 121.5  
+ Median : 260     Median : 200.0   Median : 204.0  
+ Mean   :1083     Mean   : 484.6   Mean   : 480.3  
+ 3rd Qu.:1784     3rd Qu.: 716.0   3rd Qu.: 675.5  
+ Max.   :9233     Max.   :3959.0   Max.   :3526.0  </code></pre>
+</div>
+</div>
+<p>Untuk angka, maka akan muncul statistik minimum, maximum, mean, meadian, 1st quantile, dan 3rd quantile. Sedangkan untuk nilai lain akan muncul jumlahnya di dataset.</p>
+<p>Dengan demikian, kita menjadi aware atau lebih perhatian karena perilaku yang berbeda ketika menangani kolom kosong dan juga pada saat penamaan variable kolom sehingga kita akan lebih siap untuk <strong>“memperbaiki”</strong> struktur dan isi file tersebut jika diperlukan.</p>
+</section>
+</section>
+<section id="transformasi-struktur-data" class="level2">
+<h2 class="anchored" data-anchor-id="transformasi-struktur-data">5. Transformasi Struktur Data</h2>
+<p>Pada sesi ini kita melanjutkan atas proses profiling Datasets kependudukan DKI tadi, terlihat juga ada beberapa kolom yang harusnya bisa dijumlahkan menjadi satu kolom – yaitu kolom 35-39.Perempuan, 40-44.Perempuan, dan seterusnya – menjadi kolom <code>jumlah</code>. Kemudian informasi umur di nama kolom tersebut sebenarnya dapat kita pisahkan menjadi kolom tersendiri.</p>
+<section id="fungsi-names" class="level3">
+<h3 class="anchored" data-anchor-id="fungsi-names">5.1 Fungsi names</h3>
+<p>Pada bab sebelumnya, kita menggunakan function <code>str</code> untuk melihat ringkasan dari struktur nama, tipe data, dan isi dari data.frame hasil pembacaan file.</p>
+<p>Namun jika kita hanya ingin melihat nama-nama kolom saja, bisa menggunakan function bernama <code>names</code>, dengan konstruksi berikut.</p>
+<p><code>names(variable)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca dataset csv</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggunakan names untuk variable penduduk.dki.csv</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penduduk.dki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "TAHUN"                "NAMA.PROVINSI"        "NAMA.KABUPATEN.KOTA" 
+ [4] "NAMA.KECAMATAN"       "NAMA.KELURAHAN"       "LUAS.WILAYAH..KM2."  
+ [7] "KEPADATAN..JIWA.KM2." "X"                    "X.1"                 
+[10] "X.2"                  "X.3"                  "X.4"                 
+[13] "X.5"                  "X.6"                  "X.7"                 
+[16] "X.8"                  "X.9"                  "X.10"                
+[19] "X.11"                 "X35.39.Laki.Laki"     "X35.39.Perempuan"    
+[22] "X40.44.Laki.Laki"     "X40.44.Perempuan"     "X45.49.Laki.Laki"    
+[25] "X45.49.Perempuan"     "X50.54.Laki.Laki"     "X50.54.Perempuan"    
+[28] "X55.59.Laki.Laki"     "X55.59.Perempuan"     "X60.64.Laki.Laki"    
+[31] "X60.64.Perempuan"     "X65.69.Laki.Laki"     "X65.69.Perempuan"    
+[34] "X70.74.Laki.Laki"     "X70.74.Perempuan"     "X.75.Laki.Laki"      
+[37] "X.75..Perempuan"     </code></pre>
+</div>
+</div>
+<p><strong>Merubah Nama Kolom</strong></p>
+<p>Function names ini juga bisa digunakan merubah nama kolom pada data.frame. Terlihat dari posisi nomor indeks nama kolom yang ingin diubah, misal kita akan merubah nama kolom TAHUN menjadi PERIODE (posisi indeks 1/[1]) dan NAMA KECAMATAN menjadi KEPANEWONAN (posisi indeks 4/[4]) dari dataset maka untuk merubahnya kita gunakan konstruksi berikut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca dataset csv</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ubah nama kolom tahun menjadi PERIODE</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penduduk.dki)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"PERIODE"</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ubah nama kolom Nama Kecamatan jadi Kepanewonan</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penduduk.dki)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"KEPANEWONAN"</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Eksekusi fungsi</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penduduk.dki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "PERIODE"              "NAMA.PROVINSI"        "NAMA.KABUPATEN.KOTA" 
+ [4] "KEPANEWONAN"          "NAMA.KELURAHAN"       "LUAS.WILAYAH..KM2."  
+ [7] "KEPADATAN..JIWA.KM2." "X"                    "X.1"                 
+[10] "X.2"                  "X.3"                  "X.4"                 
+[13] "X.5"                  "X.6"                  "X.7"                 
+[16] "X.8"                  "X.9"                  "X.10"                
+[19] "X.11"                 "X35.39.Laki.Laki"     "X35.39.Perempuan"    
+[22] "X40.44.Laki.Laki"     "X40.44.Perempuan"     "X45.49.Laki.Laki"    
+[25] "X45.49.Perempuan"     "X50.54.Laki.Laki"     "X50.54.Perempuan"    
+[28] "X55.59.Laki.Laki"     "X55.59.Perempuan"     "X60.64.Laki.Laki"    
+[31] "X60.64.Perempuan"     "X65.69.Laki.Laki"     "X65.69.Perempuan"    
+[34] "X70.74.Laki.Laki"     "X70.74.Perempuan"     "X.75.Laki.Laki"      
+[37] "X.75..Perempuan"     </code></pre>
+</div>
+</div>
+</section>
+<section id="operator-in" class="level3">
+<h3 class="anchored" data-anchor-id="operator-in">5.2 Operator %in%</h3>
+<p>Pada bab Profiling Datasets diatas, data.frame hasil pembacaan read.csv memiliki kolom X, X.1, X.2, X.3 s/d kolom X.11 yang kosong semua dan sebenarnya tidak diperlukan.</p>
+<p>Kita dapat menghilangkan kolom-kolom ini dengan contoh berikut:</p>
+<table class="table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 43%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Komponen</strong></td>
+<td><strong>Deskripsi</strong></td>
+</tr>
+<tr class="even">
+<td><code>penduduk.dki.csv</code></td>
+<td>Variable data frame dari hasil pembacaan dataset</td>
+</tr>
+<tr class="odd">
+<td><code>[ , …]</code></td>
+<td>Artinya data frame mengambil kolom ke …</td>
+</tr>
+<tr class="even">
+<td><code>!</code></td>
+<td>Tanda bukan</td>
+</tr>
+<tr class="odd">
+<td><code>names(penduduk.dki.csv)</code></td>
+<td>Daftar dari semua kolom dari variable penduduk.dki.csv</td>
+</tr>
+<tr class="even">
+<td><code>%in%</code></td>
+<td>Operator untuk mengambil data dari vector setelahnya</td>
+</tr>
+<tr class="odd">
+<td><code>c("X","X.1","X.2","X.3","X.4","X.5","X.6","X.7","X.8","X.9","X.10", "X.11")</code></td>
+<td>Vector dari nama semua kolom yang akan dibuang</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca dataset csv</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuang kolom X, X.1, X.2 s/d X.11</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>penduduk.dki <span class="ot">&lt;-</span> penduduk.dki[,<span class="sc">!</span><span class="fu">names</span>(penduduk.dki) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"X.1"</span>,<span class="st">"X.2"</span>,<span class="st">"X.3"</span>,<span class="st">"X.4"</span>,<span class="st">"X.5"</span>,<span class="st">"X.6"</span>,<span class="st">"X.7"</span>,<span class="st">"X.8"</span>,<span class="st">"X.9"</span>,<span class="st">"X.10"</span>, <span class="st">"X.11"</span>)]</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Eksekusi function</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penduduk.dki)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "TAHUN"                "NAMA.PROVINSI"        "NAMA.KABUPATEN.KOTA" 
+ [4] "NAMA.KECAMATAN"       "NAMA.KELURAHAN"       "LUAS.WILAYAH..KM2."  
+ [7] "KEPADATAN..JIWA.KM2." "X35.39.Laki.Laki"     "X35.39.Perempuan"    
+[10] "X40.44.Laki.Laki"     "X40.44.Perempuan"     "X45.49.Laki.Laki"    
+[13] "X45.49.Perempuan"     "X50.54.Laki.Laki"     "X50.54.Perempuan"    
+[16] "X55.59.Laki.Laki"     "X55.59.Perempuan"     "X60.64.Laki.Laki"    
+[19] "X60.64.Perempuan"     "X65.69.Laki.Laki"     "X65.69.Perempuan"    
+[22] "X70.74.Laki.Laki"     "X70.74.Perempuan"     "X.75.Laki.Laki"      
+[25] "X.75..Perempuan"     </code></pre>
+</div>
+</div>
+<p>Atau terjemahan dari seluruh konstruksi tersebut adalah mengambil data dari data.frame penduduk.dki.csv dengan kolom-kolom yang tidak termasuk pada “X”, “X.1”, “X.2”, “X.3”, dan seterusnya sampai dengan “X.11”</p>
+</section>
+<section id="normalisasi-data-dari-kolom-ke-baris" class="level3">
+<h3 class="anchored" data-anchor-id="normalisasi-data-dari-kolom-ke-baris">5.3 Normalisasi Data dari Kolom ke Baris</h3>
+<p>Kalau kita perhatikan empat kolom data pada table di bawah ini – yang diambil dari dataset kependudukan DKI – maka dua kolom terakhir (35-39 laki-laki dan 35-39 Perempuan) sebenarnya mengandung tiga variable, yaitu: <code>rentang umur</code>, <code>jenis kelamin</code>, dan <code>jumlah penduduk.</code></p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>NAMA.KECAMATAN</td>
+<td>NAMA.KELURAHAN</td>
+<td>35-39.Laki-Laki</td>
+<td>35-39.Perempuan</td>
+</tr>
+<tr class="even">
+<td>GAMBIR</td>
+<td>GAMBIR</td>
+<td>166</td>
+<td>174</td>
+</tr>
+<tr class="odd">
+<td>GAMBIR</td>
+<td>CIDENG</td>
+<td>850</td>
+<td>748</td>
+</tr>
+<tr class="even">
+<td>GAMBIR</td>
+<td>PETOJO UTARA</td>
+<td>954</td>
+<td>920</td>
+</tr>
+</tbody>
+</table>
+<p>Dan dari sisi prinsip kerapian data, satu variable data harusnya masing-masing menempati satu kolom tersendiri. Dan berdasarkan prinsip tersebut, kolom “NAMA.KECAMATAN” dan “NAMA.KELURAHAN” sudah memenuhi persyaratan. Namun kolom “35-39.Laki-Laki” dan kolom “35-39.Perempuan” tidak memenuhi persyaratan.</p>
+<p>Kita akan coba men-transformasi struktur ini dengan dua tahap:</p>
+<ul>
+<li><p>Melakukan normalisasi kolom dari baris ke kolom</p></li>
+<li><p>Memisahkan kolom</p></li>
+</ul>
+<p>Kita mulai dari tahap pertama, dimana kita akan merubah struktur data di atas agar menjadi seperti ini :</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>NAMA.KECAMATAN</td>
+<td>NAMA.KELURAHAN</td>
+<td>DEMOGRAFIK</td>
+<td>JUMLAH</td>
+</tr>
+<tr class="even">
+<td>GAMBIR</td>
+<td>GAMBIR</td>
+<td>35-39.Laki-Laki</td>
+<td>166</td>
+</tr>
+<tr class="odd">
+<td>GAMBIR</td>
+<td>GAMBIR</td>
+<td>35-39.Perempuan</td>
+<td>174</td>
+</tr>
+<tr class="even">
+<td>GAMBIR</td>
+<td>CIDENG</td>
+<td>35-39.Laki-Laki</td>
+<td>850</td>
+</tr>
+<tr class="odd">
+<td>GAMBIR</td>
+<td>CIDENG</td>
+<td>35-39.Perempuan</td>
+<td>748</td>
+</tr>
+<tr class="even">
+<td>GAMBIR</td>
+<td>PETOJO UTARA</td>
+<td>35-39.Laki-Laki</td>
+<td>954</td>
+</tr>
+<tr class="odd">
+<td>GAMBIR</td>
+<td>PETOJO UTARA</td>
+<td>35-39.Perempuan</td>
+<td>920</td>
+</tr>
+</tbody>
+</table>
+<p>Terlihat nama kolom <code>"35-39.Laki-Laki"</code> dan <code>"35-39.Perempuan"</code> dipivot menjadi nilai baris data di bawah kolom <code>"DEMOGRAFIK".</code></p>
+<p>Kemudian angka-angka jumlah penduduk yang tadinya di bawah kedua kolom tersebut sekarang ada di bawah kolom “<code>JUMLAH".</code></p>
+<p>Untuk melakukan transformasi struktur ini, kita akan gunakan function <code>melt</code> dari package <code>reshape2</code>. Berikut adalah contoh penggunaannya:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Paket xlsx</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>penduduk.dki.xlsx <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="at">xlsxFile=</span><span class="st">"https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Transformasi kolom dataset penduduk.dki.xlsx, disimpan ke variable penduduk.dki.transform</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>penduduk.dki.transform <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="at">data=</span>penduduk.dki.xlsx, <span class="at">id.vars=</span><span class="fu">c</span>( <span class="st">"NAMA.KECAMATAN"</span>, <span class="st">"NAMA.KELURAHAN"</span>), <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"35-39.Laki-Laki"</span>, <span class="st">"35-39.Perempuan"</span>), <span class="at">variable.name =</span> <span class="st">"DEMOGRAFIK"</span>, <span class="at">value.name=</span><span class="st">"JUMLAH"</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Menampilkan variable penduduk.dki.transform</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>penduduk.dki.transform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       NAMA.KECAMATAN         NAMA.KELURAHAN      DEMOGRAFIK JUMLAH
+1     KEP. SERIBU UTR            P. PANGGANG 35-39.Laki-Laki    231
+2     KEP. SERIBU UTR              P. KELAPA 35-39.Laki-Laki     84
+3     KEP. SERIBU UTR             P. HARAPAN 35-39.Laki-Laki    255
+4     KEP. SERIBU SLT         P. UNTUNG JAWA 35-39.Laki-Laki    199
+5     KEP. SERIBU SLT              P. TIDUNG 35-39.Laki-Laki     98
+6     KEP. SERIBU SLT                P. PARI 35-39.Laki-Laki    113
+7              GAMBIR                 GAMBIR 35-39.Laki-Laki    166
+8              GAMBIR                 CIDENG 35-39.Laki-Laki    850
+9              GAMBIR           PETOJO UTARA 35-39.Laki-Laki    954
+10             GAMBIR         PETOJO SELATAN 35-39.Laki-Laki    752
+11             GAMBIR           KEBON KELAPA 35-39.Laki-Laki    592
+12             GAMBIR              DURI PULO 35-39.Laki-Laki   1213
+13        SAWAH BESAR             PASAR BARU 35-39.Laki-Laki    714
+14        SAWAH BESAR           KARANG ANYAR 35-39.Laki-Laki   1575
+15        SAWAH BESAR                KARTINI 35-39.Laki-Laki   1307
+16        SAWAH BESAR    GUNUNG SAHARI UTARA 35-39.Laki-Laki    817
+17        SAWAH BESAR     MANGGA DUA SELATAN 35-39.Laki-Laki   1683
+18          KEMAYORAN              KEMAYORAN 35-39.Laki-Laki   1164
+19          KEMAYORAN           KEBON KOSONG 35-39.Laki-Laki   1644
+20          KEMAYORAN          HARAPAN MULIA 35-39.Laki-Laki   1256
+21          KEMAYORAN                SERDANG 35-39.Laki-Laki   1603
+22          KEMAYORAN  GUNUNG SAHARI SELATAN 35-39.Laki-Laki   1071
+23          KEMAYORAN           CEMPAKA BARU 35-39.Laki-Laki   1750
+24          KEMAYORAN             SUMUR BATU 35-39.Laki-Laki   1452
+25          KEMAYORAN           UTAN PANJANG 35-39.Laki-Laki   1610
+26              SENEN                  SENEN 35-39.Laki-Laki    398
+27              SENEN                 KENARI 35-39.Laki-Laki    456
+28              SENEN                PASEBAN 35-39.Laki-Laki   1266
+29              SENEN                 KRAMAT 35-39.Laki-Laki   1552
+30              SENEN                KWITANG 35-39.Laki-Laki    908
+31              SENEN                 BUNGUR 35-39.Laki-Laki   1046
+32      CEMPAKA PUTIH    CEMPAKA PUTIH TIMUR 35-39.Laki-Laki   1264
+33      CEMPAKA PUTIH    CEMPAKA PUTIH BARAT 35-39.Laki-Laki   1858
+34      CEMPAKA PUTIH               RAWASARI 35-39.Laki-Laki   1200
+35            MENTENG                MENTENG 35-39.Laki-Laki   1349
+36            MENTENG             PEGANGSAAN 35-39.Laki-Laki   1172
+37            MENTENG                 CIKINI 35-39.Laki-Laki    424
+38            MENTENG             GONDANGDIA 35-39.Laki-Laki    192
+39            MENTENG            KEBON SIRIH 35-39.Laki-Laki    733
+40        TANAH ABANG                 GELORA 35-39.Laki-Laki    185
+41        TANAH ABANG        BENDUNGAN HILIR 35-39.Laki-Laki   1124
+42        TANAH ABANG          KARET TENGSIN 35-39.Laki-Laki   1118
+43        TANAH ABANG             PETAMBURAN 35-39.Laki-Laki   1851
+44        TANAH ABANG           KEBON MELATI 35-39.Laki-Laki   1862
+45        TANAH ABANG           KEBON KACANG 35-39.Laki-Laki   1150
+46        TANAH ABANG           KAMPUNG BALI 35-39.Laki-Laki    612
+47         JOHAR BARU             JOHAR BARU 35-39.Laki-Laki   2036
+48         JOHAR BARU           KAMPUNG RAWA 35-39.Laki-Laki   1210
+49         JOHAR BARU                  GALUR 35-39.Laki-Laki    999
+50         JOHAR BARU           TANAH TINGGI 35-39.Laki-Laki   2118
+51        PENJARINGAN            PENJARINGAN 35-39.Laki-Laki   9225
+52        PENJARINGAN            KAMAL MUARA 35-39.Laki-Laki   1045
+53        PENJARINGAN            KAPUK MUARA 35-39.Laki-Laki   2763
+54        PENJARINGAN              PEJAGALAN 35-39.Laki-Laki   7137
+55        PENJARINGAN                  PLUIT 35-39.Laki-Laki   3656
+56      TANJUNG PRIOK          TANJUNG PRIOK 35-39.Laki-Laki   3374
+57      TANJUNG PRIOK            SUNTER JAYA 35-39.Laki-Laki   5374
+58      TANJUNG PRIOK               PAPANGGO 35-39.Laki-Laki   3667
+59      TANJUNG PRIOK           SUNGAI BAMBU 35-39.Laki-Laki   2807
+60      TANJUNG PRIOK           KEBON BAWANG 35-39.Laki-Laki   4677
+61      TANJUNG PRIOK           SUNTER AGUNG 35-39.Laki-Laki   6094
+62      TANJUNG PRIOK                WARAKAS 35-39.Laki-Laki   4224
+63               KOJA                   KOJA 35-39.Laki-Laki   3088
+64               KOJA             TUGU UTARA 35-39.Laki-Laki   6608
+65               KOJA                  LAGOA 35-39.Laki-Laki   5931
+66               KOJA       RAWA BADAK UTARA 35-39.Laki-Laki   3260
+67               KOJA           TUGU SELATAN 35-39.Laki-Laki   3744
+68               KOJA     RAWA BADAK SELATAN 35-39.Laki-Laki   3910
+69          CILINCING              CILINCING 35-39.Laki-Laki   4654
+70          CILINCING               SUKAPURA 35-39.Laki-Laki   5221
+71          CILINCING                MARUNDA 35-39.Laki-Laki   2187
+72          CILINCING              KALI BARU 35-39.Laki-Laki   7616
+73          CILINCING           SEMPER TIMUR 35-39.Laki-Laki   3230
+74          CILINCING                ROROTAN 35-39.Laki-Laki   3442
+75          CILINCING           SEMPER BARAT 35-39.Laki-Laki   6419
+76         PADEMANGAN       PADEMANGAN TIMUR 35-39.Laki-Laki   3005
+77         PADEMANGAN       PADEMANGAN BARAT 35-39.Laki-Laki   7178
+78         PADEMANGAN                  ANCOL 35-39.Laki-Laki   2259
+79      KELAPA GADING    KELAPA GADING TIMUR 35-39.Laki-Laki   2539
+80      KELAPA GADING         PEGANGSAAN DUA 35-39.Laki-Laki   4170
+81      KELAPA GADING    KELAPA GADING BARAT 35-39.Laki-Laki   2628
+82         CENGKARENG       CENGKARENG BARAT 35-39.Laki-Laki   5316
+83         CENGKARENG           DURI KOSAMBI 35-39.Laki-Laki   6922
+84         CENGKARENG             RAWA BUAYA 35-39.Laki-Laki   5632
+85         CENGKARENG     KEDAUNG KALI ANGKE 35-39.Laki-Laki   2951
+86         CENGKARENG                  KAPUK 35-39.Laki-Laki  13011
+87         CENGKARENG       CENGKARENG TIMUR 35-39.Laki-Laki   7146
+88  GROGOL PETAMBURAN                 GROGOL 35-39.Laki-Laki   1530
+89  GROGOL PETAMBURAN    TANJUNG DUREN UTARA 35-39.Laki-Laki   1277
+90  GROGOL PETAMBURAN                 TOMANG 35-39.Laki-Laki   2404
+91  GROGOL PETAMBURAN               JELAMBAR 35-39.Laki-Laki   2358
+92  GROGOL PETAMBURAN  TANJUNG DUREN SELATAN 35-39.Laki-Laki   1857
+93  GROGOL PETAMBURAN          JELAMBAR BARU 35-39.Laki-Laki   3165
+94  GROGOL PETAMBURAN          WIJAYA KUSUMA 35-39.Laki-Laki   3523
+95         TAMAN SARI             TAMAN SARI 35-39.Laki-Laki   1365
+96         TAMAN SARI                 KRUKUT 35-39.Laki-Laki   1848
+97         TAMAN SARI                 MAPHAR 35-39.Laki-Laki   1555
+98         TAMAN SARI                 TANGKI 35-39.Laki-Laki   1248
+99         TAMAN SARI           MANGGA BESAR 35-39.Laki-Laki    675
+100        TAMAN SARI              KEAGUNGAN 35-39.Laki-Laki   1673
+101        TAMAN SARI                 GLODOK 35-39.Laki-Laki    650
+102        TAMAN SARI              PINANGSIA 35-39.Laki-Laki    991
+103           TAMBORA                TAMBORA 35-39.Laki-Laki    968
+104           TAMBORA             KALI ANYAR 35-39.Laki-Laki   2532
+105           TAMBORA             DURI UTARA 35-39.Laki-Laki   1919
+106           TAMBORA           TANAH SEREAL 35-39.Laki-Laki   2485
+107           TAMBORA              KERENDANG 35-39.Laki-Laki   2057
+108           TAMBORA          JEMBATAN BESI 35-39.Laki-Laki   3124
+109           TAMBORA                  ANGKE 35-39.Laki-Laki   2767
+110           TAMBORA          JEMBATAN LIMA 35-39.Laki-Laki   2104
+111           TAMBORA                PEKOJAN 35-39.Laki-Laki   2061
+112           TAMBORA             ROA MALAKA 35-39.Laki-Laki    257
+113           TAMBORA           DURI SELATAN 35-39.Laki-Laki   1319
+114       KEBON JERUK            KEBON JERUK 35-39.Laki-Laki   4362
+115       KEBON JERUK         SUKABUMI UTARA 35-39.Laki-Laki   3197
+116       KEBON JERUK       SUKABUMI SELATAN 35-39.Laki-Laki   3396
+117       KEBON JERUK             KELAPA DUA 35-39.Laki-Laki   1962
+118       KEBON JERUK              DURI KEPA 35-39.Laki-Laki   5160
+119       KEBON JERUK           KEDOYA UTARA 35-39.Laki-Laki   3914
+120       KEBON JERUK         KEDOYA SELATAN 35-39.Laki-Laki   2709
+121        KALI DERES              KALIDERES 35-39.Laki-Laki   6660
+122        KALI DERES                SEMANAN 35-39.Laki-Laki   6508
+123        KALI DERES             TEGAL ALUR 35-39.Laki-Laki   8053
+124        KALI DERES                  KAMAL 35-39.Laki-Laki   4847
+125        KALI DERES             PEGADUNGAN 35-39.Laki-Laki   5990
+126          PALMERAH               PALMERAH 35-39.Laki-Laki   5308
+127          PALMERAH                  SLIPI 35-39.Laki-Laki   1445
+128          PALMERAH       KOTA BAMBU UTARA 35-39.Laki-Laki   2268
+129          PALMERAH              JATI PULO 35-39.Laki-Laki   2575
+130          PALMERAH            KEMANGGISAN 35-39.Laki-Laki   2642
+131          PALMERAH     KOTA BAMBU SELATAN 35-39.Laki-Laki   1967
+132         KEMBANGAN        KEMBANGAN UTARA 35-39.Laki-Laki   4531
+133         KEMBANGAN           MERUYA UTARA 35-39.Laki-Laki   3545
+134         KEMBANGAN         MERUYA SELATAN 35-39.Laki-Laki   2471
+135         KEMBANGAN              SRENGSENG 35-39.Laki-Laki   3761
+136         KEMBANGAN                  JOGLO 35-39.Laki-Laki   3226
+137         KEMBANGAN      KEMBANGAN SELATAN 35-39.Laki-Laki   2439
+138             TEBET            TEBET TIMUR 35-39.Laki-Laki    838
+139             TEBET            TEBET BARAT 35-39.Laki-Laki   1060
+140             TEBET          MENTENG DALAM 35-39.Laki-Laki   2029
+141             TEBET             KEBON BARU 35-39.Laki-Laki   2004
+142             TEBET             BUKIT DURI 35-39.Laki-Laki   1880
+143             TEBET      MANGGARAI SELATAN 35-39.Laki-Laki   1239
+144             TEBET              MANGGARAI 35-39.Laki-Laki   1545
+145        SETIA BUDI             SETIA BUDI 35-39.Laki-Laki    168
+146        SETIA BUDI         KARET SEMANGGI 35-39.Laki-Laki    126
+147        SETIA BUDI         KARET KUNINGAN 35-39.Laki-Laki    879
+148        SETIA BUDI                  KARET 35-39.Laki-Laki    603
+149        SETIA BUDI           MENTENG ATAS 35-39.Laki-Laki   1504
+150        SETIA BUDI          PASAR MANGGIS 35-39.Laki-Laki   1445
+151        SETIA BUDI                 GUNTUR 35-39.Laki-Laki    208
+152        SETIA BUDI         KUNINGAN TIMUR 35-39.Laki-Laki    328
+153  MAMPANG PRAPATAN       MAMPANG PRAPATAN 35-39.Laki-Laki   1101
+154  MAMPANG PRAPATAN                 BANGKA 35-39.Laki-Laki   1119
+155  MAMPANG PRAPATAN           PELA MAMPANG 35-39.Laki-Laki   2458
+156  MAMPANG PRAPATAN           TEGAL PARANG 35-39.Laki-Laki   1826
+157  MAMPANG PRAPATAN         KUNINGAN BARAT 35-39.Laki-Laki    727
+158      PASAR MINGGU           PASAR MINGGU 35-39.Laki-Laki   1296
+159      PASAR MINGGU            JATI PADANG 35-39.Laki-Laki   2023
+160      PASAR MINGGU         CILANDAK TIMUR 35-39.Laki-Laki   1398
+161      PASAR MINGGU                RAGUNAN 35-39.Laki-Laki   2284
+162      PASAR MINGGU          PEJATEN TIMUR 35-39.Laki-Laki   3168
+163      PASAR MINGGU          PEJATEN BARAT 35-39.Laki-Laki   1963
+164      PASAR MINGGU              KEBAGUSAN 35-39.Laki-Laki   2300
+165    KEBAYORAN LAMA   KEBAYORAN LAMA UTARA 35-39.Laki-Laki   2638
+166    KEBAYORAN LAMA          PONDOK PINANG 35-39.Laki-Laki   2770
+167    KEBAYORAN LAMA                CIPULIR 35-39.Laki-Laki   2191
+168    KEBAYORAN LAMA           GROGOL UTARA 35-39.Laki-Laki   2266
+169    KEBAYORAN LAMA         GROGOL SELATAN 35-39.Laki-Laki   2309
+170    KEBAYORAN LAMA KEBAYORAN LAMA SELATAN 35-39.Laki-Laki   2316
+171          CILANDAK         CILANDAK BARAT 35-39.Laki-Laki   2700
+172          CILANDAK            LEBAK BULUS 35-39.Laki-Laki   1823
+173          CILANDAK            PONDOK LABU 35-39.Laki-Laki   2261
+174          CILANDAK       GANDARIA SELATAN 35-39.Laki-Laki   1145
+175          CILANDAK         CIPETE SELATAN 35-39.Laki-Laki   1387
+176    KEBAYORAN BARU                MELAWAI 35-39.Laki-Laki    116
+177    KEBAYORAN BARU                 GUNUNG 35-39.Laki-Laki    423
+178    KEBAYORAN BARU            KRAMAT PELA 35-39.Laki-Laki    706
+179    KEBAYORAN BARU                 SELONG 35-39.Laki-Laki    178
+180    KEBAYORAN BARU             RAWA BARAT 35-39.Laki-Laki    274
+181    KEBAYORAN BARU                SENAYAN 35-39.Laki-Laki    176
+182    KEBAYORAN BARU                   PULO 35-39.Laki-Laki    256
+183    KEBAYORAN BARU              PETOGOGAN 35-39.Laki-Laki    621
+184    KEBAYORAN BARU         GANDARIA UTARA 35-39.Laki-Laki   2056
+185    KEBAYORAN BARU           CIPETE UTARA 35-39.Laki-Laki   1907
+186          PANCORAN               PANCORAN 35-39.Laki-Laki   1026
+187          PANCORAN               KALIBATA 35-39.Laki-Laki   2300
+188          PANCORAN              RAWA JATI 35-39.Laki-Laki    990
+189          PANCORAN             DUREN TIGA 35-39.Laki-Laki   1540
+190          PANCORAN             PENGADEGAN 35-39.Laki-Laki   1140
+191          PANCORAN                 CIKOKO 35-39.Laki-Laki    698
+192         JAGAKARSA              JAGAKARSA 35-39.Laki-Laki   3050
+193         JAGAKARSA        SRENGSENG SAWAH 35-39.Laki-Laki   2783
+194         JAGAKARSA               CIGANJUR 35-39.Laki-Laki   1859
+195         JAGAKARSA          LENTENG AGUNG 35-39.Laki-Laki   2617
+196         JAGAKARSA          TANJUNG BARAT 35-39.Laki-Laki   2017
+197         JAGAKARSA                CIPEDAK 35-39.Laki-Laki   1708
+198      PESANGGRAHAN           PESANGGRAHAN 35-39.Laki-Laki   1499
+199      PESANGGRAHAN                BINTARO 35-39.Laki-Laki   2675
+200      PESANGGRAHAN       PETUKANGAN UTARA 35-39.Laki-Laki   2787
+201      PESANGGRAHAN     PETUKANGAN SELATAN 35-39.Laki-Laki   1836
+202      PESANGGRAHAN                ULUJAMI 35-39.Laki-Laki   2304
+203          MATRAMAN          PISANGAN BARU 35-39.Laki-Laki   1759
+204          MATRAMAN        UTAN KAYU UTARA 35-39.Laki-Laki   1606
+205          MATRAMAN             KAYU MANIS 35-39.Laki-Laki   1377
+206          MATRAMAN             PAL MERIAM 35-39.Laki-Laki   1101
+207          MATRAMAN          KEBON MANGGIS 35-39.Laki-Laki    840
+208          MATRAMAN      UTAN KAYU SELATAN 35-39.Laki-Laki   1820
+209       PULO GADUNG            PULO GADUNG 35-39.Laki-Laki   1998
+210       PULO GADUNG         PISANGAN TIMUR 35-39.Laki-Laki   2249
+211       PULO GADUNG               CIPINANG 35-39.Laki-Laki   2192
+212       PULO GADUNG        JATINEGARA KAUM 35-39.Laki-Laki   1278
+213       PULO GADUNG             RAWAMANGUN 35-39.Laki-Laki   2054
+214       PULO GADUNG             KAYU PUTIH 35-39.Laki-Laki   2361
+215       PULO GADUNG                   JATI 35-39.Laki-Laki   1764
+216        JATINEGARA         KAMPUNG MELAYU 35-39.Laki-Laki   1361
+217        JATINEGARA            BIDARA CINA 35-39.Laki-Laki   2105
+218        JATINEGARA            BALI MESTER 35-39.Laki-Laki    444
+219        JATINEGARA             RAWA BUNGA 35-39.Laki-Laki   1131
+220        JATINEGARA      CIPINANG CEMPEDAK 35-39.Laki-Laki   1614
+221        JATINEGARA         CIPINANG MUARA 35-39.Laki-Laki   3063
+222        JATINEGARA CIPINANG BESAR SELATAN 35-39.Laki-Laki   1875
+223        JATINEGARA   CIPINANG BESAR UTARA 35-39.Laki-Laki   2704
+224       KRAMAT JATI            KRAMAT JATI 35-39.Laki-Laki   1946
+225       KRAMAT JATI         KAMPUNG TENGAH 35-39.Laki-Laki   2224
+226       KRAMAT JATI                  DUKUH 35-39.Laki-Laki   1277
+227       KRAMAT JATI             BATU AMPAR 35-39.Laki-Laki   2480
+228       KRAMAT JATI           BALE KAMBANG 35-39.Laki-Laki   1413
+229       KRAMAT JATI              CILILITAN 35-39.Laki-Laki   2265
+230       KRAMAT JATI                 CAWANG 35-39.Laki-Laki   1942
+231        PASAR REBO                 GEDONG 35-39.Laki-Laki   1823
+232        PASAR REBO                   BARU 35-39.Laki-Laki   1678
+233        PASAR REBO              CIJANTUNG 35-39.Laki-Laki   2107
+234        PASAR REBO               KALISARI 35-39.Laki-Laki   2006
+235        PASAR REBO                PEKAYON 35-39.Laki-Laki   2139
+236            CAKUNG             JATINEGARA 35-39.Laki-Laki   5035
+237            CAKUNG            RAWA TERATE 35-39.Laki-Laki   1565
+238            CAKUNG           PENGGILINGAN 35-39.Laki-Laki   4651
+239            CAKUNG           CAKUNG TIMUR 35-39.Laki-Laki   3053
+240            CAKUNG            PULO GEBANG 35-39.Laki-Laki   4162
+241            CAKUNG          UJUNG MENTENG 35-39.Laki-Laki   1420
+242            CAKUNG           CAKUNG BARAT 35-39.Laki-Laki   3285
+243       DUREN SAWIT            DUREN SAWIT 35-39.Laki-Laki   3210
+244       DUREN SAWIT           PONDOK BAMBU 35-39.Laki-Laki   3427
+245       DUREN SAWIT                KLENDER 35-39.Laki-Laki   3896
+246       DUREN SAWIT          PONDOK KELAPA 35-39.Laki-Laki   3467
+247       DUREN SAWIT            MALAKA SARI 35-39.Laki-Laki   1682
+248       DUREN SAWIT            MALAKA JAYA 35-39.Laki-Laki   1949
+249       DUREN SAWIT            PONDOK KOPI 35-39.Laki-Laki   1611
+250           MAKASAR                MAKASAR 35-39.Laki-Laki   1888
+251           MAKASAR           PINANG RANTI 35-39.Laki-Laki   1299
+252           MAKASAR             KEBON PALA 35-39.Laki-Laki   2689
+253           MAKASAR  HALIM PERDANA KUSUMAH 35-39.Laki-Laki   1479
+254           MAKASAR        CIPINANG MELAYU 35-39.Laki-Laki   2208
+255           CIRACAS                CIRACAS 35-39.Laki-Laki   3179
+256           CIRACAS                CIBUBUR 35-39.Laki-Laki   3311
+257           CIRACAS       KELAPA DUA WETAN 35-39.Laki-Laki   2185
+258           CIRACAS                SUSUKAN 35-39.Laki-Laki   1988
+259           CIRACAS               RAMBUTAN 35-39.Laki-Laki   1857
+260          CIPAYUNG               CIPAYUNG 35-39.Laki-Laki   1241
+261          CIPAYUNG              CILANGKAP 35-39.Laki-Laki   1237
+262          CIPAYUNG         PONDOK RANGGON 35-39.Laki-Laki   1088
+263          CIPAYUNG                 MUNJUL 35-39.Laki-Laki   1167
+264          CIPAYUNG                   SETU 35-39.Laki-Laki    937
+265          CIPAYUNG             BAMBU APUS 35-39.Laki-Laki   1242
+266          CIPAYUNG           LUBANG BUAYA 35-39.Laki-Laki   3258
+267          CIPAYUNG                  CEGER 35-39.Laki-Laki   1007
+268   KEP. SERIBU UTR            P. PANGGANG 35-39.Perempuan    235
+269   KEP. SERIBU UTR              P. KELAPA 35-39.Perempuan     88
+270   KEP. SERIBU UTR             P. HARAPAN 35-39.Perempuan    238
+271   KEP. SERIBU SLT         P. UNTUNG JAWA 35-39.Perempuan    185
+272   KEP. SERIBU SLT              P. TIDUNG 35-39.Perempuan     75
+273   KEP. SERIBU SLT                P. PARI 35-39.Perempuan    112
+274            GAMBIR                 GAMBIR 35-39.Perempuan    174
+275            GAMBIR                 CIDENG 35-39.Perempuan    748
+276            GAMBIR           PETOJO UTARA 35-39.Perempuan    920
+277            GAMBIR         PETOJO SELATAN 35-39.Perempuan    675
+278            GAMBIR           KEBON KELAPA 35-39.Perempuan    491
+279            GAMBIR              DURI PULO 35-39.Perempuan   1106
+280       SAWAH BESAR             PASAR BARU 35-39.Perempuan    611
+281       SAWAH BESAR           KARANG ANYAR 35-39.Perempuan   1485
+282       SAWAH BESAR                KARTINI 35-39.Perempuan   1177
+283       SAWAH BESAR    GUNUNG SAHARI UTARA 35-39.Perempuan    835
+284       SAWAH BESAR     MANGGA DUA SELATAN 35-39.Perempuan   1662
+285         KEMAYORAN              KEMAYORAN 35-39.Perempuan   1063
+286         KEMAYORAN           KEBON KOSONG 35-39.Perempuan   1542
+287         KEMAYORAN          HARAPAN MULIA 35-39.Perempuan   1213
+288         KEMAYORAN                SERDANG 35-39.Perempuan   1559
+289         KEMAYORAN  GUNUNG SAHARI SELATAN 35-39.Perempuan    979
+290         KEMAYORAN           CEMPAKA BARU 35-39.Perempuan   1710
+291         KEMAYORAN             SUMUR BATU 35-39.Perempuan   1372
+292         KEMAYORAN           UTAN PANJANG 35-39.Perempuan   1549
+293             SENEN                  SENEN 35-39.Perempuan    428
+294             SENEN                 KENARI 35-39.Perempuan    447
+295             SENEN                PASEBAN 35-39.Perempuan   1232
+296             SENEN                 KRAMAT 35-39.Perempuan   1479
+297             SENEN                KWITANG 35-39.Perempuan    793
+298             SENEN                 BUNGUR 35-39.Perempuan    993
+299     CEMPAKA PUTIH    CEMPAKA PUTIH TIMUR 35-39.Perempuan   1267
+300     CEMPAKA PUTIH    CEMPAKA PUTIH BARAT 35-39.Perempuan   1811
+301     CEMPAKA PUTIH               RAWASARI 35-39.Perempuan   1160
+302           MENTENG                MENTENG 35-39.Perempuan   1194
+303           MENTENG             PEGANGSAAN 35-39.Perempuan   1096
+304           MENTENG                 CIKINI 35-39.Perempuan    428
+305           MENTENG             GONDANGDIA 35-39.Perempuan    165
+306           MENTENG            KEBON SIRIH 35-39.Perempuan    717
+307       TANAH ABANG                 GELORA 35-39.Perempuan    178
+308       TANAH ABANG        BENDUNGAN HILIR 35-39.Perempuan   1138
+309       TANAH ABANG          KARET TENGSIN 35-39.Perempuan   1078
+310       TANAH ABANG             PETAMBURAN 35-39.Perempuan   1780
+311       TANAH ABANG           KEBON MELATI 35-39.Perempuan   1721
+312       TANAH ABANG           KEBON KACANG 35-39.Perempuan   1041
+313       TANAH ABANG           KAMPUNG BALI 35-39.Perempuan    613
+314        JOHAR BARU             JOHAR BARU 35-39.Perempuan   1878
+315        JOHAR BARU           KAMPUNG RAWA 35-39.Perempuan   1255
+316        JOHAR BARU                  GALUR 35-39.Perempuan   1060
+317        JOHAR BARU           TANAH TINGGI 35-39.Perempuan   2013
+318       PENJARINGAN            PENJARINGAN 35-39.Perempuan   5535
+319       PENJARINGAN            KAMAL MUARA 35-39.Perempuan    517
+320       PENJARINGAN            KAPUK MUARA 35-39.Perempuan   1631
+321       PENJARINGAN              PEJAGALAN 35-39.Perempuan   4468
+322       PENJARINGAN                  PLUIT 35-39.Perempuan   2264
+323     TANJUNG PRIOK          TANJUNG PRIOK 35-39.Perempuan   2025
+324     TANJUNG PRIOK            SUNTER JAYA 35-39.Perempuan   3427
+325     TANJUNG PRIOK               PAPANGGO 35-39.Perempuan   2290
+326     TANJUNG PRIOK           SUNGAI BAMBU 35-39.Perempuan   1749
+327     TANJUNG PRIOK           KEBON BAWANG 35-39.Perempuan   3009
+328     TANJUNG PRIOK           SUNTER AGUNG 35-39.Perempuan   3710
+329     TANJUNG PRIOK                WARAKAS 35-39.Perempuan   2608
+330              KOJA                   KOJA 35-39.Perempuan   1767
+331              KOJA             TUGU UTARA 35-39.Perempuan   3954
+332              KOJA                  LAGOA 35-39.Perempuan   3342
+333              KOJA       RAWA BADAK UTARA 35-39.Perempuan   2064
+334              KOJA           TUGU SELATAN 35-39.Perempuan   2235
+335              KOJA     RAWA BADAK SELATAN 35-39.Perempuan   2420
+336         CILINCING              CILINCING 35-39.Perempuan   2614
+337         CILINCING               SUKAPURA 35-39.Perempuan   3376
+338         CILINCING                MARUNDA 35-39.Perempuan   1207
+339         CILINCING              KALI BARU 35-39.Perempuan   4096
+340         CILINCING           SEMPER TIMUR 35-39.Perempuan   1683
+341         CILINCING                ROROTAN 35-39.Perempuan   1876
+342         CILINCING           SEMPER BARAT 35-39.Perempuan   3579
+343        PADEMANGAN       PADEMANGAN TIMUR 35-39.Perempuan   1935
+344        PADEMANGAN       PADEMANGAN BARAT 35-39.Perempuan   4264
+345        PADEMANGAN                  ANCOL 35-39.Perempuan   1380
+346     KELAPA GADING    KELAPA GADING TIMUR 35-39.Perempuan   1744
+347     KELAPA GADING         PEGANGSAAN DUA 35-39.Perempuan   2259
+348     KELAPA GADING    KELAPA GADING BARAT 35-39.Perempuan   1433
+349        CENGKARENG       CENGKARENG BARAT 35-39.Perempuan   3221
+350        CENGKARENG           DURI KOSAMBI 35-39.Perempuan   3764
+351        CENGKARENG             RAWA BUAYA 35-39.Perempuan   3396
+352        CENGKARENG     KEDAUNG KALI ANGKE 35-39.Perempuan   1756
+353        CENGKARENG                  KAPUK 35-39.Perempuan   7488
+354        CENGKARENG       CENGKARENG TIMUR 35-39.Perempuan   4147
+355 GROGOL PETAMBURAN                 GROGOL 35-39.Perempuan    903
+356 GROGOL PETAMBURAN    TANJUNG DUREN UTARA 35-39.Perempuan    812
+357 GROGOL PETAMBURAN                 TOMANG 35-39.Perempuan   1449
+358 GROGOL PETAMBURAN               JELAMBAR 35-39.Perempuan   1581
+359 GROGOL PETAMBURAN  TANJUNG DUREN SELATAN 35-39.Perempuan   1220
+360 GROGOL PETAMBURAN          JELAMBAR BARU 35-39.Perempuan   2116
+361 GROGOL PETAMBURAN          WIJAYA KUSUMA 35-39.Perempuan   2301
+362        TAMAN SARI             TAMAN SARI 35-39.Perempuan    729
+363        TAMAN SARI                 KRUKUT 35-39.Perempuan   1107
+364        TAMAN SARI                 MAPHAR 35-39.Perempuan    919
+365        TAMAN SARI                 TANGKI 35-39.Perempuan    691
+366        TAMAN SARI           MANGGA BESAR 35-39.Perempuan    386
+367        TAMAN SARI              KEAGUNGAN 35-39.Perempuan    975
+368        TAMAN SARI                 GLODOK 35-39.Perempuan    359
+369        TAMAN SARI              PINANGSIA 35-39.Perempuan    600
+370           TAMBORA                TAMBORA 35-39.Perempuan    588
+371           TAMBORA             KALI ANYAR 35-39.Perempuan   1567
+372           TAMBORA             DURI UTARA 35-39.Perempuan   1120
+373           TAMBORA           TANAH SEREAL 35-39.Perempuan   1386
+374           TAMBORA              KERENDANG 35-39.Perempuan   1212
+375           TAMBORA          JEMBATAN BESI 35-39.Perempuan   2075
+376           TAMBORA                  ANGKE 35-39.Perempuan   1721
+377           TAMBORA          JEMBATAN LIMA 35-39.Perempuan   1277
+378           TAMBORA                PEKOJAN 35-39.Perempuan   1197
+379           TAMBORA             ROA MALAKA 35-39.Perempuan    180
+380           TAMBORA           DURI SELATAN 35-39.Perempuan    769
+381       KEBON JERUK            KEBON JERUK 35-39.Perempuan   2563
+382       KEBON JERUK         SUKABUMI UTARA 35-39.Perempuan   2005
+383       KEBON JERUK       SUKABUMI SELATAN 35-39.Perempuan   2049
+384       KEBON JERUK             KELAPA DUA 35-39.Perempuan   1161
+385       KEBON JERUK              DURI KEPA 35-39.Perempuan   3164
+386       KEBON JERUK           KEDOYA UTARA 35-39.Perempuan   2355
+387       KEBON JERUK         KEDOYA SELATAN 35-39.Perempuan   1675
+388        KALI DERES              KALIDERES 35-39.Perempuan   3659
+389        KALI DERES                SEMANAN 35-39.Perempuan   3687
+390        KALI DERES             TEGAL ALUR 35-39.Perempuan   4591
+391        KALI DERES                  KAMAL 35-39.Perempuan   2640
+392        KALI DERES             PEGADUNGAN 35-39.Perempuan   3120
+393          PALMERAH               PALMERAH 35-39.Perempuan   3083
+394          PALMERAH                  SLIPI 35-39.Perempuan    856
+395          PALMERAH       KOTA BAMBU UTARA 35-39.Perempuan   1359
+396          PALMERAH              JATI PULO 35-39.Perempuan   1451
+397          PALMERAH            KEMANGGISAN 35-39.Perempuan   1596
+398          PALMERAH     KOTA BAMBU SELATAN 35-39.Perempuan   1141
+399         KEMBANGAN        KEMBANGAN UTARA 35-39.Perempuan   2734
+400         KEMBANGAN           MERUYA UTARA 35-39.Perempuan   2226
+401         KEMBANGAN         MERUYA SELATAN 35-39.Perempuan   1427
+402         KEMBANGAN              SRENGSENG 35-39.Perempuan   2109
+403         KEMBANGAN                  JOGLO 35-39.Perempuan   1840
+404         KEMBANGAN      KEMBANGAN SELATAN 35-39.Perempuan   1360
+405             TEBET            TEBET TIMUR 35-39.Perempuan    890
+406             TEBET            TEBET BARAT 35-39.Perempuan   1058
+407             TEBET          MENTENG DALAM 35-39.Perempuan   1913
+408             TEBET             KEBON BARU 35-39.Perempuan   1988
+409             TEBET             BUKIT DURI 35-39.Perempuan   1801
+410             TEBET      MANGGARAI SELATAN 35-39.Perempuan   1289
+411             TEBET              MANGGARAI 35-39.Perempuan   1479
+412        SETIA BUDI             SETIA BUDI 35-39.Perempuan    179
+413        SETIA BUDI         KARET SEMANGGI 35-39.Perempuan    134
+414        SETIA BUDI         KARET KUNINGAN 35-39.Perempuan    883
+415        SETIA BUDI                  KARET 35-39.Perempuan    557
+416        SETIA BUDI           MENTENG ATAS 35-39.Perempuan   1523
+417        SETIA BUDI          PASAR MANGGIS 35-39.Perempuan   1437
+418        SETIA BUDI                 GUNTUR 35-39.Perempuan    206
+419        SETIA BUDI         KUNINGAN TIMUR 35-39.Perempuan    304
+420  MAMPANG PRAPATAN       MAMPANG PRAPATAN 35-39.Perempuan    976
+421  MAMPANG PRAPATAN                 BANGKA 35-39.Perempuan   1098
+422  MAMPANG PRAPATAN           PELA MAMPANG 35-39.Perempuan   2321
+423  MAMPANG PRAPATAN           TEGAL PARANG 35-39.Perempuan   1683
+424  MAMPANG PRAPATAN         KUNINGAN BARAT 35-39.Perempuan    656
+425      PASAR MINGGU           PASAR MINGGU 35-39.Perempuan   1288
+426      PASAR MINGGU            JATI PADANG 35-39.Perempuan   1910
+427      PASAR MINGGU         CILANDAK TIMUR 35-39.Perempuan   1389
+428      PASAR MINGGU                RAGUNAN 35-39.Perempuan   2160
+429      PASAR MINGGU          PEJATEN TIMUR 35-39.Perempuan   2919
+430      PASAR MINGGU          PEJATEN BARAT 35-39.Perempuan   1894
+431      PASAR MINGGU              KEBAGUSAN 35-39.Perempuan   2193
+432    KEBAYORAN LAMA   KEBAYORAN LAMA UTARA 35-39.Perempuan   2396
+433    KEBAYORAN LAMA          PONDOK PINANG 35-39.Perempuan   2765
+434    KEBAYORAN LAMA                CIPULIR 35-39.Perempuan   2109
+435    KEBAYORAN LAMA           GROGOL UTARA 35-39.Perempuan   2227
+436    KEBAYORAN LAMA         GROGOL SELATAN 35-39.Perempuan   2266
+437    KEBAYORAN LAMA KEBAYORAN LAMA SELATAN 35-39.Perempuan   2252
+438          CILANDAK         CILANDAK BARAT 35-39.Perempuan   2678
+439          CILANDAK            LEBAK BULUS 35-39.Perempuan   1852
+440          CILANDAK            PONDOK LABU 35-39.Perempuan   2436
+441          CILANDAK       GANDARIA SELATAN 35-39.Perempuan   1165
+442          CILANDAK         CIPETE SELATAN 35-39.Perempuan   1331
+443    KEBAYORAN BARU                MELAWAI 35-39.Perempuan    127
+444    KEBAYORAN BARU                 GUNUNG 35-39.Perempuan    442
+445    KEBAYORAN BARU            KRAMAT PELA 35-39.Perempuan    660
+446    KEBAYORAN BARU                 SELONG 35-39.Perempuan    188
+447    KEBAYORAN BARU             RAWA BARAT 35-39.Perempuan    272
+448    KEBAYORAN BARU                SENAYAN 35-39.Perempuan    192
+449    KEBAYORAN BARU                   PULO 35-39.Perempuan    295
+450    KEBAYORAN BARU              PETOGOGAN 35-39.Perempuan    562
+451    KEBAYORAN BARU         GANDARIA UTARA 35-39.Perempuan   2108
+452    KEBAYORAN BARU           CIPETE UTARA 35-39.Perempuan   1758
+453          PANCORAN               PANCORAN 35-39.Perempuan   1049
+454          PANCORAN               KALIBATA 35-39.Perempuan   2242
+455          PANCORAN              RAWA JATI 35-39.Perempuan    985
+456          PANCORAN             DUREN TIGA 35-39.Perempuan   1460
+457          PANCORAN             PENGADEGAN 35-39.Perempuan   1041
+458          PANCORAN                 CIKOKO 35-39.Perempuan    595
+459         JAGAKARSA              JAGAKARSA 35-39.Perempuan   2964
+460         JAGAKARSA        SRENGSENG SAWAH 35-39.Perempuan   2874
+461         JAGAKARSA               CIGANJUR 35-39.Perempuan   1817
+462         JAGAKARSA          LENTENG AGUNG 35-39.Perempuan   2596
+463         JAGAKARSA          TANJUNG BARAT 35-39.Perempuan   2022
+464         JAGAKARSA                CIPEDAK 35-39.Perempuan   1774
+465      PESANGGRAHAN           PESANGGRAHAN 35-39.Perempuan   1484
+466      PESANGGRAHAN                BINTARO 35-39.Perempuan   2616
+467      PESANGGRAHAN       PETUKANGAN UTARA 35-39.Perempuan   2791
+468      PESANGGRAHAN     PETUKANGAN SELATAN 35-39.Perempuan   1727
+469      PESANGGRAHAN                ULUJAMI 35-39.Perempuan   2186
+470          MATRAMAN          PISANGAN BARU 35-39.Perempuan   1638
+471          MATRAMAN        UTAN KAYU UTARA 35-39.Perempuan   1542
+472          MATRAMAN             KAYU MANIS 35-39.Perempuan   1336
+473          MATRAMAN             PAL MERIAM 35-39.Perempuan   1061
+474          MATRAMAN          KEBON MANGGIS 35-39.Perempuan    873
+475          MATRAMAN      UTAN KAYU SELATAN 35-39.Perempuan   1810
+476       PULO GADUNG            PULO GADUNG 35-39.Perempuan   1836
+477       PULO GADUNG         PISANGAN TIMUR 35-39.Perempuan   2200
+478       PULO GADUNG               CIPINANG 35-39.Perempuan   2124
+479       PULO GADUNG        JATINEGARA KAUM 35-39.Perempuan   1190
+480       PULO GADUNG             RAWAMANGUN 35-39.Perempuan   2057
+481       PULO GADUNG             KAYU PUTIH 35-39.Perempuan   2418
+482       PULO GADUNG                   JATI 35-39.Perempuan   1797
+483        JATINEGARA         KAMPUNG MELAYU 35-39.Perempuan   1154
+484        JATINEGARA            BIDARA CINA 35-39.Perempuan   2064
+485        JATINEGARA            BALI MESTER 35-39.Perempuan    466
+486        JATINEGARA             RAWA BUNGA 35-39.Perempuan   1008
+487        JATINEGARA      CIPINANG CEMPEDAK 35-39.Perempuan   1758
+488        JATINEGARA         CIPINANG MUARA 35-39.Perempuan   2953
+489        JATINEGARA CIPINANG BESAR SELATAN 35-39.Perempuan   1682
+490        JATINEGARA   CIPINANG BESAR UTARA 35-39.Perempuan   2409
+491       KRAMAT JATI            KRAMAT JATI 35-39.Perempuan   1799
+492       KRAMAT JATI         KAMPUNG TENGAH 35-39.Perempuan   2135
+493       KRAMAT JATI                  DUKUH 35-39.Perempuan   1210
+494       KRAMAT JATI             BATU AMPAR 35-39.Perempuan   2417
+495       KRAMAT JATI           BALE KAMBANG 35-39.Perempuan   1425
+496       KRAMAT JATI              CILILITAN 35-39.Perempuan   2141
+497       KRAMAT JATI                 CAWANG 35-39.Perempuan   1800
+498        PASAR REBO                 GEDONG 35-39.Perempuan   1804
+499        PASAR REBO                   BARU 35-39.Perempuan   1341
+500        PASAR REBO              CIJANTUNG 35-39.Perempuan   1998
+501        PASAR REBO               KALISARI 35-39.Perempuan   1951
+502        PASAR REBO                PEKAYON 35-39.Perempuan   2060
+503            CAKUNG             JATINEGARA 35-39.Perempuan   4775
+504            CAKUNG            RAWA TERATE 35-39.Perempuan   1417
+505            CAKUNG           PENGGILINGAN 35-39.Perempuan   4385
+506            CAKUNG           CAKUNG TIMUR 35-39.Perempuan   2953
+507            CAKUNG            PULO GEBANG 35-39.Perempuan   4030
+508            CAKUNG          UJUNG MENTENG 35-39.Perempuan   1441
+509            CAKUNG           CAKUNG BARAT 35-39.Perempuan   3275
+510       DUREN SAWIT            DUREN SAWIT 35-39.Perempuan   3055
+511       DUREN SAWIT           PONDOK BAMBU 35-39.Perempuan   3122
+512       DUREN SAWIT                KLENDER 35-39.Perempuan   3569
+513       DUREN SAWIT          PONDOK KELAPA 35-39.Perempuan   3356
+514       DUREN SAWIT            MALAKA SARI 35-39.Perempuan   1703
+515       DUREN SAWIT            MALAKA JAYA 35-39.Perempuan   1984
+516       DUREN SAWIT            PONDOK KOPI 35-39.Perempuan   1604
+517           MAKASAR                MAKASAR 35-39.Perempuan   1815
+518           MAKASAR           PINANG RANTI 35-39.Perempuan   1284
+519           MAKASAR             KEBON PALA 35-39.Perempuan   2502
+520           MAKASAR  HALIM PERDANA KUSUMAH 35-39.Perempuan   1576
+521           MAKASAR        CIPINANG MELAYU 35-39.Perempuan   2104
+522           CIRACAS                CIRACAS 35-39.Perempuan   3085
+523           CIRACAS                CIBUBUR 35-39.Perempuan   3175
+524           CIRACAS       KELAPA DUA WETAN 35-39.Perempuan   2177
+525           CIRACAS                SUSUKAN 35-39.Perempuan   1846
+526           CIRACAS               RAMBUTAN 35-39.Perempuan   1849
+527          CIPAYUNG               CIPAYUNG 35-39.Perempuan   1172
+528          CIPAYUNG              CILANGKAP 35-39.Perempuan   1276
+529          CIPAYUNG         PONDOK RANGGON 35-39.Perempuan   1064
+530          CIPAYUNG                 MUNJUL 35-39.Perempuan   1112
+531          CIPAYUNG                   SETU 35-39.Perempuan    928
+532          CIPAYUNG             BAMBU APUS 35-39.Perempuan   1187
+533          CIPAYUNG           LUBANG BUAYA 35-39.Perempuan   2988
+534          CIPAYUNG                  CEGER 35-39.Perempuan    930</code></pre>
+</div>
+</div>
+<p>Sehingga penjelasan untuk konstruksi fungsi diatas akan seperti berikut :</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Elemen</strong></td>
+<td><strong>Deskripsi</strong></td>
+</tr>
+<tr class="even">
+<td><code>melt</code></td>
+<td>Function untuk melakukan transformasi dari kolom ke baris</td>
+</tr>
+<tr class="odd">
+<td><code>data=penduduk.dki.xlsx</code></td>
+<td>Argumen data yang diisi dengan variable penduduk.dki.xlsx, yaitu data frame hasil pembacaan dari file Excel data kependudukan DKI</td>
+</tr>
+<tr class="even">
+<td><code>id.vars= c( "NAMA.KECAMATAN", "NAMA.KELURAHAN")</code></td>
+<td>Vector dari field-field kolom yang akan menjadi identitas – dimana field tidak akan mengalami transformasi tapi tetap diambil</td>
+</tr>
+<tr class="odd">
+<td><code>measure.vars = c("35-39.Laki-Laki", "35-39.Perempuan")</code></td>
+<td>Nama variable hasil transformasi</td>
+</tr>
+<tr class="even">
+<td><code>variable.name= "DEMOGRAFIK"</code></td>
+<td>Nama variable untuk menampung nama kolom transformasi</td>
+</tr>
+<tr class="odd">
+<td><code>value.name= "JUMLAH"</code></td>
+<td>Nama variable untuk menampung isi data dari kolom transformasi</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./visualisasi.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 7 | Visualisasi</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./datatidy.html" class="pagination-link">
+        <span class="nav-page-text">Topik 9 | Data Tidy</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023) | UPN Veteran Yogyakarta</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

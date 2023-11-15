@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Topik 5 | Visualisasi</title>
+<title>Modul Data Analitik (R) - Topik 7 | Visualisasi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./modelling.html" rel="next">
-<link href="./datatransform.html" rel="prev">
+<link href="./datacleaning.html" rel="next">
+<link href="./jenisdata.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Topik Pembahasan</a></li><li class="breadcrumb-item"><a href="./visualisasi.html">Topik 5 | Visualisasi</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datapreparation.html">Data Preparation</a></li><li class="breadcrumb-item"><a href="./visualisasi.html">Topik 7 | Visualisasi</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -119,24 +153,39 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cover</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Pengantar</span></a>
+ <span class="menu-text">Pengantar Data Analitik</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">pengantar.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 1 | Data Analitik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alatdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 2 | Alat Data Analitik</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Topik Pembahasan</span></a>
+ <span class="menu-text">Sumber Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -144,62 +193,117 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 1 | Data Import</span></a>
+  <a href="./spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 3 | Spreadsheet</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datapreparation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 2 | Data Preparation</span></a>
+  <a href="./basisdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 4 | Basis Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datatidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 3 | Data Tidy</span></a>
+  <a href="./dataonline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 5 | Data Online</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./datatransform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 4 | Data Transform</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./visualisasi.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Topik 5 | Visualisasi</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topik 6 | Modelling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
- <span class="menu-text">topik5.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">topikcd1.qmd</span>
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Topik Lain</span></a>
+ <span class="menu-text">Data Preparation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">lain-lain.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./datapreparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apa itu Data Preparation ?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./jenisdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 6 | Jenis Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visualisasi.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Topik 7 | Visualisasi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datacleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 8 | Data Cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datatidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 9 | Data Tidy</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apa itu Modelling ?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regresi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 10 | Regresi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klasifikasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 11 | Klasifikasi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Penyajian</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./penyajianquarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topik 12 | Quarto</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliografi</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -210,7 +314,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#konsep-visualisasi" id="toc-konsep-visualisasi" class="nav-link active" data-scroll-target="#konsep-visualisasi">1. Konsep Visualisasi</a></li>
+  <li><a href="#konsep-visualisasi-data" id="toc-konsep-visualisasi-data" class="nav-link active" data-scroll-target="#konsep-visualisasi-data">1. Konsep Visualisasi Data</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
+  <li><a href="#komponen-ggplot2" id="toc-komponen-ggplot2" class="nav-link" data-scroll-target="#komponen-ggplot2">2. Komponen ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">2.1 Plot</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">2.2 Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -219,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Topik 5 | Visualisasi</h1>
+<h1 class="title">Topik 7 | Visualisasi</h1>
 </div>
 
 
@@ -234,10 +346,79 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="konsep-visualisasi" class="level2">
-<h2 class="anchored" data-anchor-id="konsep-visualisasi">1. Konsep Visualisasi</h2>
+<section id="konsep-visualisasi-data" class="level2">
+<h2 class="anchored" data-anchor-id="konsep-visualisasi-data">1. Konsep Visualisasi Data</h2>
+<p><strong>Visualisasi data</strong> merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga membantu kita untuk memperoleh gambaran terkait data selama proses analisa data sehingga membantu kita dalam memutuskan metode analisa apa yang dapat kita terapkan pada data tersebut.</p>
+<p><strong>R</strong> memiliki library visualisasi yang sangat beragam, baik yang merupakan fungsi dasar pada R maupun dari sumber lain seperti <code>ggplot</code> dan <code>lattice</code>. Seluruh library visualisasi tersebut memiliki kelebihan dan kekurangannya masing-masing.</p>
+<p>Kita akan berfokus pada fungsi visualisasi dasar bawaan dari R yaitu <code>ggplot2</code>. <code>ggplot2</code> merupakan sebuah&nbsp;<em>library</em>&nbsp;tambahan di R yang sangat populer digunakan untuk visualisasi, populer karena grafik dapat dihasilkan dengan struktur perintah yang sangat generik tetapi jelas dan rapi.</p>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+</section>
+<section id="komponen-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="komponen-ggplot2">2. Komponen ggplot2</h2>
+<p>Ada empat komponen&nbsp;<strong><code>ggplot2</code></strong> yaitu&nbsp;<strong>plot</strong>,&nbsp;<strong>data</strong>,&nbsp;<strong>aesthetic mapping</strong>&nbsp;dan&nbsp;<strong>layer</strong>.</p>
+<section id="plot" class="level3">
+<h3 class="anchored" data-anchor-id="plot">2.1 Plot</h3>
+<p>Plot adalah komponen paling dasar di&nbsp;<strong>ggplot2</strong>, tanpa plot seluruh grafik&nbsp;<strong>tidak akan bisa ditampilkan</strong>. Dengan demikian, plot dapat dianalogikan sebagai&nbsp;<strong>“kanvas”</strong>&nbsp;gambar kita. <strong>Plot</strong> dapat dihasilkan dengan <em>function</em> bernama <code>ggplot</code>. Ingat, bedakan antara <strong><code>ggplot2</code></strong> sebagai <em>package</em> dan <strong><code>ggplot</code></strong> sebagai <em>function</em> disini. Dan jika tidak digabungkan dengan komponen lain, maka tampilannya akan terlihat sebagai&nbsp;<strong>kotak persegi kosong dengan latar belakang abu-abu</strong>&nbsp;seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Ketik function ggplot() di bawah ini</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Menambahkan Judul Plot</strong></p>
+<p>Kita bisa menambahkan judul Plot dengan function <strong><code>labs</code></strong> untuk keterangan label dan <code>title</code> untuk judulnya</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Penambahan judul dengan menggunakan fungsi labs</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Jumlah Mahasiswa FEB UPN Veteran Yogyakarta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>kita juga dapat menyimpan <code>plot</code> sebagai variable dengan fungsi berikut :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Masukkan plot ke variable plot_fakultas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plot_fakultas <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Beri judul Plot</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plot_fakultas <span class="ot">&lt;-</span> plot_fakultas <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Jumlah Mahasiswa FEB UPN Veteran Yogyakarta"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plot_fakultas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Menambahkan Label pada sumbu X dan Y</strong></p>
+<p>Fungsi <code>labs</code> bisa juga digunakan untuk mengisi teks pada sumbu x dan y.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Masukkan plot ke variable plot_fakultas</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plot_fakultas<span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Beri judul Plot</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plot_fakultas <span class="ot">&lt;-</span> plot_fakultas <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Jumlah Mahasiswa FEB UPN Veteran Yogyakarta"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tambahkan label pada x dan y</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plot_fakultas <span class="ot">&lt;-</span> plot_fakultas <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Jurusan"</span>, <span class="at">y =</span><span class="st">"Jumlah Mahasiswa"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan plot</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plot_fakultas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">2.2 Data</h3>
+<p>Plot bisa menerima input data, dan dari data tersebut bisa dipilih beberapa kolom yang akan “dipetakan” sebagai input untuk komponen visual. Untuk jelasnya, mari kita lihat datasets <a href="raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/plotdata_kepadatan_kelurahan_dki.csv"><code>plotdata_kepadatan_kelurahan_dki.csv</code></a> pada gambar berikut. Data ini adalah data luas wilayah dan kependudukan Pemerintah Provinsi DKI Jakarta, dan dapat juga diunduh pada link github materi ini</p>
+<p><img src="images/ggplot_chp3_1.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -476,13 +657,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./datatransform.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 4 | Data Transform</span>
+      <a href="./jenisdata.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 6 | Jenis Data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./modelling.html" class="pagination-link">
-        <span class="nav-page-text">Topik 6 | Modelling</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./datacleaning.html" class="pagination-link">
+        <span class="nav-page-text">Topik 8 | Data Cleaning</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

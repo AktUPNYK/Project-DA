@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Apa itu Modelling ?</title>
+<title>Modul Data Analitik (R) - Topik 4 | Basis Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./regresi.html" rel="next">
-<link href="./datatidy.html" rel="prev">
+<link href="./dataonline.html" rel="next">
+<link href="./spreadsheet.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./modelling.html">Modelling</a></li><li class="breadcrumb-item"><a href="./modelling.html">Apa itu Modelling ?</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spreadsheet.html">Sumber Data</a></li><li class="breadcrumb-item"><a href="./basisdata.html">Topik 4 | Basis Data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -165,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basisdata.html" class="sidebar-item-text sidebar-link">
+  <a href="./basisdata.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Topik 4 | Basis Data</span></a>
   </div>
 </li>
@@ -229,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modelling.html" class="sidebar-item-text sidebar-link active">
+  <a href="./modelling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Apa itu Modelling ?</span></a>
   </div>
 </li>
@@ -280,14 +314,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#modelling" id="toc-modelling" class="nav-link active" data-scroll-target="#modelling">1. Modelling</a>
+  <li><a href="#import-database" id="toc-import-database" class="nav-link active" data-scroll-target="#import-database">1. Import Database</a>
   <ul class="collapse">
-  <li><a href="#modelling-dalam-r" id="toc-modelling-dalam-r" class="nav-link" data-scroll-target="#modelling-dalam-r">1.2 Modelling Dalam R</a></li>
-  </ul></li>
-  <li><a href="#manchine-learning" id="toc-manchine-learning" class="nav-link" data-scroll-target="#manchine-learning">2. Manchine Learning</a>
-  <ul class="collapse">
-  <li><a href="#unsupervised-vs-supervised" id="toc-unsupervised-vs-supervised" class="nav-link" data-scroll-target="#unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</a></li>
-  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">2.2 Supervised Learning</a></li>
+  <li><a href="#tampilkan-semua-tabel" id="toc-tampilkan-semua-tabel" class="nav-link" data-scroll-target="#tampilkan-semua-tabel">1.1 Tampilkan Semua Tabel</a></li>
+  <li><a href="#tampilkan-tabel-khusus" id="toc-tampilkan-tabel-khusus" class="nav-link" data-scroll-target="#tampilkan-tabel-khusus">1.2 Tampilkan tabel khusus</a></li>
+  <li><a href="#read-data-dengan-select-dan-where" id="toc-read-data-dengan-select-dan-where" class="nav-link" data-scroll-target="#read-data-dengan-select-dan-where">1.3 Read data dengan SELECT dan WHERE</a></li>
+  <li><a href="#fungsi-inner-join" id="toc-fungsi-inner-join" class="nav-link" data-scroll-target="#fungsi-inner-join">1.4 Fungsi INNER JOIN</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -297,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Apa itu Modelling ?</h1>
+<h1 class="title">Topik 4 | Basis Data</h1>
 </div>
 
 
@@ -312,43 +344,144 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="modelling" class="level2">
-<h2 class="anchored" data-anchor-id="modelling">1. Modelling</h2>
-<p><strong>Modeling</strong> (atau pemodelan dalam Bahasa Indonesia) merujuk pada proses pembuatan representasi abstrak dari suatu sistem fisik, konsep, atau fenomena dengan tujuan untuk memahami, menganalisis, meramalkan, atau mensimulasikan perilaku sistem tersebut. Pemodelan dapat diterapkan dalam berbagai disiplin ilmu dan konteks, termasuk dalam ilmu pengetahuan, teknik, bisnis, seni, dan banyak lainnya</p>
-<section id="modelling-dalam-r" class="level3">
-<h3 class="anchored" data-anchor-id="modelling-dalam-r">1.2 Modelling Dalam R</h3>
-<p>Modeling dalam <code>R</code> merujuk pada penggunaan bahasa pemrograman dan lingkungan pemodelan statistik R untuk membuat dan mengimplementasikan berbagai jenis model atau representasi matematis dari data, sistem, atau fenomena. R adalah bahasa pemrograman dan lingkungan komputasi statistik yang sangat kuat dan populer, digunakan secara luas dalam analisis statistik, penelitian ilmiah, dan pemodelan statistik.</p>
+<section id="import-database" class="level2">
+<h2 class="anchored" data-anchor-id="import-database">1. Import Database</h2>
+<p>Dalam bab ini, kita akan mempelajari package <code>DBI</code> untuk menyambungkan ke database dan kemudian mengambil data dengan query SQL. SQL (Structured Query Language), adalah bahasa pemrograman untuk database dan merupakan bahasa terpenting bagi semua jenis data analitik.</p>
+<p>Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package <code>DBI</code> dan <code>RMySQL</code>, kemudian menghubungkan koneksi database tweater.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Load Paket DBI dan  RMySQL</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Koneksi database</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"tweater"</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">"courses.csrrinzqubik.us-east-1.rds.amazonaws.com"</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port =</span> <span class="dv">3306</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">"student"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">"datacamp"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "comments" "tweats"   "users"   </code></pre>
+</div>
+</div>
+<section id="tampilkan-semua-tabel" class="level3">
+<h3 class="anchored" data-anchor-id="tampilkan-semua-tabel">1.1 Tampilkan Semua Tabel</h3>
+<p>Terlihat ada 3 tabel yaitu <strong>“comments”, “tweats”,</strong> dan <strong>“users”</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">dbListTables</span>(con)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>table_names <span class="ot">&lt;-</span> <span class="fu">dbListTables</span>(con)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Import semua tabel</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">lapply</span>(table_names, dbReadTable, <span class="at">conn =</span> con)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan semua Tabel</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>tables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+     id tweat_id user_id            message
+1  1022       87       7              nice!
+2  1000       77       7             great!
+3  1011       49       5            love it
+4  1012       87       1   awesome! thanks!
+5  1010       88       6              yuck!
+6  1026       77       4      not my thing!
+7  1004       49       1  this is fabulous!
+8  1030       75       6           so easy!
+9  1025       88       2             oh yes
+10 1007       49       3           serious?
+11 1020       77       1 couldn't be better
+12 1014       77       1       saved my day
+
+[[2]]
+  id user_id
+1 75       3
+2 88       4
+3 77       6
+4 87       5
+5 49       1
+6 24       7
+                                                                 post
+1                                       break egg. bake egg. eat egg.
+2                           wash strawberries. add ice. blend. enjoy.
+3                       2 slices of bread. add cheese. grill. heaven.
+4               open and crush avocado. add shrimps. perfect starter.
+5 nachos. add tomato sauce, minced meat and cheese. oven for 10 mins.
+6                              just eat an apple. simply and healthy.
+        date
+1 2015-09-05
+2 2015-09-14
+3 2015-09-21
+4 2015-09-22
+5 2015-09-22
+6 2015-09-24
+
+[[3]]
+  id      name     login
+1  1 elisabeth  elismith
+2  2      mike     mikey
+3  3      thea   teatime
+4  4    thomas tomatotom
+5  5    oliver olivander
+6  6      kate  katebenn
+7  7    anjali    lianja</code></pre>
+</div>
+</div>
 </section>
+<section id="tampilkan-tabel-khusus" class="level3">
+<h3 class="anchored" data-anchor-id="tampilkan-tabel-khusus">1.2 Tampilkan tabel khusus</h3>
+<p>Misal kita hanya akan menampilkan tabel users</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; import tabel users dari data tweater</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>users <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"users"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan tabel</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>users</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id      name     login
+1  1 elisabeth  elismith
+2  2      mike     mikey
+3  3      thea   teatime
+4  4    thomas tomatotom
+5  5    oliver olivander
+6  6      kate  katebenn
+7  7    anjali    lianja</code></pre>
+</div>
+</div>
 </section>
-<section id="manchine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="manchine-learning">2. Manchine Learning</h2>
-<p><code>Machine learning dalam R</code> merujuk pada penggunaan bahasa pemrograman R untuk mengembangkan dan menerapkan model machine learning. R adalah salah satu lingkungan pemrograman dan bahasa statistik yang populer, dan memiliki banyak paket dan pustaka yang kuat untuk mendukung pengembangan model machine learning.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Screenshot (154).png" class="img-fluid figure-img" width="391"></p>
-</figure>
+<section id="read-data-dengan-select-dan-where" class="level3">
+<h3 class="anchored" data-anchor-id="read-data-dengan-select-dan-where">1.3 Read data dengan SELECT dan WHERE</h3>
+<p>Kita akan menampilkan data post terbaru dari tabel tweats pada tanggal lebih dari ‘2015-09-21’</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; menampilkan data post dari tabel tweats pada tanggal lebih dari '2015-09-21'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>latest <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT post FROM tweats</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE date &gt; '2015-09-21'"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan data</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                 post
+1               open and crush avocado. add shrimps. perfect starter.
+2 nachos. add tomato sauce, minced meat and cheese. oven for 10 mins.
+3                              just eat an apple. simply and healthy.</code></pre>
 </div>
-<section id="unsupervised-vs-supervised" class="level3">
-<h3 class="anchored" data-anchor-id="unsupervised-vs-supervised">2.1 Unsupervised vs Supervised</h3>
-<p>Pada <strong><em><code>supervised learning</code></em></strong> objektifnya adalah mempelajari hubungan antara fitur input dan output yang sesuai. <strong>→ prediksi, klasifikasi</strong></p>
-<p>Sedangkan <strong><em><code>unsupervised learning</code></em></strong> bertujuan untuk mengeksplorasi dan memahami kemiripan karakteristik pada data. <strong>→ eksplorasi, memahami data, mencari pola tersembunyi</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/Screenshot (155).png"><img src="images/Screenshot (155).png" class="img-fluid figure-img" width="255"></a></p>
-</figure>
 </div>
 </section>
-<section id="supervised-learning" class="level3">
-<h3 class="anchored" data-anchor-id="supervised-learning">2.2 Supervised Learning</h3>
-<p>Pada modul ini difokuskan untuk pembelajaran Supervised learning. <strong><em>Supervised Learning</em></strong> bertujuan untuk membuat model yang dapat mempelajari hubungan antara input <code>(fitur)</code> dan output <code>(label)</code> yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg1-02.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/ssreg2-02.png" class="img-fluid"></p>
-</div>
+<section id="fungsi-inner-join" class="level3">
+<h3 class="anchored" data-anchor-id="fungsi-inner-join">1.4 Fungsi INNER JOIN</h3>
+<p>Misal kita akan menampilkan gabungan data dari 2 tabel berbeda berdasarkan foreign key/id</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan nama dari tabel users dan post dari tabel tweats berdasarkan user id dimana tanggal post lebih dari '2015-09-19'</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT name, post</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM users INNER JOIN tweats on users.id = user_id</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE date &gt; '2015-09-19'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       name                                                                post
+1 elisabeth nachos. add tomato sauce, minced meat and cheese. oven for 10 mins.
+2    oliver               open and crush avocado. add shrimps. perfect starter.
+3      kate                       2 slices of bread. add cheese. grill. heaven.
+4    anjali                              just eat an apple. simply and healthy.</code></pre>
 </div>
 </div>
 
@@ -592,13 +725,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./datatidy.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 9 | Data Tidy</span>
+      <a href="./spreadsheet.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topik 3 | Spreadsheet</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./regresi.html" class="pagination-link">
-        <span class="nav-page-text">Topik 10 | Regresi</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dataonline.html" class="pagination-link">
+        <span class="nav-page-text">Topik 5 | Data Online</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
