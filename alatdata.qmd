@@ -1,11 +1,11 @@
 ---
-title: " Topik 1 | Data Analitik "
+title: "Topik 2 | Alat Data Analitik"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## 1. Data Analitik
+## 1. Alat Data Analitik
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et ultrices neque ornare aenean. At imperdiet dui accumsan sit amet nulla. Pellentesque sit amet porttitor eget dolor morbi. Neque sodales ut etiam sit amet nisl purus in mollis. Fames ac turpis egestas maecenas. Congue nisi vitae suscipit tellus mauris a. Eu ultrices vitae auctor eu augue ut. Porttitor rhoncus dolor purus non enim praesent. In hendrerit gravida rutrum quisque non tellus orci. Dolor magna eget est lorem ipsum dolor sit amet. Senectus et netus et malesuada fames ac. Libero id faucibus nisl tincidunt eget nullam non. Sapien eget mi proin sed libero enim sed faucibus turpis.

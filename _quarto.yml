@@ -19,23 +19,39 @@ website:
     style: "docked"
     search: true
     contents:
-      - section: "Pengantar"
-        contents:
-          - pengantar.qmd
+      - cover.qmd
           
-      - section: "Topik Pembahasan"
+
+      - section: "Pengantar Data Analitik"
         contents:
           - index.qmd
-          - datapreparation.qmd
-          - datatidy.qmd
-          - datatransform.qmd
-          - visualisasi.qmd
-          - modelling.qmd
-          - communicate.qmd
+          - alatdata.qmd
           
-      - section: "Topik Lain"
+      - section: "Sumber Data"
         contents:
-          - lain-lain.qmd
+          - spreadsheet.qmd
+          - basisdata.qmd
+          - dataonline.qmd
+      
+      - section: "Data Preparation"
+        contents:
+          - datapreparation.qmd
+          - jenisdata.qmd
+          - visualisasi.qmd
+          - datacleaning.qmd
+          - datatidy.qmd
+          
+      - section: "Modelling"
+        contents:
+          - modelling.qmd
+          - regresi.qmd
+          - klasifikasi.qmd
+          
+      - section: "Penyajian"
+        contents:
+          - penyajianquarto.qmd
+          
+      - bibliografi.qmd
       
 
 format:

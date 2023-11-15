@@ -1,0 +1,341 @@
+---
+title: "Topik 3 | Spreadsheet"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+Sebelum melakukan data import kita perlu mengunduh file datasets pada link berikut : [`AktUPNYK/Project-DA (github.com)`](https://github.com/AktUPNYK/Project-DA) atau klik ikon Github dan unduh file Data yang diperlukan, perhatikan lokasi save file script R dan folder data agar mudah membaca data yang akan di import. Misal kita buat folder `Belajar R` di **Local disk D** kemudian save script R nanti pada folder `Belajar R` dan di Folder `Belajar R` tadi kita buat folder baru dengan nama `data` untuk menyimpan file datasets yang akan kita import atau kita olah secara lokal.
+
+## 1. Import Data Spreadsheet Excel
+
+### 1.1 Library Spreadsheet Excel
+
+Di bagian ini, kita akan mempelajari cara memuat data dari spreadsheet Excel di R dengan package `readxl`. Package ini adalah tidyverse non-core, jadi kita perlu memuatnya secara eksplisit, tetapi diinstal secara otomatis ketika menginstal paket tidyverse. Kemudian, kita juga akan menggunakan package `writexl`, yang memungkinkan kita untuk membuat spreadsheet Excel.
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(writexl)
+```
+
+### 1.2 Membaca spreadsheet Excel
+
+Semua fungsi ini memiliki sintaks yang sama seperti fungsi untuk membaca jenis file lain, misalnya, `read_csv()` , `read_table()` dll. kali ini kita akan menggunakan `read_excel()` . kita akan mengimport data Excel `data_mahasiswa_akt` yang telah diunduh tadi misal lokasi file di folder `data` maka dengan menggunakan fungsi :
+
+```{r}
+#> membaca file student.xlsx dari lokasi folder data
+mahasiswa <- read_excel("data/data_mahasiswa_akt.xlsx")
+
+mahasiswa
+```
+
+Nama kolom tidak teratur,ingat bahwa untuk pemrosesan data yang efektif nama variable sangatlah penting sehingga hindari penamaan dengan `spasi ( )` ganti dengan `_` , kemudian kita bisa ubah dengan fungsi `col_names`
+
+```{r}
+#> mengubah nama kolom
+read_excel(
+  "data/data_mahasiswa_akt.xlsx",
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
+  skip = 1
+)
+
+```
+
+#### 1.2.1 Tipe Data
+
+Dalam file Excel, semua nilai memiliki tipe yang berbeda tidak semuanya adalah string. Data yang mendasari dalam spreadsheet Excel lebih kompleks, seperti :
+
+-   Boolean, seperti TRUE , , FALSE atau NA.
+
+-   Number, seperti "10" atau "10,5".
+
+-   Date, yang juga dapat mencakup waktu seperti "11/1/21" atau "11/1/21 3:00 PM".
+
+-   String teks, seperti "sepuluh".
+
+terlihat pada kolom `age` dengan tipe data yang seharusnya numeric terdapat data string/huruf **(duapuluh)** sehingga kita ubah agar menjadi numeric **(20)**
+
+```{r}
+mahasiswa <- read_excel(
+  "data/data_mahasiswa_akt.xlsx",
+  
+#> Ubah nama kolom 
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
+  
+  skip = 1,
+  
+  #> Kita sesuaikan nilai N/A menjadi nilai logik (NA)
+  na = c("", "N/A"),
+  
+  #> Fungsi col_types mengubah type data
+  col_types = c("numeric", "text", "text", "text", "text"))
+  
+ 
+
+#> Gunakan fungsi mutate untuk mengubah nilai dari "dua puluh" jadi "5", ingat bahwa tipe data umur masih char
+mahasiswa <- mahasiswa |>
+  mutate(
+    umur = if_else(umur == "duapuluh", "20", umur),
+    
+    #> Karena masih terbaca character untuk tipe data umur, kita kembalikan nilai ke numeric
+    umur = parse_number(umur)
+  )
+
+mahasiswa
+
+```
+
+Selanjutnya kita akan coba mengubah value data `NIM Mahasiswa`, `Nama Mahasiswa`, `Asal`, dan `Umur` pada baris pertama dengan kombinasi struktur command diatas :
+
+```{r}
+mahasiswa <- read_excel(
+  "data/data_mahasiswa_akt.xlsx",
+  
+#> Ubah nama kolom 
+  col_names = c("nim_mahasiswa", "nama_mahasiswa", "jurusan", "asal", "umur"),
+  
+  skip = 1,
+  
+  #> Kita sesuaikan nilai N/A menjadi nilai logik (NA)
+  na = c("", "N/A"),
+  
+  #> Fungsi col_types mengubah type data
+  col_types = c("numeric", "text", "text", "text", "text"))
+  
+ 
+
+#> Gunakan fungsi mutate untuk mengubah nilai dari "dua puluh" jadi "5", ingat bahwa tipe data umur masih char
+mahasiswa <- mahasiswa |>
+  mutate(
+    umur = if_else(umur == "duapuluh", "20", umur),
+    
+    #> Karena masih terbaca character untuk tipe data umur, kita kembalikan nilai ke numeric
+    umur = parse_number(umur)
+  )
+
+#> Ubah nilai nim 14222001 perhatikan bahwa tipe data nya adalah numeric maka value tanpa petik "", karena petik hanya untuk char dan string
+mahasiswa <- mahasiswa |>
+  mutate(
+    nim_mahasiswa = if_else(nim_mahasiswa == 11111111, 12345678, nim_mahasiswa))
+
+
+#> Ubah value nama_mahasiswa
+mahasiswa <- mahasiswa |>
+  mutate(
+    nama_mahasiswa = if_else(nama_mahasiswa == "nama_mahasiswa", "Anindyo Aji S", nama_mahasiswa))
+    
+
+#> Ubah value isi_asal
+mahasiswa <- mahasiswa |>
+  mutate(
+    asal = if_else(asal == "yyyyyy", "Klaten", asal))
+
+
+#> ubah value umur 0
+mahasiswa <- mahasiswa |>
+  mutate(
+    umur = if_else(umur == 0, 21, umur))
+
+
+#> Tampilkan hasil 
+mahasiswa
+```
+
+Nah itu tadi merupakan bagian paling sederhana dari proses pengubahan value data yang menjadi dasar untuk rangkaian data preparation pada step selanjutnya.
+
+### 1.3 Membaca worksheet Excel
+
+Kita bisa memilih akan menampilkan sheet yang diperlukan dari worksheet Excel
+
+Pada data Excel **Rekomendasi tempat Makan Enak** terdapat worksheet dan kita hanya akan menampilkan sheet `Resto Steak Jakarta`
+
+![](images/ss%20dataimpor.png){fig-align="center" width="70%"}
+
+```{r}
+#> Identifikasi nama sheet excel "Resto Steak jakarta"
+tempat_makan_steak_jakarta <- read_excel("data/rekomendasi_tempat_makan_enak.xlsx", sheet = "Resto Steak Jakarta", na = "NA")
+
+#> Tampilkan data sheet Resto Steak Jakarta
+tempat_makan_steak_jakarta
+
+```
+
+### 1.4 Write ke Excel
+
+Kita dapat menginput data dan mengubahnya ke Excel menggunakan fungsi `write_xlsx()` , misal kita akan membuat tabel **Penjualan Roti** dengan command `tribble` , ingat bahwa tribble merupakan command untuk membuat tabel data sederhana pada package tidyverse di R. dan selanjutnya kita input value masing-masing variable nya.
+
+```{r}
+#> Buat data penjualan roti dan input pada variable produk & jumlah
+penjualan_roti <- tibble(
+  produk     = factor(c("Donat", "Roti Bakar", "Nastar", "Pisang Coklat")),
+  jumlah = c(10, 5, 8, 999)
+)
+
+#> Tampilkan tabel
+penjualan_roti
+```
+
+```{r}
+#> Selanjutnya kita create ke file Excel dan simpan di path lokasi folder
+write_xlsx(penjualan_roti, path = "data/penjualan_roti.xlsx")
+```
+
+```{r}
+#> Tampilkan data Excel yang telah dibuat
+read_excel("data/penjualan_roti.xlsx")
+
+```
+
+## 2. Import Database
+
+Dalam bab ini, kita akan mempelajari package `DBI` untuk menyambungkan ke database dan kemudian mengambil data dengan query SQL. SQL (Structured Query Language), adalah bahasa pemrograman untuk database dan merupakan bahasa terpenting bagi semua jenis data analitik.
+
+Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package `DBI` dan `RMySQL`, kemudian menghubungkan koneksi database tweater.
+
+```{r}
+
+#> Load Paket DBI dan  RMySQL
+library(DBI)
+library(RMySQL)
+
+#> Koneksi database
+con <- dbConnect(RMySQL::MySQL(), 
+                 dbname = "tweater", 
+                 host = "courses.csrrinzqubik.us-east-1.rds.amazonaws.com", 
+                 port = 3306,
+                 user = "student",
+                 password = "datacamp")
+
+dbListTables(con)
+```
+
+### 2.1 Tampilkan Semua Tabel
+
+Terlihat ada 3 tabel yaitu **"comments", "tweats",** dan **"users"**
+
+```{r}
+tables <- dbListTables(con)
+table_names <- dbListTables(con)
+
+#> Import semua tabel
+tables <- lapply(table_names, dbReadTable, conn = con)
+
+#> Tampilkan semua Tabel
+tables
+```
+
+### 2.2 Tampilkan tabel khusus
+
+Misal kita hanya akan menampilkan tabel users
+
+```{r}
+#> import tabel users dari data tweater
+users <- dbReadTable(con, "users")
+
+#> Tampilkan tabel
+users
+```
+
+### 2.3 Read data dengan SELECT dan WHERE
+
+Kita akan menampilkan data post terbaru dari tabel tweats pada tanggal lebih dari '2015-09-21'
+
+```{r}
+#> menampilkan data post dari tabel tweats pada tanggal lebih dari '2015-09-21'
+latest <- dbGetQuery(con, "SELECT post FROM tweats
+WHERE date > '2015-09-21'")
+
+#> Tampilkan data
+latest
+```
+
+### 2.4 Fungsi INNER JOIN
+
+Misal kita akan menampilkan gabungan data dari 2 tabel berbeda berdasarkan foreign key/id
+
+```{r}
+#> Tampilkan nama dari tabel users dan post dari tabel tweats berdasarkan user id dimana tanggal post lebih dari '2015-09-19'
+dbGetQuery(con, "SELECT name, post
+  FROM users INNER JOIN tweats on users.id = user_id
+    WHERE date > '2015-09-19'")
+
+```
+
+## 3. Import Data Online
+
+Metode ketiga yaitu import data dari url dengan fungsi read. Pertama kita perlu me-load package tidyverse kemudian gunakan fungsi `read_csv()` atau `read_excel()` sesuai format data, Kita coba meng-import data raw csv dari **Data Pangan** pada repository github [`Komposisi Pangan`](https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv)
+
+```{r}
+#> Load package
+library(tidyverse)
+
+#> Identifikasi url data dengan nama data_pangan
+data_pangan <- read_csv("https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/komposisi_pangan.csv")
+
+#> Tampilkan data
+data_pangan
+```
+
+## 4. Import Google Sheets
+
+Panggunaan package googlesheet hampir mirip dengan import online hanya saja diganti dengan *sheet_id*. Pertama kita me-load package `googlesheets4` dan kemudian gunakan fungsi `read_sheet`. Misal kita akan mengimport data **Penjualan Buah** dari google sheet : [`https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI`](https://docs.google.com/spreadsheets/d/18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI) maka kita akan mengambil id sheet sebagai **key call** nya yaitu `18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI`
+
+```{r}
+#> Load paket googlesheet
+library(googlesheets4)
+googlesheets4::gs4_deauth()
+
+#> Membaca sheet berdasarkan sheet id
+read_sheet("18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI")
+
+```
+
+### 4.1 Menampilkan sheet khusus google sheet
+
+Misal dari google sheet : [`https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI`](https://docs.google.com/spreadsheets/d/1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI)
+
+terdapat 2 sheet dan kita hanya akan menampilkan data pada sheet `Resto Steak Jakarta` maka :
+
+```{r}
+
+#> Identifikasi id sheet google sheet
+tempat_makan_sheet_id <- "1sQz1fwftsxbVfWeCCs-toCuZOmU8Te04SxB2bgLDyKI"
+
+#> Tampilkan data sheet 
+read_sheet(tempat_makan_sheet_id, sheet = "Resto Steak Jakarta",na = c("", "N/A")
+  )
+
+```
+
+## 5. Web Scrapping
+
+Web scraping adalah metode pengambilan data dari sebuah website secara otomatis. Teknik ini sangat berguna dalam bisnis online, baik itu untuk riset pasar, riset kompetitor, atau mencari leads 1. Ada beberapa teknik web scraping yang umum dilakukan, yaitu:
+
+-   Menyalin data secara manual
+
+-   Menggunakan regular expression
+
+-   Parsing HTML
+
+Kali ini kita akan menggunakan fungsi `read_html()` untuk meng-ekstrak element tabel dari website dengan me-load package tidyverse dan rvest terlebih dahulu Misal kita akan meng-import data dari tabel website chart trending Youtube maka :
+
+```{r}
+#> Load Package
+library(tidyverse)
+library(rvest)
+
+#> Url data tabel
+url <- "https://kworb.net/youtube/insights/id_daily.html"
+html <- read_html(url)
+
+#> Ekstrak element tabel
+table <- html |> 
+  html_element("table") |> 
+  html_table()
+
+#> Tampilkan Tabel
+table
+
+```

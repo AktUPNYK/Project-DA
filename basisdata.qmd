@@ -1,0 +1,83 @@
+---
+title: "Topik 4 | Basis Data"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+## 1. Import Database
+
+Dalam bab ini, kita akan mempelajari package `DBI` untuk menyambungkan ke database dan kemudian mengambil data dengan query SQL. SQL (Structured Query Language), adalah bahasa pemrograman untuk database dan merupakan bahasa terpenting bagi semua jenis data analitik.
+
+Pada contoh ini kita akan meng-import database SQL berisi data postingan dan pesan user Tweats. Pertama kita perlu me-load package `DBI` dan `RMySQL`, kemudian menghubungkan koneksi database tweater.
+
+```{r}
+
+#> Load Paket DBI dan  RMySQL
+library(DBI)
+library(RMySQL)
+
+#> Koneksi database
+con <- dbConnect(RMySQL::MySQL(), 
+                 dbname = "tweater", 
+                 host = "courses.csrrinzqubik.us-east-1.rds.amazonaws.com", 
+                 port = 3306,
+                 user = "student",
+                 password = "datacamp")
+
+dbListTables(con)
+```
+
+### 1.1 Tampilkan Semua Tabel
+
+Terlihat ada 3 tabel yaitu **"comments", "tweats",** dan **"users"**
+
+```{r}
+tables <- dbListTables(con)
+table_names <- dbListTables(con)
+
+#> Import semua tabel
+tables <- lapply(table_names, dbReadTable, conn = con)
+
+#> Tampilkan semua Tabel
+tables
+```
+
+### 1.2 Tampilkan tabel khusus
+
+Misal kita hanya akan menampilkan tabel users
+
+```{r}
+#> import tabel users dari data tweater
+users <- dbReadTable(con, "users")
+
+#> Tampilkan tabel
+users
+```
+
+### 1.3 Read data dengan SELECT dan WHERE
+
+Kita akan menampilkan data post terbaru dari tabel tweats pada tanggal lebih dari '2015-09-21'
+
+```{r}
+#> menampilkan data post dari tabel tweats pada tanggal lebih dari '2015-09-21'
+latest <- dbGetQuery(con, "SELECT post FROM tweats
+WHERE date > '2015-09-21'")
+
+#> Tampilkan data
+latest
+```
+
+### 1.4 Fungsi INNER JOIN
+
+Misal kita akan menampilkan gabungan data dari 2 tabel berbeda berdasarkan foreign key/id
+
+```{r}
+#> Tampilkan nama dari tabel users dan post dari tabel tweats berdasarkan user id dimana tanggal post lebih dari '2015-09-19'
+dbGetQuery(con, "SELECT name, post
+  FROM users INNER JOIN tweats on users.id = user_id
+    WHERE date > '2015-09-19'")
+
+```

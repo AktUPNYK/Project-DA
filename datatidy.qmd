@@ -1,5 +1,5 @@
 ---
-title: "Topik 3 | Data Tidy"
+title: "Topik 9 | Data Tidy"
 ---
 
 ```{r setup, include=FALSE}
@@ -189,3 +189,233 @@ billboard_longer |>
 ```
 
 Dapat dilihat bahwa `Plot line` menunjukkan hanya sedikit lagu yang bertahan di 100 teratas selama lebih dari 20 minggu.
+
+
+## 4. Data Transform
+
+Data Transformation adalah salah satu aspek kunci dari rangkaian analisis data, data science atau bahkan untuk machine learning. Paket R yang akan kita gunakan di sini adalah `tidyverse`.
+
+beberapa fungsi yang dapat dipakai untuk proses Data Transform seperti :
+
+-   `arrange ()` : untuk menyusun urutan variabel datasets
+
+-   `select ()` : untuk memilih variabel atau kolom
+
+-   `distinct ()` : untuk menghilangkan duplikat datasets
+
+-   `filter ()` : untuk memfilter datasets berdasarkan nilainya
+
+-   `rename ()` : untuk mengganti nama variable datasets
+
+-   `relocate ()` : untuk mengubah posisi variable datasets
+
+-   `group_by () & summarize ()` : meringkas datasets ke dalam kelompok
+
+-   `mutate ()` : untuk membuat variabel baru dari variabel yang sudah ada
+
+### 4.1 Library Paket
+
+Dalam bab ini kita akan fokus pada paket `dplyr`, bagian dari `tidyverse`. Dengan menggunakan datasets dari paket `nycflights13`, dan menggunakan command pada baris, kolom, serta kelompok untuk membantu memahami data.
+
+```{r}
+#> Load paket tidyverse dan datasets jadwal penerbangan 
+library(tidyverse)
+library(nycflights13)
+
+```
+
+Untuk mengeksplorasi dplyr, kita akan menggunakan `nycflights13::flights` . Kumpulan data ini berisi 336.776 penerbangan yang berangkat dari New York City pada tahun 2013. Data berasal dari Biro Statistik Transportasi AS, dan didokumentasikan dalam `flights`.
+
+```{r}
+flights
+```
+
+`flights` adalah jenis `tibble`, frame khusus yang digunakan oleh `tidyverse`. Perbedaan paling penting antara `tibbles` dan `data.frame` adalah cara tibbles menampilkan data; keduanya dirancang untuk menghimpun data besar, sehingga hanya menampilkan beberapa baris pertama dan hanya kolom yang muat di satu layar. Ada beberapa opsi untuk melihat semuanya, seperti `glimpse()` untuk menampilkan semua kolom.
+
+```{r}
+glimpse(flights)
+```
+
+Dalam kedua tampilan, nama variabel diikuti oleh singkatan yang memberi tahu jenis setiap variabel: `<int>` adalah kependekan dari bilangan bulat, `<dbl>` kependekan dari double ( bilangan real), `<chr>` untuk karakter (string) dan `<dttm>` untuk tanggal-waktu.
+
+### 4.2 dplyr
+
+`dplyr` adalah sebuah paket dalam bahasa pemrograman R yang digunakan untuk memanipulasi data dengan mudah dan paket ini menyediakan banyak fungsi yang berguna untuk memfilter, mengurutkan, mengelompokkan, dan mengubah data. Package `dplyr` dibuat oleh **Hadley Wickham** juga sebagai penulis dalam acuan pada modul ini. Fungsi-fungsi tersebut dapat digunakan untuk memanipulasi data dengan lebih cepat dan mudah dibandingkan dengan menggunakan fungsi bawaan Rdplyr yang juga merupakan bagian dari kelompok paket `tidyverse`.
+
+## 5. Baris Data
+
+Fungsi terpenting pada baris himpunan data adalah `filter()` , yang mengubah baris tanpa mengubah urutannya, dan `arrange()` , yang mengubah urutan baris tanpa mengubah mana yang ada. Kedua fungsi hanya mempengaruhi baris, dan kolom dibiarkan tidak berubah. Ada juga `distinct()` untuk menemukan baris dengan nilai unik tetapi tidak seperti arrange() dan filter().
+
+### 5.1 filter()
+
+`filter()` memungkinkan kita menampilkan baris berdasarkan nilai kolom. Misalnya, kita dapat menemukan semua penerbangan yang berangkat terlambat lebih dari 120 menit (dua jam):
+
+```{r}
+flights |> 
+  filter(dep_delay > 120)
+```
+
+Untuk filtering `>` (lebih besar dari), dapat menggunakan `>=` (lebih besar dari atau sama dengan), `<` (kurang dari), `<=` (kurang dari atau sama dengan), `==` (sama dengan), dan != (tidak sama dengan). Kita juga dapat menggabungkan kondisi untuk menunjukkan **"AND"** (periksa kedua kondisi) dengan `&` , serta `|` untuk menunjukkan **"OR"** (periksa salah satu kondisi):
+
+Misal penerbangan pada keberangkatan 1 Januari
+
+```{r}
+#> Menggunakan perintah & untuk 2 kondisi yang harus dipenuhi (AND)
+flights |> 
+  filter(month == 1 & day == 1)
+```
+
+Atau penerbangan pada keberangkatan di bukan Januari atau Februari
+
+```{r}
+#> Menggunakan perintah | untuk antara 1 kondisi yang harus dipenuhi (OR)
+flights |> 
+  filter(month == 1 | month == 2)
+```
+
+### 5.2 arrange()
+
+Kita dapat menggunakan `desc()` di dalam `arrange()` untuk mengurutkan ulang data.frame berdasarkan kolom tersebut (besar ke kecil). Misalnya, mengurutkan data penerbangan dari yang paling sering tertunda hingga paling jarang:
+
+```{r}
+#> Perintah mengurutkan data berdasarkan kolom dep_delay
+flights |> 
+  arrange(desc(dep_delay))
+```
+
+### 5.3 distinct()
+
+`distinct()` digunakan untuk menampilkan semua baris unik dalam himpunan data sehingga menghilangkan baris data duplikat. Kita juga dapat menambahkan kombinasi untuk kolom yang berbeda dari beberapa variabel.
+
+```{r}
+# Menghilangkan duplicate baris, jika ada
+flights |> 
+  distinct()
+```
+
+atau kita akan mencari keberangkatan dan tujuan (unik) untuk setiap penerbangan sehingga hanya membaca satu tipe penerbangan yang semacam, hilangkan duplikat dengan kolom origin dan destination
+
+```{r}
+#> Cari keberangkatan dan tujuan tanpa duplikat 
+flights |> 
+  distinct(origin, dest)
+```
+
+kita juga dapat menghitung jumlah penerbangan yang semacam tadi dengan fungsi count()
+
+```{r}
+flights |>
+  count(origin, dest, sort = TRUE)
+```
+
+## 6. Kolom Data
+
+Ada empat command penting yang mempengaruhi kolom tanpa mengubah baris: `mutate()` untuk membuat kolom baru yang berasal dari kolom yang ada, `select()` untuk mengubah atau memilih dari kolom yang ada, `rename()` mengubah nama kolom, dan `relocate()` mengubah posisi kolom.
+
+### 6.1 mutate()
+
+Fubgsi dari `mutate()` adalah untuk menambahkan kolom baru untuk hasil perhitungan dari kolom yang ada. Dalam transformasi data, kita akan mempelajari sejumlah fungsi yang dapat digunakan untuk memanipulasi berbagai jenis variabel. Misal kita akan mencari berapa banyak waktu penerbangan tertunda `(gain)`, dan kecepatan dalam mil per jam `(speed)`:
+
+```{r}
+
+#> Fungsi mutate dengan menambah kolom gain dan speed
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60,
+    
+    
+    #> Pindahkan kolom perhitungan (gain dan speed) diposisi paling depan
+    .before = 1
+  )
+```
+
+### 6.2 select()
+
+Tidak jarang kita mendapatkan kumpulan data dengan ratusan atau bahkan ribuan variabel. Dalam situasi ini, tantangan pertama seringkali kita hanya ingin berfokus pada variabel yang kita perlukan, `select()` Memungkinkan untuk memperbesar subset dengan cepat menggunakan operasi berdasarkan nama variabel. Misal, memilih kolom berdasarkan tahun, bulan, dan hari pada datasets penerbangan tadi :
+
+```{r}
+#> Fungsi select hanya berdasarkan tahun,bulan, dan hari
+flights |> 
+  select(year, month, day)
+
+```
+
+atau tampilkan semua kolom kecuali dari rentang kolom tahun sampai hari
+
+```{r}
+#> Fungsi menampilkan data kecuali kolom tahun sampai hari
+flights |> 
+  select(!year:day)
+```
+
+atau mungkin tampilkan semua kolom yang merupakan tipe data character
+
+```{r}
+#> Fungsi menampilkan data hanya kolom yang mempunyai tipe data character
+flights |> 
+  select(where(is.character))
+```
+
+Kita juga dapat menampilkan kolom dengan nama kolom yang kita inginkan, misal kita akan menampilkan data pada kolom `tailnum` dengan tampilan kolom `kode_ekor_pesawat`
+
+```{r}
+#> Tampilkan data tailnum pada kode_ekor_pesawat
+flights |> 
+  select(kode_ekor_pesawat = tailnum)
+
+```
+
+### 6.3 rename()
+
+Hal ini sama ketika kita ingin tetap memakai semua kolom dan hanya ingin mengganti nama beberapa kolom, kita dapat menggunakan `rename()`. Misal kita akan menampilkan detaset penerbangan tadi dengan mengubah nama kolom year dan month menjadi tahun dan bulan :
+
+```{r}
+#> Menampilkan data dengan mengubah nama kolom year & month, jadi tahun & bulan
+flights |> 
+  rename(tahun = year, bulan = month )
+```
+
+### 6.4 relocate()
+
+Gunakan `relocate()` untuk memindahkan variabel, kita mungkin ingin mengumpulkan variabel terkait atau memindahkan variabel penting ke depan. Secara default fungsi `relocate()` akan memindahkan variabel ke depan:
+
+```{r}
+#> Memindahkan kolom time_hour dan air_time ke paling depan
+flights |> 
+  relocate(time_hour, air_time)
+```
+
+## 7. Kelompok Data
+
+Tidak hanya dengan baris dan kolom fungsi `dplyr` juga dapat digunakan untuk mengelompokkan data dengan command `group_by()` dan `summarize().`
+
+### 7.1 group_by()
+
+Kita bisa menggunakan group_by() untuk membagi datasets menjadi kelompok-kelompok yang penting untuk analisis data:
+
+```{r}
+#> Fungsi grouping data berdasarkan bulan
+flights |> 
+  group_by(month)
+```
+
+Dapat dilihat bahwa output data dikelompokkan berdasarkan bulan `Groups: month [12]` . Dengan menambahkan fungsi `group_by()` artinya akan mengubah perintah berikutnya yang akan diterapkan pada datasets.
+
+### 7.2 summarize ()
+
+Fungsi pengelompokan selanjutnya dengan `summarize()` untuk menghitung statistik dari grouping yang telah dibuat. Misal, pada datasets penerbangan tadi kita akan menghitung rata-rata penundaan (delay) keberangkatan per bulan :
+
+```{r}
+#> Fungsi pengelompokan per bulan 
+flights |> 
+  group_by(month) |> 
+  
+  
+#> Command menghitung rata-rata keterlambatan 
+  summarize(
+    delay = mean(dep_delay, na.rm = TRUE)
+  )
+```
+
+maka akan terlihat berapa rata-rata keterlambatan penerbangan pada tiap bulan dari Januari (1) sampai Desember (12)

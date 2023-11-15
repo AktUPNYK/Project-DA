@@ -1,0 +1,59 @@
+---
+title: "Topik 10 | Regresi"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Regression
+
+Regresi (regression) adalah suatu teknik statistik yang digunakan untuk memahami hubungan antara satu atau lebih variabel independen (dikenal sebagai prediktor) dan variabel dependen (dikenal sebagai respons). Tujuan utama dari analisis regresi adalah untuk memodelkan dan memahami sejauh mana perubahan dalam variabel independen memengaruhi variabel dependen.
+
+Regresi digunakan dalam berbagai bidang seperti ilmu sosial, ekonomi, ilmu alam, kedokteran, dan bisnis untuk menjelaskan atau memprediksi hubungan antara variabel-variabel yang diamati.
+
+### **Contoh code Regression Linear :**
+
+```{r}
+#| eval: false
+library(stats)
+library(readr)
+
+# Membaca data dari file CSV
+data <- read.csv("data/insurance_training.csv")
+data <- data[!is.na(data$id), ]
+rownames(data) <- data$id
+data
+
+# Menyiapkan variabel prediktor (X) dan target (y)
+X <- data[, !colnames(data) %in% c("charges")]
+X <- data.frame(Intercept = 1, X)  # Menambahkan kolom konstanta (intercept)
+y <- data$charges
+
+# Melakukan regresi linear
+model <- lm(y ~ ., data = data.frame(y, X))
+ 
+# Mendapatkan ringkasan model
+model_summary <- summary(model)
+
+# Mencetak ringkasan model
+print(model_summary)
+
+
+```
+
+Hasil :
+
+![](images/Screenshot%20(160).png){fig-align="center"}
+
+Penjelasan :
+
+-   Residual Standard Error: 6006 on 1293 Degrees of Freedom: Ini adalah ukuran seberapa besar kesalahan rata-rata model regresi dalam memprediksi data. Nilai 6006 mengindikasikan seberapa besar deviasi antara nilai yang diprediksi oleh model dan nilai sebenarnya. Degrees of Freedom (Derajat Kebebasan) adalah ukuran dari seberapa banyak data yang digunakan dalam analisis ini.
+
+-   Multiple R-squared: 0.7518: Ini adalah koefisien determinasi (R-squared) yang menunjukkan sejauh mana variabilitas dalam variabel respons dapat dijelaskan oleh model. Nilai 0.7518 berarti sekitar 75.18% dari variasi dalam variabel respons dapat dijelaskan oleh model.
+
+-   Adjusted R-squared: 0.7506: Ini adalah versi penyesuaian dari R-squared yang memperhitungkan jumlah prediktor dalam model. Nilai 0.7506 adalah penyesuaian yang lebih konservatif dari R-squared.
+
+-   F-statistic: 652.6 on 6 and 1293 DF: F-statistic digunakan untuk menguji signifikansi keseluruhan dari model regresi. Nilai 652.6 adalah statistik uji F, dan angka 6 dan 1293 adalah derajat kebebasan yang digunakan dalam uji ini. Nilai F-statistic yang tinggi menunjukkan bahwa model secara signifikan menjelaskan variabilitas dalam data.
+
+-   p-value: \< 2.2e-16: Ini adalah p-value yang mengindikasikan seberapa signifikan model regresi secara keseluruhan. P-value yang sangat rendah (\< 0.05 atau 0.01) menunjukkan bahwa model regresi secara signifikan menjelaskan variabilitas dalam data.

@@ -1,9 +1,84 @@
 ---
-title: "Topik 5 | Visualisasi "
+title: "Topik 7 | Visualisasi "
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## 1. Konsep Visualisasi
+## 1. Konsep Visualisasi Data
+
+**Visualisasi data** merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga membantu kita untuk memperoleh gambaran terkait data selama proses analisa data sehingga membantu kita dalam memutuskan metode analisa apa yang dapat kita terapkan pada data tersebut.
+
+**R** memiliki library visualisasi yang sangat beragam, baik yang merupakan fungsi dasar pada R maupun dari sumber lain seperti `ggplot` dan `lattice`. Seluruh library visualisasi tersebut memiliki kelebihan dan kekurangannya masing-masing.
+
+Kita akan berfokus pada fungsi visualisasi dasar bawaan dari R yaitu `ggplot2`. `ggplot2` merupakan sebuah *library* tambahan di R yang sangat populer digunakan untuk visualisasi, populer karena grafik dapat dihasilkan dengan struktur perintah yang sangat generik tetapi jelas dan rapi.
+
+### 
+
+## 2. Komponen ggplot2
+
+Ada empat komponen **`ggplot2`** yaitu **plot**, **data**, **aesthetic mapping** dan **layer**.
+
+### 2.1 Plot
+
+Plot adalah komponen paling dasar di **ggplot2**, tanpa plot seluruh grafik **tidak akan bisa ditampilkan**. Dengan demikian, plot dapat dianalogikan sebagai **"kanvas"** gambar kita. **Plot** dapat dihasilkan dengan *function* bernama `ggplot`. Ingat, bedakan antara **`ggplot2`** sebagai *package* dan **`ggplot`** sebagai *function* disini. Dan jika tidak digabungkan dengan komponen lain, maka tampilannya akan terlihat sebagai **kotak persegi kosong dengan latar belakang abu-abu** seperti berikut.
+
+```{r}
+library(ggplot2)
+
+#Ketik function ggplot() di bawah ini
+ggplot()
+
+```
+
+**Menambahkan Judul Plot**
+
+Kita bisa menambahkan judul Plot dengan function **`labs`** untuk keterangan label dan `title` untuk judulnya
+
+```{r}
+
+#Penambahan judul dengan menggunakan fungsi labs
+ggplot() + labs(title="Jumlah Mahasiswa FEB UPN Veteran Yogyakarta")
+```
+
+kita juga dapat menyimpan `plot` sebagai variable dengan fungsi berikut :
+
+```{r}
+#> Masukkan plot ke variable plot_fakultas
+plot_fakultas <- ggplot()
+
+#> Beri judul Plot
+plot_fakultas <- plot_fakultas + labs(title="Jumlah Mahasiswa FEB UPN Veteran Yogyakarta")
+
+#> Tampilkan plot
+plot_fakultas
+
+```
+
+**Menambahkan Label pada sumbu X dan Y**
+
+Fungsi `labs` bisa juga digunakan untuk mengisi teks pada sumbu x dan y.
+
+```{r}
+#> Masukkan plot ke variable plot_fakultas
+plot_fakultas<- ggplot()
+
+#> Beri judul Plot
+plot_fakultas <- plot_fakultas + labs(title="Jumlah Mahasiswa FEB UPN Veteran Yogyakarta")
+
+#> Tambahkan label pada x dan y
+plot_fakultas <- plot_fakultas + labs(x="Jurusan", y ="Jumlah Mahasiswa")
+
+#> Tampilkan plot
+plot_fakultas
+
+
+
+```
+
+### 2.2 Data
+
+Plot bisa menerima input data, dan dari data tersebut bisa dipilih beberapa kolom yang akan "dipetakan" sebagai input untuk komponen visual. Untuk jelasnya, mari kita lihat datasets [`plotdata_kepadatan_kelurahan_dki.csv`](raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/plotdata_kepadatan_kelurahan_dki.csv) pada gambar berikut. Data ini adalah data luas wilayah dan kependudukan Pemerintah Provinsi DKI Jakarta, dan dapat juga diunduh pada link github materi ini
+
+![](images/ggplot_chp3_1.png)

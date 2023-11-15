@@ -1,0 +1,9 @@
+---
+title: "Topik 12 | Quarto "
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Quarto
