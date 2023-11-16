@@ -4,9 +4,9 @@ project:
   
 website:
   page-navigation: true
-  page-footer: "@Data Analitik (2023) | UPN Veteran Yogyakarta" 
+  page-footer: "@Data Analitik | UPN Veteran Yogyakarta 2023" 
   back-to-top-navigation: true
-  title: "Modul Data Analitik (R)"
+  title: "Data Analitik dengan R"
   navbar:
     right: 
       - icon: github
