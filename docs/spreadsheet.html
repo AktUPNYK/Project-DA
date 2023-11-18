@@ -475,13 +475,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ubah nilai nim 14222001 perhatikan bahwa tipe data nya adalah numeric maka value tanpa petik "", karena petik hanya untuk char dan string</span></span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>mahasiswa <span class="ot">&lt;-</span> mahasiswa <span class="sc">|&gt;</span></span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">nim_mahasiswa =</span> <span class="fu">if_else</span>(nim_mahasiswa <span class="sc">==</span> <span class="dv">11111111</span>, <span class="dv">12345678</span>, nim_mahasiswa))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">nim_mahasiswa =</span> <span class="fu">if_else</span>(nim_mahasiswa <span class="sc">==</span> <span class="dv">1111111</span>, <span class="dv">14222001</span>, nim_mahasiswa))</span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ubah value nama_mahasiswa</span></span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>mahasiswa <span class="ot">&lt;-</span> mahasiswa <span class="sc">|&gt;</span></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">nama_mahasiswa =</span> <span class="fu">if_else</span>(nama_mahasiswa <span class="sc">==</span> <span class="st">"nama_mahasiswa"</span>, <span class="st">"Anindyo Aji S"</span>, nama_mahasiswa))</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">nama_mahasiswa =</span> <span class="fu">if_else</span>(nama_mahasiswa <span class="sc">==</span> <span class="st">"aaaaaaaaaa"</span>, <span class="st">"Anindyo Aji S"</span>, nama_mahasiswa))</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Ubah value isi_asal</span></span>
@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 6 × 5
   nim_mahasiswa nama_mahasiswa      jurusan   asal        umur
           &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;
-1       1111111 aaaaaaaaaa          Akuntansi Klaten        21
+1      14222001 Anindyo Aji S       Akuntansi Klaten        21
 2      14222002 Budi Setiawan       Akuntansi Sleman        19
 3      14222003 Chandra Rahmad      &lt;NA&gt;      Bantul        20
 4      14222004 Dewi Safrida        Akuntansi Yogyakarta    19
