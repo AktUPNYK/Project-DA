@@ -118,13 +118,13 @@ mahasiswa <- mahasiswa |>
 #> Ubah nilai nim 14222001 perhatikan bahwa tipe data nya adalah numeric maka value tanpa petik "", karena petik hanya untuk char dan string
 mahasiswa <- mahasiswa |>
   mutate(
-    nim_mahasiswa = if_else(nim_mahasiswa == 11111111, 12345678, nim_mahasiswa))
+    nim_mahasiswa = if_else(nim_mahasiswa == 1111111, 14222001, nim_mahasiswa))
 
 
 #> Ubah value nama_mahasiswa
 mahasiswa <- mahasiswa |>
   mutate(
-    nama_mahasiswa = if_else(nama_mahasiswa == "nama_mahasiswa", "Anindyo Aji S", nama_mahasiswa))
+    nama_mahasiswa = if_else(nama_mahasiswa == "aaaaaaaaaa", "Anindyo Aji S", nama_mahasiswa))
     
 
 #> Ubah value isi_asal
