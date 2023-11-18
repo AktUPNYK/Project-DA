@@ -316,12 +316,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#konsep-visualisasi-data" id="toc-konsep-visualisasi-data" class="nav-link active" data-scroll-target="#konsep-visualisasi-data">1. Konsep Visualisasi Data</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2">1.1 ggplot2</a></li>
+  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics">1.2 Grammar of Graphics?</a></li>
   </ul></li>
   <li><a href="#komponen-ggplot2" id="toc-komponen-ggplot2" class="nav-link" data-scroll-target="#komponen-ggplot2">2. Komponen ggplot2</a>
   <ul class="collapse">
   <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">2.1 Plot</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">2.2 Data</a></li>
+  <li><a href="#aesthetic-mapping" id="toc-aesthetic-mapping" class="nav-link" data-scroll-target="#aesthetic-mapping"><strong>2.3 <em>Aesthetic Mapping</em></strong></a></li>
+  <li><a href="#layer" id="toc-layer" class="nav-link" data-scroll-target="#layer">2.4 Layer</a></li>
+  </ul></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">3. <em>Scatter Plot</em></a>
+  <ul class="collapse">
+  <li><a href="#shortcut-function-geom_point" id="toc-shortcut-function-geom_point" class="nav-link" data-scroll-target="#shortcut-function-geom_point"><strong>3.1 <em>Shortcut Function</em></strong> <strong><code>geom_point</code></strong></a></li>
+  <li><a href="#menambah-judul-dan-label" id="toc-menambah-judul-dan-label" class="nav-link" data-scroll-target="#menambah-judul-dan-label">3.2 Menambah Judul dan Label</a></li>
+  </ul></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">4. Histogram</a>
+  <ul class="collapse">
+  <li><a href="#aesthetic-fill" id="toc-aesthetic-fill" class="nav-link" data-scroll-target="#aesthetic-fill">4.1 <em>Aesthetic Fill</em></a></li>
+  </ul></li>
+  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart">5. Line Chart</a>
+  <ul class="collapse">
+  <li><a href="#aesthetic-grouping" id="toc-aesthetic-grouping" class="nav-link" data-scroll-target="#aesthetic-grouping">5.1 <em>Aesthetic Grouping</em></a></li>
+  <li><a href="#factoring-urutan-data" id="toc-factoring-urutan-data" class="nav-link" data-scroll-target="#factoring-urutan-data">5.2 Factoring Urutan Data</a></li>
+  </ul></li>
+  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart">6. Bar Chart</a>
+  <ul class="collapse">
+  <li><a href="#aesthetic-fill-position-dodge" id="toc-aesthetic-fill-position-dodge" class="nav-link" data-scroll-target="#aesthetic-fill-position-dodge">6.1 <em>Aesthetic Fill</em> &amp; <code>Position Dodge</code></a></li>
+  </ul></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">7. <em><code>Faceting</code></em></a>
+  <ul class="collapse">
+  <li><a href="#facet-wrap-scatter-plot" id="toc-facet-wrap-scatter-plot" class="nav-link" data-scroll-target="#facet-wrap-scatter-plot">7.1 <code>Facet Wrap</code> <em>Scatter Plot</em></a></li>
+  <li><a href="#facet-wrap-histogram" id="toc-facet-wrap-histogram" class="nav-link" data-scroll-target="#facet-wrap-histogram">7.2 <code>Facet Wrap</code> <em>Histogram</em></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -348,11 +374,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="konsep-visualisasi-data" class="level2">
 <h2 class="anchored" data-anchor-id="konsep-visualisasi-data">1. Konsep Visualisasi Data</h2>
-<p><strong>Visualisasi data</strong> merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga membantu kita untuk memperoleh gambaran terkait data selama proses analisa data sehingga membantu kita dalam memutuskan metode analisa apa yang dapat kita terapkan pada data tersebut.</p>
+<p><strong>Visualisasi data</strong> merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga mengarahkan <em>user</em> untuk memperoleh gambaran terkait data selama proses analisa data sehingga mempermudah kita dalam <strong>memutuskan metode analisa</strong> apa yang dapat kita terapkan pada data tersebut.</p>
+<section id="ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot2">1.1 ggplot2</h3>
 <p><strong>R</strong> memiliki library visualisasi yang sangat beragam, baik yang merupakan fungsi dasar pada R maupun dari sumber lain seperti <code>ggplot</code> dan <code>lattice</code>. Seluruh library visualisasi tersebut memiliki kelebihan dan kekurangannya masing-masing.</p>
 <p>Kita akan berfokus pada fungsi visualisasi dasar bawaan dari R yaitu <code>ggplot2</code>. <code>ggplot2</code> merupakan sebuah&nbsp;<em>library</em>&nbsp;tambahan di R yang sangat populer digunakan untuk visualisasi, populer karena grafik dapat dihasilkan dengan struktur perintah yang sangat generik tetapi jelas dan rapi.</p>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+<section id="grammar-of-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="grammar-of-graphics">1.2 Grammar of Graphics?</h3>
+<p><strong>Dua huruf “g”</strong> pada <code>ggplot2</code> berarti <em>grammar of graphics</em>. Apa itu <em>grammar of graphics</em>? Konsep tersebut lahir dari pemikiran <code>Leland Wilkinson</code>. Pada dasarnya, <strong><em>grammar of graphics</em></strong> lahir untuk menggambarkan fitur dasar yang dimiliki oleh seluruh grafik statistik. <code>ggplot2</code> dibangun atas landasan tersebut dan kemudian diadaptasi dalam ekosistem <strong>R</strong>.</p>
+<p>Konsep <em>grammar</em> pada grafik ini dibuat untuk memberi tahu audiens bahwa visualisasi data yang memetakan data dalam atribut <strong>estetika</strong> (baik berupa bentuk, warna, maupun ukuran) serta objek <strong>geometris</strong> (seperti titik, garis, dan batang).</p>
+<p>Dari sini, kemudian bisa mengetahui bahwa <code>plot</code> pada ggplot2 menunjukkan kombinasi <code>data</code> (yang ingin divisualisasikan), <code>estetika</code>, dan <code>geometri</code>.</p>
 </section>
 </section>
 <section id="komponen-ggplot2" class="level2">
@@ -370,7 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="visualisasi_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Menambahkan Judul Plot</strong></p>
+<section id="menambahkan-judul-plot" class="level4">
+<h4 class="anchored" data-anchor-id="menambahkan-judul-plot"><strong>2.1.1 Menambahkan Judul Plot</strong></h4>
 <p>Kita bisa menambahkan judul Plot dengan function <strong><code>labs</code></strong> untuk keterangan label dan <code>title</code> untuk judulnya</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Penambahan judul dengan menggunakan fungsi labs</span></span>
@@ -393,7 +426,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="visualisasi_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Menambahkan Label pada sumbu X dan Y</strong></p>
+</section>
+<section id="menambahkan-label-pada-sumbu-x-dan-y" class="level4">
+<h4 class="anchored" data-anchor-id="menambahkan-label-pada-sumbu-x-dan-y"><strong>2.1.2 Menambahkan Label pada sumbu X dan Y</strong></h4>
 <p>Fungsi <code>labs</code> bisa juga digunakan untuk mengisi teks pada sumbu x dan y.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Masukkan plot ke variable plot_fakultas</span></span>
@@ -412,10 +447,446 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+</section>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">2.2 Data</h3>
-<p>Plot bisa menerima input data, dan dari data tersebut bisa dipilih beberapa kolom yang akan “dipetakan” sebagai input untuk komponen visual. Untuk jelasnya, mari kita lihat datasets <a href="raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/plotdata_kepadatan_kelurahan_dki.csv"><code>plotdata_kepadatan_kelurahan_dki.csv</code></a> pada gambar berikut. Data ini adalah data luas wilayah dan kependudukan Pemerintah Provinsi DKI Jakarta, dan dapat juga diunduh pada link github materi ini</p>
-<p><img src="images/ggplot_chp3_1.png" class="img-fluid"></p>
+<p><strong><code>Plot</code></strong> dapat menerima input data, dan dari data tersebut bisa dipilih beberapa kolom yang akan <strong>“dipetakan”</strong> sebagai input untuk komponen visual. Untuk jelasnya, mari kita lihat datasets <a href="raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/plotdata_kepadatan_kelurahan_dki.csv"><code>plotdata_kepadatan_kelurahan_dki.csv</code></a> atau dapat juga diunduh pada link github materi ini. Data ini adalah <code>Data luas wilayah dan Kependudukan Pemerintah Provinsi DKI Jakarta,</code> Data kependudukan dipilih karena hampir seluruh organisasi, termasuk bisnis dan institusi pemerintah memerlukan ini untuk mengambil keputusan strategis. Sebagai contoh, <em>dimana kita perlu membuka toko atau kantor cabang?</em> atau <em>Produk apa yang bakal laku di area tersebut?.</em></p>
+</section>
+<section id="aesthetic-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="aesthetic-mapping"><strong>2.3 <em>Aesthetic Mapping</em></strong></h3>
+<p>Setelah data dimasukkan pada plot, saatnya kita memetakan kolom yang diperlukan pada data tersebut ke elemen visual. Pemetaan ini disebut dengan <strong><code>aesthetic mapping</code></strong><code>.</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ggplot_chp3_1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p>Pada gambar terlihat banyak kolom informasi seperti TAHUN, NAMA PROVINSI, NAMA KABUPATEN/KOTA, dll.</p>
+<p>Ada tiga kolom yang di-highlight dengan warna kuning, hijau dan biru muda. Ketiga kolom ini masing-masing akan dipetakan di dalam grafik untuk komponen visual <strong>x, y</strong> dan <strong>color</strong> (warna).</p>
+<p>Kembali pada gambar diatas bahwa kita ingin memetakan <code>x</code>, <code>y</code> dan <code>color</code> ke kolom , <strong>LUAS WILAYAH (KM2), KEPADATAN (JIWA/KM2),</strong> dan <strong>NAMA KABUPATEN/KOTA</strong></p>
+<p>Untuk melakukan hal ini, kita gunakan <em>function</em> <strong>aes</strong> yang memiliki <strong>syntax</strong> berikut :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan aesthetic mapping</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> LUAS_WILAYAH,  <span class="at">y =</span> KEPADATAN,  <span class="at">color =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan plot</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plot_dki</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Terlihat plot tidak kosong, tapi sudah terisi dengan label <strong>LUAS_WILAYAH</strong>. pada <code>sumbu x</code>, label <strong>KEPADATAN</strong> pada <code>sumbu y</code>, dan sudah ada garis-garis penjelas grid pada plot.</p>
+<p><strong>Plot</strong> memerlukan dua input sebagai bahan bakunya agar bisa digunakan lebih jauh, yaitu&nbsp;<strong><code>data</code></strong>&nbsp;dan&nbsp;<strong><code>aesthetic mapping</code></strong>&nbsp;(pemetaan beberapa kolom data ke elemen visual).</p>
+</section>
+<section id="layer" class="level3">
+<h3 class="anchored" data-anchor-id="layer">2.4 Layer</h3>
+<p>Untuk menggambar grafik sebenarnya pada <code>ggplot</code>, kita menambahkan apa yang dinamakan <strong><code>layer</code></strong>. Grafik bisa dihasilkan dengan menambahkan <strong>layer</strong> secara berlapis di atas plot.</p>
+<p>Setiap layer terdiri dari objek-objek berikut:</p>
+<ul>
+<li><p><strong><code>Geom</code></strong>: Bentuk geometri seperti garis (<em>line</em>), batang (<em>bar</em>), titik (<em>point</em>), dan lain-lain.</p></li>
+<li><p><strong><code>Stat</code></strong>: Atau suatu fungsi untuk melakukan transformasi statistik terhadap data input.</p></li>
+<li><p>Contoh paling sederhana adalah transformasi data untuk kepadatan jiwa dari angka menjadi <em>range</em> atau inverval per lima ribuan. Jadi data input dengan angka 8041 diubah menjadi interval angka 8001-8500. Transformasi ini disebut dengan <strong>bin</strong>. Jika kita tidak ingin mengubah apa-apa, stat yang kita gunakan adalah <strong>identity</strong>.</p></li>
+<li><p><strong><code>Position</code></strong>: Posisi dari beberapa data yang memiliki nilai yang sama. Jika diplot sebagai <em>scatter plot</em> misalnya, tentunya data-data tersebut akan menumpuk di satu titik. Apakah perlu ditambahkan nilai acak tertentu sehingga pas digambarkan, terlihat datanya lebih tersebar? Jika iya, maka ini namanya <strong><em>jitter</em></strong>. Jika kita tidak ingin merubah posisi, maka kita gunakan <strong><em>identity</em></strong>.</p></li>
+</ul>
+<p>Berikut adalah diagram <strong>summary</strong> untuk proses menampilkan grafik dengan objek <strong><code>plot</code></strong> dan <strong><code>layer</code></strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ggplot_chp4_1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p><code>Layer</code> bisa dihasilkan dengan menggunakan&nbsp;<em>function</em>&nbsp;<strong>layer</strong>&nbsp;dengan&nbsp;menambahkan <em>syntax</em> pada function diatas dan terdapat beberapa pilihan grafik / <code>geom</code> yang dapat digunakan.</p>
+<p><strong>**Keterangan <em>syntax</em> :</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 91%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Komponen</strong></td>
+<td><strong>Deskripsi</strong></td>
+</tr>
+<tr class="even">
+<td><code>Layer</code></td>
+<td><em>Function</em> yang digunakan untuk membentuk layer untuk ditambahkan pada plot</td>
+</tr>
+<tr class="odd">
+<td><code>geom</code></td>
+<td><p>Bentuk geometri yang digunakan untuk layer. Beberapa daftar geometri yang bisa diberikan adalah sebagai berikut:</p>
+<ul>
+<li><p><strong>point</strong>: untuk menggambar grafik berupa titik yang menunjukkan hubungan antar variabel atau <em>scatter plot</em></p></li>
+<li><p><strong>line</strong>: diagram garis</p></li>
+<li><p><strong>hline</strong>: diagram garis horizontal</p></li>
+<li><p><strong>bar</strong>: diagram batang</p></li>
+<li><p><strong>histogram</strong>: histogram</p></li>
+<li><p>dll</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>stat</code></td>
+<td><p>Jenis transformasi untuk mengubah data dari bentuk asli ke bentuk lain. Beberapa daftar stat yang bisa digunakan antara lain adalah sebagai berikut:</p>
+<ul>
+<li><p><strong>identity</strong>: tidak melakukan transformasi</p></li>
+<li><p><strong>bin</strong>: membagi data menjadi interval</p></li>
+<li><p><strong>sum</strong>: menjumlahkan nilai-nilai yang unik</p></li>
+<li><p><strong>summary</strong>: melakukan summary dari semua nilai y untuk setiap titik data x</p></li>
+<li><p>dll</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>position</code></td>
+<td><p>Perubahan posisi terhadap tiap titik yang terdapat pada layer. Beberapa daftar position yang bisa digunakan antara lain adalah sebagai berikut:</p>
+<ul>
+<li><p><strong>identity</strong>: tidak ada perubahan posisi</p></li>
+<li><p><strong>jitter</strong>: merubah posisi dengan jarak acak tertentu dari posisi awal, ini digunakan untuk memberi kejelasan jika banyak titik yang <em>overlapping</em> (saling tindih)</p></li>
+<li><p><strong>stack</strong>: menyusun posisi dalam bentuk tumpukan</p></li>
+<li><p>dll</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot">3. <em>Scatter Plot</em></h2>
+<p>Jika kita ingin menggambar <em><code>scatter plot</code></em><code>,</code> maka konstruksi layer yang digunakan akan berbentuk sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan aesthetic mapping</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> LUAS_WILAYAH,  <span class="at">y =</span> KEPADATAN,  <span class="at">color =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan layer untuk menghasilkan grafik scatter plot</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">layer</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Terlihat grafik titik (<em>scatter plot</em>) dihasilkan data-data kependudukan diambil Luas Wilayah untuk <code>sumbu x</code>, Kepadatan untuk <code>sumbu y</code>, dan <code>color</code> dilakukan sesuai Nama Kabupaten.</p>
+<section id="shortcut-function-geom_point" class="level3">
+<h3 class="anchored" data-anchor-id="shortcut-function-geom_point"><strong>3.1 <em>Shortcut Function</em></strong> <strong><code>geom_point</code></strong></h3>
+<p>Perintah layer untuk menggambar <em><code>scatter plot</code></em> memiliki <em>shortcut function</em> yang lebih pendek. <em>Function</em> tersebut bernama <strong>geom_point</strong>. Dengan demikian, fungsi layer yang sebelumnya harus diketik deklarasinya bisa hanya dengan fungsi <code>geom_point</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan aesthetic mapping</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> LUAS_WILAYAH,  <span class="at">y =</span> KEPADATAN,  <span class="at">color =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan layer grafik scatter plot dengan geom_point</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Stat dan position tidak perlu diisi, karena fungsi&nbsp;<strong><code>geom_point</code></strong>&nbsp;ini secara otomatis akan memiliki nilai&nbsp;<strong>“<em>identity</em>”</strong>&nbsp;untuk stat dan position. Berbeda ketika menggunakan layer, dimana parameter <code>stat</code> dan <code>position</code> harus diisi lengkap.</p>
+</section>
+<section id="menambah-judul-dan-label" class="level3">
+<h3 class="anchored" data-anchor-id="menambah-judul-dan-label">3.2 Menambah Judul dan Label</h3>
+<p>Kita bisa merubah label sesuai dengan keinginan kita dan menambahkan Judul agar lebih informatif menggunakan <em>function</em> <strong><code>labs</code></strong> seperti materi sebelumnya.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan aesthetic mapping</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> LUAS_WILAYAH,  <span class="at">y =</span> KEPADATAN,  <span class="at">color =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Layer grafik scatter plot dengan geom_point dan Tambahkan judul dengan Labs</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Luas Wilayah vs Kepadatan Penduduk DKI Jakarta"</span>, <span class="at">x =</span> <span class="st">"Luas wilayah (km2)"</span>, <span class="at">y =</span> <span class="st">"Kepadatan Jiwa per km2"</span>, <span class="at">color =</span> <span class="st">"Nama Kabupaten/Kota"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="histogram" class="level2">
+<h2 class="anchored" data-anchor-id="histogram">4. Histogram</h2>
+<p><code>Histogram</code> adalah tipe visualisasi yang sangat cocok untuk menggambarkan data distribusi dari jumlah populasi data. Dan dataset kependudukan adalah contoh yang baik dimana kita bisa menggambarkan <strong>distribusi kepadatan penduduk</strong> dengan jumlah kelurahan.</p>
+<p>Untuk membuat histogram, kita gunakan geom bertipe <em>histogram</em> dan stat <strong>bin</strong>, yang bisa diwakili oleh <em>function</em> <strong>geom_histogram</strong>.</p>
+<p>Secara <em>default</em> <strong>geom histogram</strong> tidak memerlukan <strong>aesthetic mapping</strong> untuk sumbu <strong>y</strong>, cukup menggunakan <code>sumbu x.</code></p>
+<p>Namun ada parameter yang perlu diinput, yaitu besarnya interval <strong>bin</strong>. Ini menggunakan parameter <strong><code>binwidth</code></strong>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Komponen</strong></td>
+<td style="text-align: left;"><strong>Deskripsi</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[objek plot]</code></td>
+<td style="text-align: left;">Objek plot dari hasil <em>function</em> ggplot() ditambah dengan komponen visual atau layer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;">Tanda plus, operator untuk menambahkan komponen lain ke dalam plot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>geom_histogram</code></td>
+<td style="text-align: left;"><em>Function</em> untuk menghasilkan layer dengan geom histogram</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>binwidth</code></td>
+<td style="text-align: left;">Lebar interval data, dalam hal ini 10000</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> KEPADATAN))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Layer grafik histogram</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bindwidth =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Terlihat bahwa jumlah kelurahan dengan <strong>penduduk antara <code>10 s/d 20 ribu</code> adalah yang terbanyak.</strong></p>
+<section id="aesthetic-fill" class="level3">
+<h3 class="anchored" data-anchor-id="aesthetic-fill">4.1 <em>Aesthetic Fill</em></h3>
+<p>Kita dapat melakukan banyak penambahan informasi pada histogram sebelumnya. Salah satunya adalah melihat <strong>porsi jumlah kelurahan</strong> berdasarkan <code>nama kabupaten / kota</code> pada tiap rentang <code>histogram</code> seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan tambahan aesthetic fill</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> KEPADATAN, <span class="at">fill =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Layer grafik histogram</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bindwidth =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="line-chart" class="level2">
+<h2 class="anchored" data-anchor-id="line-chart">5. Line Chart</h2>
+<p><strong>Line chart</strong> atau grafik garis adalah tipe visualisasi yang sangat baik untuk menggambarkan apa <em>impact</em> (pengaruh) dari perubahan suatu variabel dari satu titik ke titik lain atau <strong><em>trend</em></strong>– dan variabel yang paling umum digunakan adalah <strong>waktu</strong>.</p>
+<p>Sebagai contoh, di bidang ekonomi untuk menggambarkan <code>inflasi</code> dari bulan ke bulan. Namun tentunya tidak harus selalu waktu. Perubahan lain, misalkan pengaruh kecepatan lari dengan peningkatan detak jantung.</p>
+<p>Untuk membuat <strong>line chart</strong> standar, kita gunakan <code>geom</code> bertipe <strong>“line”</strong> dan <code>stat</code> <strong>“identity”</strong>, yang bisa diwakili oleh <em>function</em> <strong><code>geom_line</code></strong>.</p>
+<p>Pada bab berikut kita akan gunakan dataset tambahan, yaitu tingkat <code>Inflasi bulanan tahun 2017 untuk negara Indonesia dan Singapura.</code> (Dapat diunduh di link github Materi ini). Selain <strong><em>plotting</em></strong>, ada juga konsep <strong><em>factoring</em></strong> untuk menangani data dan <strong><em>grouping</em></strong> untuk grafik.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable inflasi_indo_sgp</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>inflasi_indo_sgp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/inflasi_idn_sgp_2017.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan data dan aesthetic mapping</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> inflasi_indo_sgp, <span class="fu">aes</span>(<span class="at">x =</span> Bulan,  <span class="at">y =</span> Inflasi,  <span class="at">color =</span> Negara))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan layer line chart</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Maka akan muncul tampilan grafik berupa plot kosong.</p>
+<p>Ini artinya <strong>sistem kebingungan</strong> karena tiap <code>Bulan</code> pada <code>sumbu x</code> memiliki dua data (<em>observation</em>) &nbsp;yang akan menjadi kendala karena tiap&nbsp;<em>line</em>&nbsp;<code>perlu satu titik data</code> untuk sumbu x dan y.</p>
+<section id="aesthetic-grouping" class="level3">
+<h3 class="anchored" data-anchor-id="aesthetic-grouping">5.1 <em>Aesthetic Grouping</em></h3>
+<p>Kondisi ini akan kita perbaiki dengan <em>function</em> <strong><code>grouping</code></strong> , Ini karena kita belum membagi data dengan&nbsp;<strong>aesthetic grouping</strong>, Walaupun pada <em>syntax</em> sebelumnya kita sudah memiliki&nbsp;<strong>aesthetic color</strong>&nbsp;<code>(Negara)</code> yang membagi Indonesia dan Singapura, tapi kita masih perlu memiliki&nbsp;<strong><code>aesthetic group</code></strong>&nbsp;seperti berikut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable inflasi_indo_sgp</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>inflasi_indo_sgp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/inflasi_idn_sgp_2017.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan data, aesthetic mapping dan grouping  </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> inflasi_indo_sgp, <span class="fu">aes</span>(<span class="at">x =</span> Bulan,  <span class="at">y =</span> Inflasi,  <span class="at">color =</span> Negara, <span class="at">group =</span> Negara))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan layer line chart</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>terlihat bahwa teks <code>Bulan</code> pada <code>sumbu x</code> masih dalam urutan yang salah.</p>
+</section>
+<section id="factoring-urutan-data" class="level3">
+<h3 class="anchored" data-anchor-id="factoring-urutan-data">5.2 Factoring Urutan Data</h3>
+<p>Urutan bulan yang salah karena masalah pengurutan internal di sistem R, yang mengurutkan berdasarkan <strong>alphabet</strong>. Kita dapat secara manual merubah urutan ini dengan <strong><code>factor</code></strong> dan parameter <strong><code>levels</code></strong> dimasukkan manual.</p>
+<p>Dengan data bulan dari <code>Jan s/d Oct 2017</code> maka konstruksi <em>factor</em> adalah sebagai berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable inflasi_indo_sgp</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>inflasi_indo_sgp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/inflasi_idn_sgp_2017.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Factoring urutan Bulan berdasarkan kalender</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>inflasi_indo_sgp<span class="sc">$</span>Bulan <span class="ot">=</span> <span class="fu">factor</span>(inflasi_indo_sgp<span class="sc">$</span>Bulan, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan-2017"</span>, <span class="st">"Feb-2017"</span>, <span class="st">"Mar-2017"</span>, <span class="st">"Apr-2017"</span>, <span class="st">"May-2017"</span>, <span class="st">"Jun-2017"</span>, <span class="st">"Jul-2017"</span>, <span class="st">"Aug-2017"</span>, <span class="st">"Sep-2017"</span>, <span class="st">"Oct-2017"</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan data, aesthetic mapping dan grouping  </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> inflasi_indo_sgp, <span class="fu">aes</span>(<span class="at">x =</span> Bulan,  <span class="at">y =</span> Inflasi,  <span class="at">color =</span> Negara, <span class="at">group =</span> Negara))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan Layer dan labels</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plot_inflasi <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Inflasi),<span class="at">hjust=</span><span class="sc">-</span><span class="fl">0.2</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Pada&nbsp;<em>code</em>&nbsp;ini juga ditambahkan layer&nbsp;<strong><code>geom_text</code></strong>&nbsp;yang digunakan untuk menandai label-label nilai pada titik di&nbsp;<strong>line chart</strong>.</p>
+</section>
+</section>
+<section id="bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="bar-chart">6. Bar Chart</h2>
+<p>Untuk menghasilkan <strong>bar chart</strong> kita bisa gunakan <em>function</em> <strong><code>geom_bar</code></strong>. <em>Function</em> ini akan menghasilkan sebuah layer untuk kita tambahkan ke plot. Secara <em>default</em>, stat yang digunakan oleh <strong><code>geom_bar</code></strong> adalah <strong>count</strong> sehingga bar chart hanya akan menghitung jumlah baris data <strong><code>point per x,</code></strong></p>
+<p>Kali ini kita menggunakan datasets Demografi DKI Tahun 2013 (dapat diunduh di link github modul)</p>
+<p>Kita akan mem-plot <code>bar chart,</code> dimana <strong>aesthetic y</strong> menggunakan stat penjumlahan <strong><code>(sum)</code></strong> - bukan count - dari data kepadatan penduduk. Ini bisa dilakukan dengan mengisi dua hal berikut:</p>
+<ul>
+<li><p>Mengisi <code>aesthetic y</code> dengan kolom grouping yang kita inginkan - yaitu kolom bernama <strong>JUMLAH</strong> - pada plot (ggplot).</p></li>
+<li><p>Mengisi parameter <code>stat</code> dengan nilai <strong>identity</strong> pada bagian layer <code>(geom_bar).</code></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/data_demografi_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghasilkan bar chart</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat plot demografi</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plot_demografi_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> NAMA_KABUPATEN_KOTA, <span class="at">y =</span> JUMLAH))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Menambahkan layer Bar Chart</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plot_demografi_dki <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="aesthetic-fill-position-dodge" class="level3">
+<h3 class="anchored" data-anchor-id="aesthetic-fill-position-dodge">6.1 <em>Aesthetic Fill</em> &amp; <code>Position Dodge</code></h3>
+<p>Pada subbab sebelumnya, kita melihat efek pergantian nilai&nbsp;<strong>stat</strong>&nbsp;pada&nbsp;<strong>geom_bar</strong>&nbsp;dari count (nilai&nbsp;<em>default</em>) menjadi&nbsp;<strong>identity</strong>&nbsp;untuk mendapatkan total penjumlahan dari angka jumlah penduduk. Sekarang kita bisa lebih memperbaiki bar chart kita dengan informasi&nbsp;<strong><em><code>grouping</code></em></strong>. Untuk melakukan hal ini, ada dua hal yang mesti kita lakukan:</p>
+<ul>
+<li><p>Aesthetic <strong><code>fill</code></strong> pada objek plot perlu diberikan input kolom <strong>JENIS_KELAMIN</strong>.</p></li>
+<li><p>Agar data antara <code>Laki-laki</code> dan <code>Perempuan</code> tidak menjadi satu bar, <strong>position</strong> pada layer kita isi dengan nilai <strong><code>dodge</code></strong> – dimana objek satu dengan <strong>objek yang lain diposisikan bersisian.</strong></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/data_demografi_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat plot demografi</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plot_demografi_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> NAMA_KABUPATEN_KOTA, <span class="at">y =</span> JUMLAH, <span class="at">fill =</span> JENIS_KELAMIN))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Bagian penambahan layer Bar Chart, posisi fill bersampingan</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plot_demografi_dki <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Terlihat <strong><code>bar chart</code></strong> ini telah memiliki informasi jumlah penduduk, dengan <strong>series</strong> berdasarkan <code>jenis kelamin</code> dan kemudian <strong>dikategorikan</strong> berdasarkan <code>nama kabupaten / kota.</code></p>
+</section>
+</section>
+<section id="faceting" class="level2">
+<h2 class="anchored" data-anchor-id="faceting">7. <em><code>Faceting</code></em></h2>
+<p><strong>Faceting</strong> pada ggplot2 adalah:</p>
+<ul>
+<li><p>Proses pembagian dataset menjadi potongan beberapa subset data.</p></li>
+<li><p>Function untuk menghasilkan visualisasi dari potongan-potongan tersebut.</p></li>
+<li><p>Bertujuan agar data lebih mudah dimengerti.</p></li>
+</ul>
+<p>Ada dua <em>function</em> untuk <strong>facet</strong>, yaitu <strong><code>facet_wrap</code></strong> dan <strong><code>facet_grid</code></strong>. Kedua <em>function</em> tersebut fungsinya sama, yaitu <strong>membagi subset menjadi layout kotak matrix</strong> seperti pada contoh di teks pengenalan.</p>
+<p>Function <strong><code>facet_grid</code></strong> memerlukan dua variabel untuk membagi dataset. Sedangkan <em>function</em> <strong><code>facet_wrap</code></strong> hanya memerlukan satu variabel, dataset dibagi berdasarkan jumlah kolom yang diinginkan.</p>
+<section id="facet-wrap-scatter-plot" class="level3">
+<h3 class="anchored" data-anchor-id="facet-wrap-scatter-plot">7.1 <code>Facet Wrap</code> <em>Scatter Plot</em></h3>
+<p>Berikut adalah penjelasan lengkap elemen-elemen function nya :</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Komponen</strong></td>
+<td style="text-align: left;"><strong>Deskripsi</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>facet_wrap</code></td>
+<td style="text-align: left;">Fungsi <em>faceting</em> pada ggplot2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>~ NAMA.KABUPATEN.KOTA</code></td>
+<td style="text-align: left;">Facet wrap hanya menggunakan satu variabel saja. Dan variabel yang digunakan diletakkan di sebelah kanan tanda ~.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ncol=2</code></td>
+<td style="text-align: left;">Jumlah kolom pembagian adalah 2</td>
+</tr>
+</tbody>
+</table>
+<p>Kita akan ambil scatter plot pada subbab diatas sebelumnya untuk dataset kependudukan dan kita bagi menjadi berdasarkan variabel NAMA_KABUPATEN_KOTA dan 2 kolom dengan <strong>facet_wrap</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan aesthetic mapping</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> LUAS_WILAYAH,  <span class="at">y =</span> KEPADATAN,  <span class="at">color =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Layer grafik scatter plot dengan geom_point dan Tambahkan judul dengan Labs</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> plot_dki <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Luas Wilayah vs Kepadatan Penduduk DKI Jakarta"</span>, <span class="at">x =</span> <span class="st">"Luas wilayah (km2)"</span>, <span class="at">y =</span> <span class="st">"Kepadatan Jiwa per km2"</span>, <span class="at">color =</span> <span class="st">"Nama Kabupaten/Kota"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fungsi Faceting dengan membagi 2 colom</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> NAMA_KABUPATEN_KOTA, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Terlihat <code>kepadatan</code> untuk <strong>Jakarta Pusat</strong> sangat tidak berimbang dibandingkan kabupaten lainnya di DKI Jakarta.</p>
+</section>
+<section id="facet-wrap-histogram" class="level3">
+<h3 class="anchored" data-anchor-id="facet-wrap-histogram">7.2 <code>Facet Wrap</code> <em>Histogram</em></h3>
+<p>Dengan menggunakan&nbsp;<em>function</em>&nbsp;yang sama kita juga bisa memecah histogram menjadi facet grafik.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Membaca data csv dan dimasukkan ke variable penduduk_dki</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>penduduk_dki <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plotdata_kepadatan_kelurahan_dki.csv"</span>, <span class="at">sep=</span><span class="st">","</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Membuat variabel plot dan tambahan aesthetic fill</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> penduduk_dki, <span class="fu">aes</span>(<span class="at">x =</span> KEPADATAN, <span class="at">fill =</span> NAMA_KABUPATEN_KOTA))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Penamaan label Plot</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> plot_dki <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Kepadatan Jiwa (km2)"</span>, <span class="at">y=</span><span class="st">"Jumlah Kelurahan"</span>, <span class="at">color=</span><span class="st">"Kabupaten/Kota"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Layer grafik histogram</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="ot">&lt;-</span> plot_dki <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bindwidth =</span> <span class="dv">10000</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fungsi Faceting dengan membagi 2 colom berdasarkan Kabupaten/Kota</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plot_dki <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> NAMA_KABUPATEN_KOTA, <span class="at">ncol =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="visualisasi_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 </section>
