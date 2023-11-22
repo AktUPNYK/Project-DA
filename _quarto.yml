@@ -19,12 +19,12 @@ website:
     style: "docked"
     search: true
     contents:
-      - cover.qmd
+      - index.qmd
           
 
       - section: "Pengantar Data Analitik"
         contents:
-          - index.qmd
+          - topik1.qmd
           - alatdata.qmd
           
       - section: "Sumber Data"

@@ -257,17 +257,13 @@ Secara *default* **geom histogram** tidak memerlukan **aesthetic mapping** untuk
 
 Namun ada parameter yang perlu diinput, yaitu besarnya interval **bin**. Ini menggunakan parameter **`binwidth`**.
 
-+:-----------------+:-------------------------------------------------------------------------------------+
+|                  |                                                                                      |
+|:-----------------|:-------------------------------------------------------------------------------------|
 | **Komponen**     | **Deskripsi**                                                                        |
-+------------------+--------------------------------------------------------------------------------------+
 | `[objek plot]`   | Objek plot dari hasil *function* ggplot() ditambah dengan komponen visual atau layer |
-+------------------+--------------------------------------------------------------------------------------+
 | `+`              | Tanda plus, operator untuk menambahkan komponen lain ke dalam plot                   |
-+------------------+--------------------------------------------------------------------------------------+
 | `geom_histogram` | *Function* untuk menghasilkan layer dengan geom histogram                            |
-+------------------+--------------------------------------------------------------------------------------+
 | `binwidth`       | Lebar interval data, dalam hal ini 10000                                             |
-+------------------+--------------------------------------------------------------------------------------+
 
 ```{r}
 library(ggplot2)
@@ -449,15 +445,12 @@ Function **`facet_grid`** memerlukan dua variabel untuk membagi dataset. Sedangk
 
 Berikut adalah penjelasan lengkap elemen-elemen function nya :
 
-+:------------------------+:-------------------------------------------------------------------------------------------------------------------+
+|                         |                                                                                                                    |
+|:------------------------|:-------------------------------------------------------------------------------------------------------------------|
 | **Komponen**            | **Deskripsi**                                                                                                      |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------+
 | `facet_wrap`            | Fungsi *faceting* pada ggplot2                                                                                     |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------+
 | `~ NAMA.KABUPATEN.KOTA` | Facet wrap hanya menggunakan satu variabel saja. Dan variabel yang digunakan diletakkan di sebelah kanan tanda \~. |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------+
 | `ncol=2`                | Jumlah kolom pembagian adalah 2                                                                                    |
-+-------------------------+--------------------------------------------------------------------------------------------------------------------+
 
 Kita akan ambil scatter plot pada subbab diatas sebelumnya untuk dataset kependudukan dan kita bagi menjadi berdasarkan variabel NAMA_KABUPATEN_KOTA dan 2 kolom dengan **facet_wrap**.
 
