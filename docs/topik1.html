@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analitik dengan R - Topik 10 | Regresi</title>
+<title>Data Analitik dengan R - Topik 1 | Data Analitik</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./klasifikasi.html" rel="next">
-<link href="./modelling.html" rel="prev">
+<link href="./alatdata.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./modelling.html">Modelling</a></li><li class="breadcrumb-item"><a href="./regresi.html">Topik 10 | Regresi</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./topik1.html">Pengantar Data Analitik</a></li><li class="breadcrumb-item"><a href="./topik1.html">Topik 1 | Data Analitik</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -170,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./topik1.html" class="sidebar-item-text sidebar-link">
+  <a href="./topik1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Topik 1 | Data Analitik</span></a>
   </div>
 </li>
@@ -269,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regresi.html" class="sidebar-item-text sidebar-link active">
+  <a href="./regresi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topik 10 | Regresi</span></a>
   </div>
 </li>
@@ -314,10 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#regression" id="toc-regression" class="nav-link active" data-scroll-target="#regression">Regression</a>
-  <ul class="collapse">
-  <li><a href="#contoh-code-regression-linear" id="toc-contoh-code-regression-linear" class="nav-link" data-scroll-target="#contoh-code-regression-linear"><strong>Contoh code Regression Linear :</strong></a></li>
-  </ul></li>
+  <li><a href="#data-analitik" id="toc-data-analitik" class="nav-link active" data-scroll-target="#data-analitik">1. Data Analitik</a></li>
   </ul>
 </nav>
     </div>
@@ -326,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Topik 10 | Regresi</h1>
+<h1 class="title">Topik 1 | Data Analitik</h1>
 </div>
 
 
@@ -341,53 +304,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="regression" class="level2">
-<h2 class="anchored" data-anchor-id="regression">Regression</h2>
-<p>Regresi (regression) adalah suatu teknik statistik yang digunakan untuk memahami hubungan antara satu atau lebih variabel independen (dikenal sebagai prediktor) dan variabel dependen (dikenal sebagai respons). Tujuan utama dari analisis regresi adalah untuk memodelkan dan memahami sejauh mana perubahan dalam variabel independen memengaruhi variabel dependen.</p>
-<p>Regresi digunakan dalam berbagai bidang seperti ilmu sosial, ekonomi, ilmu alam, kedokteran, dan bisnis untuk menjelaskan atau memprediksi hubungan antara variabel-variabel yang diamati.</p>
-<section id="contoh-code-regression-linear" class="level3">
-<h3 class="anchored" data-anchor-id="contoh-code-regression-linear"><strong>Contoh code Regression Linear :</strong></h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Membaca data dari file CSV</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/insurance_training.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[<span class="sc">!</span><span class="fu">is.na</span>(data<span class="sc">$</span>id), ]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(data) <span class="ot">&lt;-</span> data<span class="sc">$</span>id</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Menyiapkan variabel prediktor (X) dan target (y)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> data[, <span class="sc">!</span><span class="fu">colnames</span>(data) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"charges"</span>)]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, X)  <span class="co"># Menambahkan kolom konstanta (intercept)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>charges</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Melakukan regresi linear</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> ., <span class="at">data =</span> <span class="fu">data.frame</span>(y, X))</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mendapatkan ringkasan model</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Mencetak ringkasan model</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Hasil :</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Screenshot (160).png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<p>Penjelasan :</p>
-<ul>
-<li><p>Residual Standard Error: 6006 on 1293 Degrees of Freedom: Ini adalah ukuran seberapa besar kesalahan rata-rata model regresi dalam memprediksi data. Nilai 6006 mengindikasikan seberapa besar deviasi antara nilai yang diprediksi oleh model dan nilai sebenarnya. Degrees of Freedom (Derajat Kebebasan) adalah ukuran dari seberapa banyak data yang digunakan dalam analisis ini.</p></li>
-<li><p>Multiple R-squared: 0.7518: Ini adalah koefisien determinasi (R-squared) yang menunjukkan sejauh mana variabilitas dalam variabel respons dapat dijelaskan oleh model. Nilai 0.7518 berarti sekitar 75.18% dari variasi dalam variabel respons dapat dijelaskan oleh model.</p></li>
-<li><p>Adjusted R-squared: 0.7506: Ini adalah versi penyesuaian dari R-squared yang memperhitungkan jumlah prediktor dalam model. Nilai 0.7506 adalah penyesuaian yang lebih konservatif dari R-squared.</p></li>
-<li><p>F-statistic: 652.6 on 6 and 1293 DF: F-statistic digunakan untuk menguji signifikansi keseluruhan dari model regresi. Nilai 652.6 adalah statistik uji F, dan angka 6 dan 1293 adalah derajat kebebasan yang digunakan dalam uji ini. Nilai F-statistic yang tinggi menunjukkan bahwa model secara signifikan menjelaskan variabilitas dalam data.</p></li>
-<li><p>p-value: &lt; 2.2e-16: Ini adalah p-value yang mengindikasikan seberapa signifikan model regresi secara keseluruhan. P-value yang sangat rendah (&lt; 0.05 atau 0.01) menunjukkan bahwa model regresi secara signifikan menjelaskan variabilitas dalam data.</p></li>
-</ul>
+<section id="data-analitik" class="level2">
+<h2 class="anchored" data-anchor-id="data-analitik">1. Data Analitik</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et ultrices neque ornare aenean. At imperdiet dui accumsan sit amet nulla. Pellentesque sit amet porttitor eget dolor morbi. Neque sodales ut etiam sit amet nisl purus in mollis. Fames ac turpis egestas maecenas. Congue nisi vitae suscipit tellus mauris a. Eu ultrices vitae auctor eu augue ut. Porttitor rhoncus dolor purus non enim praesent. In hendrerit gravida rutrum quisque non tellus orci. Dolor magna eget est lorem ipsum dolor sit amet. Senectus et netus et malesuada fames ac. Libero id faucibus nisl tincidunt eget nullam non. Sapien eget mi proin sed libero enim sed faucibus turpis.</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -626,13 +547,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./modelling.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apa itu Modelling ?</span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cover</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./klasifikasi.html" class="pagination-link">
-        <span class="nav-page-text">Topik 11 | Klasifikasi</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./alatdata.html" class="pagination-link">
+        <span class="nav-page-text">Topik 2 | Alat Data Analitik</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

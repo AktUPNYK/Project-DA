@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Topik 7 | Visualisasi</title>
+<title>Data Analitik dengan R - Topik 7 | Visualisasi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Modul Data Analitik (R)</span>
+    <span class="navbar-title">Data Analitik dengan R</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cover.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cover</span></a>
   </div>
 </li>
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="./topik1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topik 1 | Data Analitik</span></a>
   </div>
 </li>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Line chart</strong> atau grafik garis adalah tipe visualisasi yang sangat baik untuk menggambarkan apa <em>impact</em> (pengaruh) dari perubahan suatu variabel dari satu titik ke titik lain atau <strong><em>trend</em></strong>– dan variabel yang paling umum digunakan adalah <strong>waktu</strong>.</p>
 <p>Sebagai contoh, di bidang ekonomi untuk menggambarkan <code>inflasi</code> dari bulan ke bulan. Namun tentunya tidak harus selalu waktu. Perubahan lain, misalkan pengaruh kecepatan lari dengan peningkatan detak jantung.</p>
 <p>Untuk membuat <strong>line chart</strong> standar, kita gunakan <code>geom</code> bertipe <strong>“line”</strong> dan <code>stat</code> <strong>“identity”</strong>, yang bisa diwakili oleh <em>function</em> <strong><code>geom_line</code></strong>.</p>
-<p>Pada bab berikut kita akan gunakan dataset tambahan, yaitu tingkat <code>Inflasi bulanan tahun 2017 untuk negara Indonesia dan Singapura.</code> (Dapat diunduh di link github Materi ini). Selain <strong><em>plotting</em></strong>, ada juga konsep <strong><em>factoring</em></strong> untuk menangani data dan <strong><em>grouping</em></strong> untuk grafik.</p>
+<p>Pada bab berikut kita akan gunakan dataset tambahan, yaitu tingkat <a href="https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/inflasi_idn_sgp_2017.csv"><strong><code>Inflasi bulanan tahun 2017 untuk negara Indonesia dan Singapura.</code></strong></a> (Dapat diunduh di link github Materi ini). Selain <strong><em>plotting</em></strong>, ada juga konsep <strong><em>factoring</em></strong> untuk menangani data dan <strong><em>grouping</em></strong> untuk grafik.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -755,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bar-chart" class="level2">
 <h2 class="anchored" data-anchor-id="bar-chart">6. Bar Chart</h2>
 <p>Untuk menghasilkan <strong>bar chart</strong> kita bisa gunakan <em>function</em> <strong><code>geom_bar</code></strong>. <em>Function</em> ini akan menghasilkan sebuah layer untuk kita tambahkan ke plot. Secara <em>default</em>, stat yang digunakan oleh <strong><code>geom_bar</code></strong> adalah <strong>count</strong> sehingga bar chart hanya akan menghitung jumlah baris data <strong><code>point per x,</code></strong></p>
-<p>Kali ini kita menggunakan datasets Demografi DKI Tahun 2013 (dapat diunduh di link github modul)</p>
+<p>Kali ini kita menggunakan datasets <a href="https://raw.githubusercontent.com/AktUPNYK/Project-DA/main/data/data_demografi_dki.csv"><strong><code>Demografi DKI Tahun 2013</code></strong></a> (dapat diunduh di link github modul)</p>
 <p>Kita akan mem-plot <code>bar chart,</code> dimana <strong>aesthetic y</strong> menggunakan stat penjumlahan <strong><code>(sum)</code></strong> - bukan count - dari data kepadatan penduduk. Ini bisa dilakukan dengan mengisi dua hal berikut:</p>
 <ul>
 <li><p>Mengisi <code>aesthetic y</code> dengan kolom grouping yang kita inginkan - yaitu kolom bernama <strong>JUMLAH</strong> - pada plot (ggplot).</p></li>
@@ -819,8 +819,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Berikut adalah penjelasan lengkap elemen-elemen function nya :</p>
 <table class="table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 81%">
+<col style="width: 17%">
+<col style="width: 82%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -1144,7 +1144,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023) | UPN Veteran Yogyakarta</div>
+    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik | UPN Veteran Yogyakarta 2023</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

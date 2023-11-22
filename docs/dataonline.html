@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modul Data Analitik (R) - Topik 5 | Data Online</title>
+<title>Data Analitik dengan R - Topik 5 | Data Online</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Modul Data Analitik (R)</span>
+    <span class="navbar-title">Data Analitik dengan R</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cover.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cover</span></a>
   </div>
 </li>
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="./topik1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topik 1 | Data Analitik</span></a>
   </div>
 </li>
@@ -468,28 +468,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 5
-     Pos `P+`  Track                                          Streams `Streams+`
-   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                          &lt;chr&gt;   &lt;chr&gt;     
- 1     1 +1    aespa - Drama                                  2,362,… "+462,157"
- 2     2 -1    Stray Kids - 락 (樂) LALALALA                  2,155,… "-570,699"
- 3     3 +1    Youngjae - Do It                               1,866,… "+273,939"
- 4     4 -1    Nadhif Basalamah - penjaga hati                1,666,… "-17,279" 
- 5     5 =     Ghea Indrawari - Jiwa Yang Bersedih            1,013,… "-152,228"
- 6     6 +8    Kep1er - Grand Prix                            951,199 "+184,341"
- 7     7 =     Jaz - Bersamamu                                898,366 "-21,536" 
- 8     8 -2    Omwawes - Dumes (feat. Guyon Waton)            874,704 "-65,339" 
- 9     9 NEW   Red Velvet - Red Velvet 레드벨벳 'Chill Kill'… 865,982 ""        
-10    10 -2    Anggi Marito - Tak Segampang Itu               852,287 "-37,818" 
-11    11 =     Denny Caknan - Wirang                          824,923 "-30,469" 
-12    12 NEW   WayV - On My Youth 遗憾效应                    787,665 ""        
-13    13 -4    Fabio Asher - Tanpa Rasa Bersalah              787,159 "-81,135" 
-14    14 NEW   Happy Asmara - Apik                            785,142 ""        
-15    15 -5    Denny Caknan - Taman Jurug (Live)              777,490 "-90,526" 
-16    16 -4    NDX A.K.A. - Nemen (Hiphop Dangdut Version)    753,604 "-59,795" 
-17    17 -4    Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen)  748,847 "-49,794" 
-18    18 -3    Zendaya - Rewrite The Stars                    745,875 "-11,638" 
-19    19 NEW   KISS OF LIFE - Bad News                        707,784 ""        
-20    20 -4    Idgitaf - Satu-Satu                            623,053 "-28,239" </code></pre>
+     Pos `P+`  Track                                         Streams  `Streams+`
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                                         &lt;chr&gt;    &lt;chr&gt;     
+ 1     1 NEW   THE BOYZ - Watch It                           1,869,9… ""        
+ 2     2 -1    Nadhif Basalamah - penjaga hati               1,610,1… "-2,263"  
+ 3     3 -1    Crush - Hmm-cheat                             895,489  "-304,774"
+ 4     4 -1    Rhoma Irama - Camelia (Live)                  843,612  "-78,972" 
+ 5     5 =     Ghea Indrawari - Jiwa Yang Bersedih           820,296  "-31,390" 
+ 6     6 -2    Omwawes - Dumes (feat. Guyon Waton)           816,163  "-57,127" 
+ 7     7 -1    Jaz - Bersamamu                               796,226  "+16,653" 
+ 8     8 -1    Anggi Marito - Tak Segampang Itu              767,570  "-8,342"  
+ 9     9 +3    ENHYPEN - Sweet Venom                         745,486  "+41,059" 
+10    10 +1    Tri Suaka - Merayu Tuhan (feat. Dodhy Kangen) 721,369  "-11,599" 
+11    11 -3    NDX A.K.A. - Nemen (Hiphop Dangdut Version)   717,462  "-50,743" 
+12    12 -2    Denny Caknan - Wirang                         716,047  "-28,131" 
+13    13 =     Zendaya - Rewrite The Stars                   690,921  "+2,704"  
+14    14 -5    Denny Caknan - Taman Jurug (Live)             671,592  "-79,538" 
+15    15 NEW   JO1 - Venus                                   654,505  ""        
+16    16 =     Fabio Asher - Tanpa Rasa Bersalah             626,163  "+33,454" 
+17    17 +3    Raim Laode - Komang                           610,292  "+42,604" 
+18    18 -3    Seventeen - Tanpa Pesan Terakhir              598,276  "-17,893" 
+19    19 -5    Masdddho - KISINAN 2                          594,158  "-81,181" 
+20    20 -2    Idgitaf - Satu-Satu                           567,989  "-12,575" </code></pre>
 </div>
 </div>
 
@@ -748,7 +748,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik (2023) | UPN Veteran Yogyakarta</div>
+    <div class="nav-footer-center"><span class="citation" data-cites="Data">@Data</span> Analitik | UPN Veteran Yogyakarta 2023</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
