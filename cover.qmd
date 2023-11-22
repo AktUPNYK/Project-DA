@@ -93,12 +93,7 @@ margin-right: 30%;
 
 ```
 
-
-
-
-![](images/output-onlinepngtools (4).png){fig-align="center" width="314"}
-
-
+![](images/elemen%20cvr1.png){fig-align="center" width="597"}
 ```{/br}
 
 ```
@@ -108,19 +103,9 @@ margin-right: 30%;
 ```{/br}
 
 ```
-
-
-
 ```{/br}
 
 ```
-```{/br}
-
-```
-```{/br}
-
-```
-
 
 
 # Anindyo Aji Susanto {.tust}
