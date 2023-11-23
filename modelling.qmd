@@ -32,8 +32,3 @@ Sedangkan ***`unsupervised learning`*** bertujuan untuk mengeksplorasi dan memah
 
 Pada modul ini difokuskan untuk pembelajaran Supervised learning. ***Supervised Learning*** bertujuan untuk membuat model yang dapat mempelajari hubungan antara input `(fitur)` dan output `(label)` yang sudah diketahui, sehingga model ini dapat digunakan untuk membuat prediksi atau klasifikasi data baru.
 
-::: {layout-ncol="2"}
-![](images/ssreg1-02.png)
-
-![](images/ssreg2-02.png)
-:::

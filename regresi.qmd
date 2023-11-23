@@ -12,6 +12,13 @@ Regresi (regression) adalah suatu teknik statistik yang digunakan untuk memahami
 
 Regresi digunakan dalam berbagai bidang seperti ilmu sosial, ekonomi, ilmu alam, kedokteran, dan bisnis untuk menjelaskan atau memprediksi hubungan antara variabel-variabel yang diamati.
 
+::: {layout-ncol="2"}
+![](images/ssreg1-02.png)
+
+![](images/ssreg2-02.png)
+:::
+
+
 ### **Contoh code Regression Linear :**
 
 ```{r}
