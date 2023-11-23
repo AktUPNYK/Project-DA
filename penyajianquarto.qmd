@@ -7,3 +7,163 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 ## Quarto
+
+**`R Quarto`** adalah versi generasi berikutnya setelah **R Markdown**. Kelebihannya yaitu tidak terbatas pada bahasa pemrograman R, tetapi juga dalam Python, Julia, dan Observable. Dalam materi `R Quarto` ini, kita akan tetap menggunakan bahasa statistik paling populer dan membuat dokumen ***Markdown*** langsung di RStudio.
+
+Dengan Quarto, kita dapat dengan mudah membuat artikel, laporan, presentasi, PDF, buku, dokumen Word, ePub, atau bahkan situs web untuk blog maupun e-learning.
+
+## 1. Menginstall Quarto
+
+Kita bisa men-download `CLI Quarto` di link berikut : [**`Download CLI`**](https://quarto.org/docs/get-started/) lalu Install sesuai Versi OS
+
+![](images/qrt1.png){fig-align="center" width="681"}
+
+Setelah terinstall, buka `RStudio` dan buat file `Quarto Document` baru, seperti yang ditunjukkan di bawah ini:
+
+![](images/Screenshot%202023-11-23%20095629.png){fig-align="center" width="498"}
+
+Pada Quarto output HTML dapat lebih maksimal karena asset yang lebih lengkap dari RMarkdown, tersedia beberapa opsi dokumen output seperti PDF (perlu menginstall tinytex), HTML (Webpages), Docs (Word), dan Slides.
+
+## 2. Create File QMD
+
+### 2.1 `HTML` Output
+
+Pada opsi diatas Klik **`Quarto Document`** -\> Kemudian muncul opsi pilihan file misal kita pilih **`HTML`** ( untuk **Title** dan **Author** dapat kita isi sebagai Judul dan Nama Penulis) -\> Engine pilih **`knitr`** dan *check list* `Use visual markdown editor` untuk mempermudah mengedit dokumen.
+
+![](images/Screenshot%202023-11-23%20115900.png){fig-align="center" width="576"}
+
+Setelah itu kita bisa pilih **`Create`** untuk generate file `qmd` tampilannya akan seperti ini
+
+![](images/Screenshot%202023-11-23%20115953.png){fig-align="center" width="691"}
+
+Kemudian kita **`Save`** filenya, format file akan otomatis menjadi **.qmd**
+
+-\> Klik **`Render`** maka tampilan **viewer** akan berubah
+
+![](images/Screenshot%202023-11-23%20120139.png){fig-align="center" width="705"}
+
+### 2.2 Menambahkan Tanggal
+
+Kita bisa menambahkan tanggal dengan syntax `date` di YAML nya, untuk referensinya di sini [**`Quarto - Quarto Dates and Date Formatting`**](https://quarto.org/docs/reference/dates.html) .
+
+kemudian klik `Render` untuk lihat hasilnya
+
+```{r}
+#| eval: false
+---
+title: "Laporan Quarto"
+author: "Anindyo Aji Susanto"
+date: today
+format: html
+editor: visual
+---
+
+```
+
+![](images/Screenshot%202023-11-23%20145948.png){fig-align="center" width="649"}
+
+### 2.3 Theme Dokumen
+
+Kita juga dapat mengubah tema dokumen HTML , ada beberapa opsi tema yang tersedia dengan referensi [**`Quarto - HTML Theming`**](https://quarto.org/docs/output-formats/html-themes.html) . Sama seperti penambahan tanggal tadi kita tambahkan fungsi `theme` pada syntax YAML
+
+kemudian klik `Render` untuk lihat hasilnya
+
+```{r}
+#| eval: false
+---
+title: "Laporan Quarto"
+author: "Anindyo Aji Susanto"
+date: today
+format: html
+editor: visual
+theme: darkly
+---
+```
+
+![](images/Screenshot%202023-11-23%20151136.png){fig-align="center" width="718"}
+
+### 2.4 Header dan Format Teks
+
+Kita dapat mengubah Header dan format teks dengan pilihan tools yang ada, Pada Header kita juga dapat menambahkannya dengan mengetik `#` (spasi) untuk Header 1, `##` (spasi) untuk Header 2, `###` (spasi) untuk Header 3, dst.
+
+![](images/Screenshot%202023-11-23%20162706.png){fig-align="center" width="670"}
+
+### 2.5 Menambahkan Gambar
+
+Klik Menu **`Insert`** kemudian pilih **`Figure / Image`**
+
+![](images/Screenshot%202023-11-23%20153727-02.png){fig-align="center" width="628"}
+
+Lalu cari gambar yang akan di upload dan sesuaikan posisinya
+
+![](images/Screenshot%202023-11-23%20161338.png){fig-align="center" width="459"}
+
+Kemudian *save* dan **`Render`** untuk mengecek hasilnya
+
+### 2.6 Source Code
+
+Untuk memasukkan *`source code`* klik menu **+** di kanan atas lalu akan muncul `field` R untuk memasukkan code yang akan dijalankan
+
+![](images/Screenshot%202023-11-23%20162827.png){fig-align="center"}
+
+Masukkan `code R` pada field
+
+![](images/Screenshot%202023-11-23%20163453.png){fig-align="center" width="664"}
+
+### 2.7 Tampilkan Eksekusi Code dan Output
+
+Misalkan kita akan **mengeksekusi** code bersama dengan hasilnya nya maka tinggal save dan `Render`
+
+contoh :
+
+```{r}
+#| eval: false
+#> Load paket googlesheet
+library(googlesheets4)
+library(ggplot2)
+googlesheets4::gs4_deauth()
+
+#> Membaca sheet berdasarkan sheet id
+penjualan_buah <- read_sheet("18TaWfcpqvwAvMDbsX6j8FCNZPVcL--x23abId0tzBEI")
+
+plot_buah <- ggplot(data=penjualan_buah, aes(x = city, y = sold, fill = item))
+
+
+#Bagian penambahan layer Bar Chart, posisi fill bersampingan
+plot_buah + geom_histogram(stat="identity", position = "dodge")
+```
+
+Hasilnya akan sama seperti ini, `Code` dan Hasil `Output` semuanya tampil
+
+![](images/Screenshot%202023-11-23%20163934.png){fig-align="center" width="556"}
+
+### 2.8 Tampilkan hanya Output
+
+Misal kita hanya ingin menampilkan `Hasil / Output` dari proses analisa maka tambahkan **`#| echo: false`** pada **`field code`** R **di awal *syntax*** :
+
+![](images/Screenshot 2023-11-23 165317.png){fig-align="center" width="702"}
+
+Kemudian *save* dan Klik **`Render`** , maka hanya `Output` dari hasil analisa saja yang tampil
+
+![](images/Screenshot 2023-11-23 165334.png){fig-align="center" width="638"}
+
+### 2.9 Word Document **`(.docx)`** Output
+
+Kita dapat mengubah **`Output`** *Render* yang tadinya HTML menjadi Word `(.docx)` dengan mengubah `format` di *syntax* YAML nya menjadi `docx` seperti berikut
+
+```{r}
+#| eval: false
+---
+title: "Laporan Quarto"
+author: "Anindyo Aji Susanto"
+date: today
+format: docx
+editor: visual
+---
+```
+
+![](images/Screenshot 2023-11-23 170727.png){fig-align="center" width="678"}
+
+Save dan klik **`Render`** maka output Word Document akan tampil
+
+![](images/Screenshot 2023-11-23 170654.png){fig-align="center" width="617"}

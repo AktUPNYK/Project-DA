@@ -6,4 +6,162 @@ title: "Topik 6 | Jenis Data"
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## 1. Jen
+## 1. Jenis dan Tipe data
+
+Dalam pemrograman, tipe data merupakan konsep yang penting. Variabel dapat menyimpan data dari berbagai tipe dan tipe yang berbeda serta dapat melakukan hal yang berbeda.
+
+Tidak seperti kebanyakan bahasa pemrograman lain seperti C atau Java yang mendeklarasikan variabel dengan tipe tertentu, pada `R Language` variabel tidak perlu dideklarasikan dengan tipe tertentu dan bahkan dapat mengubah tipe setelah disetel. R memiliki berbagai tipe data dan kelas objek.
+
+`Variabel` pada R *Language* ditugaskan dengan R-Objects dan tipe data dari R-object menjadi tipe data dari variabel tersebut. Ada banyak tipe `objek-R`. Yang sering digunakan adalah :
+
+-   Vectors
+
+-   Lists
+
+-   Matrices
+
+-   Arrays
+
+-   Factors
+
+-   Data Frames
+
+Objek yang paling sederhana diantara yang di atas adalah objek `vektor` dan ada enam tipe data dari vektor atom ini, juga disebut sebagai **enam kelas vektor**.
+
+## 2. Tipe Data Dasar ***`R`***
+
+### 2.1 *`Vectors`*
+
+Dalam pemrograman R, tipe data yang paling dasar adalah objek-R yang disebut vektor yang menampung elemen dari kelas yang berbeda.
+
+Tipe data dasar di R dapat dibagi menjadi beberapa tipe berikut:
+
+-   `numeric` -- (10.5, 55, 787)
+
+-   `integer` -- (1L, 55L, 100L, di mana huruf "L" menyatakan ini sebagai integer)
+
+-   `kompleks` -- (9 + 3i, di mana "i" adalah bagian imajiner)
+
+-   `character`*(string)* -- ("k", "R is exciting", "FALSE", "11.5")
+
+-   `logical` *(boolean)* -- (TRUE atau FALSE)
+
+-   `raw` - ("Hello" is stored as 48 65 6c 6c 6f)
+
+**Catatan** : Pada **`R Language`** jumlah kelas tidak terbatas hanya pada enam jenis di atas. Misalnya, kita dapat menggunakan banyak vektor atom dan membuat array yang kelasnya akan menjadi array.
+
+Kita bisa menggunakan fungsi `class()` untuk memeriksa tipe data variabel:
+
+```{r}
+# numeric
+x <- 10.5
+class(x)
+
+# integer
+x <- 1000L
+class(x)
+
+# complex
+x <- 9i + 3
+class(x)
+
+# character/string
+x <- "R is exciting"
+class(x)
+
+# logical/boolean
+x <- TRUE
+class(x)
+```
+
+Maka outputnya adalah tipe dari elemen data masing-masing variable.
+
+Jika ingin membuat vektor dengan **lebih dari satu elemen**, maka kita harus menggunakan fungsi `c()` yang artinya menggabungkan elemen-elemen tersebut menjadi sebuah `vektor`.
+
+```{r}
+# Buat vektor.
+apple <- c('merah','kuning',"hijau")
+print(apple)
+
+# Dapatkan kelas vektornya.
+print(class(apple))
+
+```
+
+### 2.2 *`List`*
+
+`List` adalah R-object yang dapat berisi berbagai jenis elemen di dalamnya seperti vektor, fungsi dan bahkan dapat memuat list lain di dalamnya.
+
+Contoh :
+
+```{r}
+# Buat list.
+list1 <- list(c(2,5,3),21.3,sin)
+
+# Cetak list.
+print(list1)
+```
+
+### 2.3 *`Matriks`*
+
+`Matriks` adalah kumpulan data persegi dua dimensi. Hal itu dapat dibuat untuk menggunakan input vektor ke fungsi matriks.
+
+Contoh :
+
+```{r}
+# Buat matrix.
+M = matrix( c('a','a','b','c','b','a'), nrow = 2, ncol = 3, byrow = TRUE)
+
+#> Tampilkan Matriks
+print(M)
+
+```
+
+### 2.4 *`Array`*
+
+Meskipun matriks dibatasi pada dua dimensi, `array` dapat terdiri dari beberapa dimensi. Fungsi array mengambil atribut yang dapat menghasilkan jumlah dimensi yang dibutuhkan.
+
+Pada contoh di bawah ini kita akan membuat sebuah array dengan dua elemen yang masing-masing merupakan matriks 3×3.
+
+```{r}
+# Buat array.
+a <- array(c('merah','biru'),dim = c(3,3,2))
+
+#> Tampilkan Array
+print(a)
+```
+
+### 2.5 *`Factor`*
+
+`Factor` adalah objek-r yang dibuat menggunakan vektor. Digunakan **untuk menyimpan vektor** bersama dengan nilai-nilai yang berbeda dari elemen dalam vektor sebagai label. Label selalu `character`terlepas dari apakah itu numerik atau character atau Boolean dll dalam vektor input. Dapat berguna dalam pemodelan statistik.
+
+Contoh :
+
+```{r}
+# Buat vector.
+apple_colors <- c('kuning','kuning','merah','biru','biru','biru','kuning')
+
+# Buat objek factor.
+factor_apple <- factor(apple_colors)
+
+# Tampilkan factor.
+print(factor_apple)
+
+#> Jumlah Level
+print(nlevels(factor_apple))
+```
+
+### 2.6 *`Data Frames`*
+
+`Data Frames` adalah objek data tabular. Tidak seperti matriks dalam data frame, setiap kolom **dapat berisi mode data yang berbeda.** Kolom pertama bisa numerik sedangkan kolom kedua bisa characterdan kolom ketiga bisa logical. Data Frames dibuat menggunakan fungsi `data.frame()`
+
+```{r}
+# buat data frame.
+Mahasiswa <- 	data.frame(
+   nama = c("Adi", "Bagas","Chandra"), 
+   berat_kg = c(54, 60, 57), 
+   tinggi_cm = c(166,163, 169),
+   umur = c(19,20,19)
+)
+print(Mahasiswa)
+```
