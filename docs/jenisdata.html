@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -280,7 +314,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#jen" id="toc-jen" class="nav-link active" data-scroll-target="#jen">1. Jen</a></li>
+  <li><a href="#jenis-dan-tipe-data" id="toc-jenis-dan-tipe-data" class="nav-link active" data-scroll-target="#jenis-dan-tipe-data">1. Jenis dan Tipe data</a></li>
+  <li><a href="#tipe-data-dasar-r" id="toc-tipe-data-dasar-r" class="nav-link" data-scroll-target="#tipe-data-dasar-r">2. Tipe Data Dasar <strong><em><code>R</code></em></strong></a>
+  <ul class="collapse">
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">2.1 <em><code>Vectors</code></em></a></li>
+  <li><a href="#list" id="toc-list" class="nav-link" data-scroll-target="#list">2.2 <em><code>List</code></em></a></li>
+  <li><a href="#matriks" id="toc-matriks" class="nav-link" data-scroll-target="#matriks">2.3 <em><code>Matriks</code></em></a></li>
+  <li><a href="#array" id="toc-array" class="nav-link" data-scroll-target="#array">2.4 <em><code>Array</code></em></a></li>
+  <li><a href="#factor" id="toc-factor" class="nav-link" data-scroll-target="#factor">2.5 <em><code>Factor</code></em></a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">2.6 <em><code>Data Frames</code></em></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -304,10 +347,197 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="jen" class="level2">
-<h2 class="anchored" data-anchor-id="jen">1. Jen</h2>
+<section id="jenis-dan-tipe-data" class="level2">
+<h2 class="anchored" data-anchor-id="jenis-dan-tipe-data">1. Jenis dan Tipe data</h2>
+<p>Dalam pemrograman, tipe data merupakan konsep yang penting. Variabel dapat menyimpan data dari berbagai tipe dan tipe yang berbeda serta dapat melakukan hal yang berbeda.</p>
+<p>Tidak seperti kebanyakan bahasa pemrograman lain seperti C atau Java yang mendeklarasikan variabel dengan tipe tertentu, pada <code>R Language</code> variabel tidak perlu dideklarasikan dengan tipe tertentu dan bahkan dapat mengubah tipe setelah disetel. R memiliki berbagai tipe data dan kelas objek.</p>
+<p><code>Variabel</code> pada R <em>Language</em> ditugaskan dengan R-Objects dan tipe data dari R-object menjadi tipe data dari variabel tersebut. Ada banyak tipe <code>objek-R</code>. Yang sering digunakan adalah :</p>
+<ul>
+<li><p>Vectors</p></li>
+<li><p>Lists</p></li>
+<li><p>Matrices</p></li>
+<li><p>Arrays</p></li>
+<li><p>Factors</p></li>
+<li><p>Data Frames</p></li>
+</ul>
+<p>Objek yang paling sederhana diantara yang di atas adalah objek <code>vektor</code> dan ada enam tipe data dari vektor atom ini, juga disebut sebagai <strong>enam kelas vektor</strong>.</p>
+</section>
+<section id="tipe-data-dasar-r" class="level2">
+<h2 class="anchored" data-anchor-id="tipe-data-dasar-r">2. Tipe Data Dasar <strong><em><code>R</code></em></strong></h2>
+<section id="vectors" class="level3">
+<h3 class="anchored" data-anchor-id="vectors">2.1 <em><code>Vectors</code></em></h3>
+<p>Dalam pemrograman R, tipe data yang paling dasar adalah objek-R yang disebut vektor yang menampung elemen dari kelas yang berbeda.</p>
+<p>Tipe data dasar di R dapat dibagi menjadi beberapa tipe berikut:</p>
+<ul>
+<li><p><code>numeric</code> – (10.5, 55, 787)</p></li>
+<li><p><code>integer</code> – (1L, 55L, 100L, di mana huruf “L” menyatakan ini sebagai integer)</p></li>
+<li><p><code>kompleks</code> – (9 + 3i, di mana “i” adalah bagian imajiner)</p></li>
+<li><p><code>character</code><em>(string)</em> – (“k”, “R is exciting”, “FALSE”, “11.5”)</p></li>
+<li><p><code>logical</code> <em>(boolean)</em> – (TRUE atau FALSE)</p></li>
+<li><p><code>raw</code> - (“Hello” is stored as 48 65 6c 6c 6f)</p></li>
+</ul>
+<p><strong>Catatan</strong> : Pada <strong><code>R Language</code></strong> jumlah kelas tidak terbatas hanya pada enam jenis di atas. Misalnya, kita dapat menggunakan banyak vektor atom dan membuat array yang kelasnya akan menjadi array.</p>
+<p>Kita bisa menggunakan fungsi <code>class()</code> untuk memeriksa tipe data variabel:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">10.5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># integer</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 1000L</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># complex</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 9i <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "complex"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># character/string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"R is exciting"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># logical/boolean</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+<p>Maka outputnya adalah tipe dari elemen data masing-masing variable.</p>
+<p>Jika ingin membuat vektor dengan <strong>lebih dari satu elemen</strong>, maka kita harus menggunakan fungsi&nbsp;<code>c()</code>&nbsp;yang artinya menggabungkan elemen-elemen tersebut menjadi sebuah <code>vektor</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat vektor.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>apple <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'merah'</span>,<span class="st">'kuning'</span>,<span class="st">"hijau"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(apple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "merah"  "kuning" "hijau" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dapatkan kelas vektornya.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">class</span>(apple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="list" class="level3">
+<h3 class="anchored" data-anchor-id="list">2.2 <em><code>List</code></em></h3>
+<p><code>List</code> adalah R-object yang dapat berisi berbagai jenis elemen di dalamnya seperti vektor, fungsi dan bahkan dapat memuat list lain di dalamnya.</p>
+<p>Contoh :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat list.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>),<span class="fl">21.3</span>,sin)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cetak list.</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(list1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2 5 3
+
+[[2]]
+[1] 21.3
+
+[[3]]
+function (x)  .Primitive("sin")</code></pre>
+</div>
+</div>
+</section>
+<section id="matriks" class="level3">
+<h3 class="anchored" data-anchor-id="matriks">2.3 <em><code>Matriks</code></em></h3>
+<p><code>Matriks</code> adalah kumpulan data persegi dua dimensi. Hal itu dapat dibuat untuk menggunakan input vektor ke fungsi matriks.</p>
+<p>Contoh :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat matrix.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> <span class="fu">matrix</span>( <span class="fu">c</span>(<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'b'</span>,<span class="st">'a'</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Matriks</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,] "a"  "a"  "b" 
+[2,] "c"  "b"  "a" </code></pre>
+</div>
+</div>
+</section>
+<section id="array" class="level3">
+<h3 class="anchored" data-anchor-id="array">2.4 <em><code>Array</code></em></h3>
+<p>Meskipun matriks dibatasi pada dua dimensi, <code>array</code> dapat terdiri dari beberapa dimensi. Fungsi array mengambil atribut yang dapat menghasilkan jumlah dimensi yang dibutuhkan.</p>
+<p>Pada contoh di bawah ini kita akan membuat sebuah array dengan dua elemen yang masing-masing merupakan matriks 3×3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat array.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="st">'merah'</span>,<span class="st">'biru'</span>),<span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tampilkan Array</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+     [,1]    [,2]    [,3]   
+[1,] "merah" "biru"  "merah"
+[2,] "biru"  "merah" "biru" 
+[3,] "merah" "biru"  "merah"
+
+, , 2
+
+     [,1]    [,2]    [,3]   
+[1,] "biru"  "merah" "biru" 
+[2,] "merah" "biru"  "merah"
+[3,] "biru"  "merah" "biru" </code></pre>
+</div>
+</div>
+</section>
+<section id="factor" class="level3">
+<h3 class="anchored" data-anchor-id="factor">2.5 <em><code>Factor</code></em></h3>
+<p><code>Factor</code> adalah objek-r yang dibuat menggunakan vektor. Digunakan <strong>untuk menyimpan vektor</strong> bersama dengan nilai-nilai yang berbeda dari elemen dalam vektor sebagai label. Label selalu&nbsp;<code>character</code>terlepas dari apakah itu numerik atau character atau Boolean dll dalam vektor input. Dapat berguna dalam pemodelan statistik.</p>
+<p>Contoh :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat vector.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>apple_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'kuning'</span>,<span class="st">'kuning'</span>,<span class="st">'merah'</span>,<span class="st">'biru'</span>,<span class="st">'biru'</span>,<span class="st">'biru'</span>,<span class="st">'kuning'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat objek factor.</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>factor_apple <span class="ot">&lt;-</span> <span class="fu">factor</span>(apple_colors)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan factor.</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(factor_apple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] kuning kuning merah  biru   biru   biru   kuning
+Levels: biru kuning merah</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jumlah Level</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">nlevels</span>(factor_apple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="data-frames">2.6 <em><code>Data Frames</code></em></h3>
+<p><code>Data Frames</code> adalah objek data tabular. Tidak seperti matriks dalam data frame, setiap kolom <strong>dapat berisi mode data yang berbeda.</strong> Kolom pertama bisa numerik sedangkan kolom kedua bisa characterdan kolom ketiga bisa logical. Data Frames dibuat menggunakan fungsi&nbsp;<code>data.frame()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># buat data frame.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Mahasiswa <span class="ot">&lt;-</span>    <span class="fu">data.frame</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">nama =</span> <span class="fu">c</span>(<span class="st">"Adi"</span>, <span class="st">"Bagas"</span>,<span class="st">"Chandra"</span>), </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">berat_kg =</span> <span class="fu">c</span>(<span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">57</span>), </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">tinggi_cm =</span> <span class="fu">c</span>(<span class="dv">166</span>,<span class="dv">163</span>, <span class="dv">169</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">umur =</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">19</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Mahasiswa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     nama berat_kg tinggi_cm umur
+1     Adi       54       166   19
+2   Bagas       60       163   20
+3 Chandra       57       169   19</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
